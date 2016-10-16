@@ -1,0 +1,2 @@
+subliminal.message=Buy Java Now!
+myown.property=Life is worth living with Passion!

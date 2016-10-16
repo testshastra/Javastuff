@@ -1,0 +1,1991 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1106: Java SE 5 Language Feature Enhancements</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite"
+ style="background-image: url(index_files/beige.jpg);">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java SE 5 Language Feature Enhancements<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sang.shin@sun.com"></a><a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><br>
+<br>
+<img alt="" src="index_files/sangshin2009.jpg"
+ style="width: 88px; height: 101px;"><br>
+<a href="mailto:sang.shin@sun.com"><i></i></a></div>
+<p style="margin-left: 40px;">Today Java technology is everywhere in
+large enterprise systems,
+desktops, hand-held devices, and smart cards. Consequently, Java
+technology is the platform of choice for developers all over the world.
+All this has happened in the short time since the technology was first
+introduced in 1995. While there have been updates and enhancements
+since the first version, release 5.0 of the core Java platform brings
+to the table more language-level updates and other enhancements than at
+any other time, through the incorporation of a number of Java
+Specification Requests (JSRs). In this hands-on session, you will learn
+about all these changes and how to build desktop applications using
+version 5.0 of the Java platform.&nbsp; This hands-on lab takes you
+through the basic language feature enhancements of Java SE 5.<br>
+</p>
+<br>
+<p></p>
+<p align="center"><b>Expected duration: 150 minutes</b></p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a>Software Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.
+<ul>
+  <li>1106_javase5language.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1106_javase5language.zip">download</a>)</li>
+  <ul>
+    <li>It contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>March. 12th, 2007: Created</li>
+  <li>May 27th, 2007: Homwork is added</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Autoboxing (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Enhanced For loop (20
+minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_3">Exercise 3: Static imports (20
+minutes)</a></li>
+  <li><a href="#Exercise_4">Exercise 4: Variable arguments (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_5">Exercise 5: Type-safe enumerations (20
+minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+<br>
+<ul>
+  <ul>
+  </ul>
+</ul>
+</div>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_1"></a>Exercise 1: Autoboxing<br>
+</h2>
+<div style="margin-left: 40px;">
+<br>
+As any Java programmer knows, you cannot put an int (or other primitive
+value) into a collection. Collections can only hold object references,
+so you have to box primitive values into the appropriate wrapper class
+(which is Integer in the case of int). When you take the object out of
+the collection, you get the Integer that you put in; if you need an
+int, you must unbox the Integer using the intValue method. All of this
+boxing and unboxing is a pain, and clutters up your code. The
+autoboxing and unboxing feature automates the process, eliminating the
+pain and the clutter.<br>
+<br>
+The Autoboxing and Unboxing feature of J2SE 5.0 eliminates the drudgery
+of manual conversion between primitive types (such as int or long) and
+wrapper types (such as Integer or Long).<br>
+<span style="text-decoration: underline;"><span
+ style="font-weight: bold;"></span></span></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Example without autoboxing<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+0. Start NetBeans IDE if you have not done so yet.<br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingAutoBoxing</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingAutoBoxing</span></span>.&nbsp;
+(Figure-1.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create a new project<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">NotUsingAutoBoxing
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">NotUsingAutoBoxing.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">NotUsingAutoBoxing.java
+</span>as shown in Code-1.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class NotUsingAutoBoxing{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Suppose the internal variables are in Wrapper
+types<br>
+&nbsp;&nbsp;&nbsp; Integer iObj;<br>
+&nbsp;&nbsp;&nbsp; Float fObj;<br>
+&nbsp;&nbsp;&nbsp; Long lObj;<br>
+&nbsp;&nbsp;&nbsp; Double dObj;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public NotUsingAutoBoxing() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NotUsingAutoBoxing a = new
+NotUsingAutoBoxing();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// You have to create instances of Wrapper classes first</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// before you save them into the internal variables. This</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// is called boxing.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.iObj = new Integer( 22 );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.fObj = new Float( 22.0 );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.lObj = new Long( 22L );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.dObj = new Double( 22 );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// In the following code, you are unboxing in order to</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// get primitive types.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " int Value of iObj is: " + a.iObj.intValue() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " float Value of iObj is: " + a.fObj.floatValue() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " long Value of iObj is: " + a.lObj.longValue() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " double Value of iObj is: " + a.dObj.doubleValue()
+);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.11:&nbsp;<span style="color: rgb(0, 0, 0);">
+NotUsingAutoBoxing.java<br>
+<br>
+</span>3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">NotUsingAutoBoxing </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-1.13 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;int Value of iObj is: 22<br>
+&nbsp;float Value of iObj is: 22.0<br>
+&nbsp;long Value of iObj is: 22<br>
+&nbsp;double Value of iObj is: 22.0<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.13: Result <br>
+</div>
+<div style="margin-left: 40px;"><br>
+<ul>
+</ul>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Example with autoboxing<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingAutoboxing</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingAutoboxing</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UsingAutoboxing </span>project
+appears and IDE generated <span style="font-weight: bold;">UsingAutoboxing.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UsingAutoboxing.java
+</span>as shown in Code-1.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class UsingAutoBoxing{<br>
+      <br>
+&nbsp;&nbsp;&nbsp; // Suppose the internal variables are in Wrapper
+types<br>
+&nbsp;&nbsp;&nbsp; Integer iObj;<br>
+&nbsp;&nbsp;&nbsp; Float fObj;<br>
+&nbsp;&nbsp;&nbsp; Long lObj;<br>
+&nbsp;&nbsp;&nbsp; Double dObj;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public UsingAutoBoxing() {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UsingAutoBoxing a = new
+UsingAutoBoxing();<br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>// a.iObj = new Integer( 22
+);&nbsp; <br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.iObj =
+22;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Using AutoBoxing</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>// a.fObj = new Float( 22.0
+);<br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.fObj = 22.0f
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Using AutoBoxing</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>// a.lObj = new Long ( 22L );<br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.lObj =
+22L;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Using AutoBoxing</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>// a.dObj = new Double( 22 );<br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a.dObj =
+22d;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Using AutoBoxing</span><br style="font-weight: bold;">
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // System.out.println( " int
+Value of iObj is: " + a.iObj.intValue() );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " int
+Value of iObj is: " + a.iObj );&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Using
+UnBoxing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // System.out.println( "
+float Value of iObj is: " + a.fObj.floatValue() );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " float
+Value of iObj is: " + a.fObj );&nbsp;&nbsp; // Using UnBoxing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // System.out.println( "
+long Value of iObj is: " + a.lObj.longValue() );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " long
+Value of iObj is: " + a.lObj );&nbsp;&nbsp; // Using UnBoxing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // System.out.println( "
+double Value of iObj is: " + a.dObj.doubleValue() );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " double
+Value of iObj is: " + a.dObj );&nbsp; // Using UnBoxing<br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21:&nbsp;<span style="color: rgb(0, 0, 0);">
+UsingAutoBoxging.java</span><br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UsingAutoBoxing </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-1.23 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;int Value of iObj is: 22<br>
+&nbsp;float Value of iObj is: 22.0<br>
+&nbsp;long Value of iObj is: 22<br>
+&nbsp;double Value of iObj is: 22.0<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.23: Result <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a></div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you learned how to use the Autoboxing/Unboxing
+functionality in J2SE 5.0, which eliminates the drudgery of manual
+conversion between primitive types and wrapper types.
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tutorial_Exercises">return to the top</a><br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Enhanced For loop<br>
+</h2>
+<div style="margin-left: 40px;"><br>
+The enhanced For loop construct eliminates the drudgery and
+error-proneness of iterators and index variables when iterating over
+collections and arrays.<br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Example wihtout using enhanced For loop<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingEnhancedForLoop</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingEnhancedForLoop</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang2.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">NotUsingEnhancedForLoop
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">NotUsingEnhancedForLoop.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">NotUsingEnhancedForLoop.java
+</span>as shown in Code-2.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.*;<br>
+      <br>
+public class NotUsingEnhancedForLoop {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vector&lt;Object&gt; v = new
+Vector&lt;Object&gt;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new String( "Hello
+World" ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new Integer( 10 ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new Double( 11.0 ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new Long( 12 ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> for ( Iterator i = v.iterator();
+i.hasNext(); ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " Vector element is: " + i.next() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String [] s = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Java 2",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Platform",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Standard",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Edition",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"1.5",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "is",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"the",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"latest",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"release",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "of",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"the",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Java",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Platform" };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+for ( int i = 0; i &lt; s.length; ++i ) {</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "String array element is: " + s[i] );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11:&nbsp;<span style="color: rgb(0, 0, 0);">
+NotUsingEnhancedForLoop.java<br>
+<br>
+</span>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">NotUsingEnhancedForLoop
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-2.13 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;Vector element is: Hello
+World<br>
+&nbsp;Vector element is: 10<br>
+&nbsp;Vector element is: 11.0<br>
+&nbsp;Vector element is: 12<br>
+String array element is: Java 2<br>
+String array element is: Platform<br>
+String array element is: Standard<br>
+String array element is: Edition<br>
+String array element is: 1.5<br>
+String array element is: is<br>
+String array element is: the<br>
+String array element is: latest<br>
+String array element is: release<br>
+String array element is: of<br>
+String array element is: the<br>
+String array element is: Java<br>
+String array element is: Platform<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.13: Result <br>
+<div style="margin-left: 40px;"><br>
+</div>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Example with using enhanced For loop<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingEnhancedForLoop</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingEnhancedForLoop</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang3.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UsingEnhancedForLoop
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">UsingEnhancedForLoop.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UsingEnhancedForLoop.java
+</span>as shown in Code-2.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.*;<br>
+      <br>
+public class UsingEnhancedForLoop {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vector&lt;Object&gt; v = new
+Vector&lt;Object&gt;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new String( "Hello
+World" ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new Integer( 10 ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new Double( 11.0 ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v.add( new Long( 12 ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+for ( Object o : v ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " Vector element is: " + o );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String [] s = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Java 2",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Platform",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Standard",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Edition",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"1.5",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "is",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"the",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"latest",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"release",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "of",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"the",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Java",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Platform" };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">for ( String i : s ) {</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " String Array element is: " + i );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21:&nbsp;<span style="color: rgb(0, 0, 0);">
+UsingAutoBoxging.java</span><br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UsingEnhancedForLoop
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-2.23 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;Vector element is: Hello
+World<br>
+&nbsp;Vector element is: 10<br>
+&nbsp;Vector element is: 11.0<br>
+&nbsp;Vector element is: 12<br>
+String array element is: Java 2<br>
+String array element is: Platform<br>
+String array element is: Standard<br>
+String array element is: Edition<br>
+String array element is: 1.5<br>
+String array element is: is<br>
+String array element is: the<br>
+String array element is: latest<br>
+String array element is: release<br>
+String array element is: of<br>
+String array element is: the<br>
+String array element is: Java<br>
+String array element is: Platform </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.23: Result <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a></div>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this lab exercise, you learned how to
+use the Enhanced For Loops of&nbsp; J2SE 5.0.<br>
+<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a><br>
+<br>
+<br>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Static imports<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">Static import lets you avoid qualifying
+static members with class names without the shortcomings of the
+"Constant Interface antipattern."<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Example without using static imports<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingStaticImport</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">testpackage.NotUsingStaticImport</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang4.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">NotUsingStaticImport
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">NotUsingStaticImport.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">NotUsingStaticImport.java
+</span>as shown in Code-3.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package testpackage;<br>
+      <br>
+public class NotUsingStaticImport{<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( "Here
+are the attributes of a employee who will be hired: " );<br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Minimum Salary is: " + EmpAttributes.MINSALARY );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Maximum Salary is: " + EmpAttributes.MAXSALARY );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Max Vacation Days: " + EmpAttributes.MAXVACATION );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Max Raise Percentage: " +
+EmpAttributes.MAXANNUALRAISEPERCENTAGE );</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11:&nbsp;<span style="color: rgb(0, 0, 0);">
+NotUsingStaticImport.java<br>
+<br>
+3. Write <span style="font-weight: bold;">EmpAttributes.java</span>
+under <span style="font-weight: bold;">testpackage </span>package.<br>
+<br>
+</span>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package testpackage;<br>
+      <br>
+public class EmpAttributes {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static final int MINSALARY = 50000;<br>
+&nbsp;&nbsp;&nbsp; public static final int MAXSALARY = 70000;<br>
+&nbsp;&nbsp;&nbsp; public static final int MAXVACATION = 15;<br>
+&nbsp;&nbsp;&nbsp; public static final int MAXANNUALRAISEPERCENTAGE =
+10;<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="color: rgb(0, 0, 0);">Code-3.12: EmpAttributes.java<br>
+<br>
+</span>4. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">NotUsingStaticImport
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-3.13 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Here are the attributes of a
+employee who will be hired: <br>
+Minimum Salary is: 50000<br>
+Maximum Salary is: 70000<br>
+Max Vacation Days: 15<br>
+Max Raise Percentage: 10<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.13: Result <br>
+<div style="margin-left: 40px;"><br>
+</div>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Example with using static imports<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingStaticImport</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">testpackage.UsingStaticImport</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UsingStaticImport </span>project
+appears and IDE generated <span style="font-weight: bold;">UsingStaticImport.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UsingStaticImport.java
+</span>as shown in Code-3.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+The static import construct allows unqualified access to static members
+<i>without</i> inheriting from the type containing the static
+members.&nbsp; For example, you can say just MINSALARY instead of
+EmpAttribs.MINSALARY.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package testpackage;<br>
+      <br>
+import static testpackage.EmpAttributes.*;<br>
+      <br>
+public class UsingStaticImport {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( "Here
+are the attributes of a employee who will be hired: " );<br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Minimum Salary is: " + MINSALARY );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Maximum Salary is: " + MAXSALARY );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Max Vacation Days: " + MAXVACATION );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Max Raise Percentage: " + MAXANNUALRAISEPERCENTAGE
+);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.21:&nbsp;<span style="color: rgb(0, 0, 0);">
+UsingStaticImport.java<br>
+<br>
+</span><span style="color: rgb(0, 0, 0);">3. Write <span
+ style="font-weight: bold;">EmpAttributes.java</span> under <span
+ style="font-weight: bold;">testpackage </span>package.&nbsp; This is
+the same code as you have written in the previous step.<br>
+<br>
+</span>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package testpackage;<br>
+      <br>
+public class EmpAttributes {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static final int MINSALARY = 50000;<br>
+&nbsp;&nbsp;&nbsp; public static final int MAXSALARY = 70000;<br>
+&nbsp;&nbsp;&nbsp; public static final int MAXVACATION = 15;<br>
+&nbsp;&nbsp;&nbsp; public static final int MAXANNUALRAISEPERCENTAGE =
+10;<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="color: rgb(0, 0, 0);">Code-3.12: EmpAttributes.java</span><br>
+<br>
+4. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UsingStaticImport </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-3.23 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> Here are the attributes of a
+employee who will be hired: <br>
+Minimum Salary is: 50000<br>
+Maximum Salary is: 70000<br>
+Max Vacation Days: 15<br>
+Max Raise Percentage: 10<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.23: Result <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of the
+exercise</a></div>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<br>
+<div style="margin-left: 40px;">In this lab exercise, you learned how
+to use the Static import
+of&nbsp; J2SE 5.0.
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Variable arguments<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In past releases, a method that took an
+arbitrary number of values required you to create an array and put the
+values into the array prior to invoking the method. For example, here
+is how one used the MessageFormat class to format a message:<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Object[] arguments = {<br>
+&nbsp;&nbsp;&nbsp; new Integer(7),<br>
+&nbsp;&nbsp;&nbsp; new Date(),<br>
+&nbsp;&nbsp;&nbsp; "a disturbance in the Force"<br>
+};<br>
+      <br>
+String result = MessageFormat.format(<br>
+&nbsp;&nbsp;&nbsp; "At {1,time} on {1,date}, there was {2} on planet "
++ "{0,number,integer}.", <br>
+&nbsp;&nbsp;&nbsp; arguments);&nbsp;&nbsp; // arguments is an array<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+It is still true that multiple arguments must be passed in an array,
+but the varargs feature automates and hides the process. Furthermore,
+it is upward compatible with preexisting APIs. So, for example, the
+MessageFormat.format method now has this declaration:<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public static String
+format(String pattern, Object... arguments);<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+The three periods after the final parameter's type indicate that the
+final argument may be passed as an array or as a sequence of
+arguments.&nbsp; Varargs can be used only in the final argument
+position. Given the new varargs declaration for MessageFormat.format,
+the above invocation may be replaced by the following shorter and
+sweeter invocation:<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">String result =
+MessageFormat.format(<br>
+&nbsp;&nbsp;&nbsp; "At {1,time} on {1,date}, there was {2} on planet "
++ "{0,number,integer}.",<br>
+&nbsp;&nbsp;&nbsp; 7, new Date(), "a disturbance in the Force"); //
+varargs<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<ol>
+</ol>
+<ol>
+</ol>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Example wihtout using variable arguments<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingVarArgs</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"> NotUsingVarArgs</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">NotUsingVarArgs </span>project
+appears and IDE generated <span style="font-weight: bold;">NotUsingVarArgs.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">NotUsingVarArgs.java
+</span>as shown in Code-4.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.Date;<br>
+import java.text.MessageFormat;<br>
+import java.util.*;<br>
+      <br>
+public class NotUsingVarArgs {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String formatThis() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Object[] args = {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Hurricane",</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Integer( 99 ),</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new GregorianCalendar( 1999, 0, 1).getTime(),</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Double( 10E7 )&nbsp;&nbsp;&nbsp;&nbsp; };</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return MessageFormat.format(
+"On {2}, a {0} destroyed {1} houses and caused {3} of damage",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+args );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+NotUsingVarArgs v = new NotUsingVarArgs();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( v.formatThis());</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11:&nbsp;<span style="color: rgb(0, 0, 0);">
+NotUsingVarArgs.java<br>
+</span><span style="color: rgb(0, 0, 0);"><br>
+</span>3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">NotUsingVarArgs </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-4.13 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">On 1/1/99 12:00 AM, a Hurricane
+destroyed 99 houses and caused 100,000,000 of damage<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.13: Result <br>
+<div style="margin-left: 40px;"><br>
+</div>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Example with using variable arguments<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingVarArgs</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingVarArgs</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang5.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UsingVarArgs </span>project
+appears and IDE generated <span style="font-weight: bold;">UsingVarArgs.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UsingVarArgs.java
+</span>as shown in Code-4.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.Date;<br>
+import java.text.MessageFormat;<br>
+import java.util.*;<br>
+      <br>
+public class UsingVarArgs {<br>
+&nbsp;&nbsp;&nbsp; public UsingVarArgs() { }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String formatThis() {<br>
+      <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return( MessageFormat.format( "On {2}, a {0} destroyed {1} houses and
+caused {3} of damage",</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Hurricane",</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Integer( 99 ),</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new GregorianCalendar( 1999, 0, 1).getTime(),</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Double( 10E7 ) ) );</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UsingVarArgs v = new
+UsingVarArgs();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(
+v.formatThis());<br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.21:&nbsp;<span style="color: rgb(0, 0, 0);">
+UsingAutoBoxging.java</span><br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UsingVarArgs </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-4.23 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> On 1/1/99 12:00 AM, a Hurricane
+destroyed 99 houses and caused 100,000,000 of damage<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.23: Result <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of the
+exercise</a></div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<br>
+<div style="margin-left: 40px;">In this lab exercise, you learned how
+to use the variable arguments feature of the&nbsp; J2SE 5.0.
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Exercise_5"></a>Exercise 5: Type-safe enumerations<br>
+</h2>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<div style="margin-left: 40px;"><br>
+In pre-J2SE 5.0, the standard way to represent an enumerated type was
+the "int Enum pattern" as following:<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">// int Enum Pattern - has severe
+problems!<br>
+public static final int SEASON_WINTER = 0;<br>
+public static final int SEASON_SPRING = 1;<br>
+public static final int SEASON_SUMMER = 2;<br>
+public static final int SEASON_FALL&nbsp;&nbsp; = 3;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+This pattern has several problems as following:<br>
+<ul>
+  <li>Not typesafe - Since a season is just an int type, you can pass
+in any other int value where a season is required, or add two seasons
+together (which makes no sense).</li>
+  <li>No namespace - You must prefix constants of an "int enum" with a
+string (in this case SEASON_) to avoid collisions with other int enum
+types.</li>
+  <li>Brittleness - Because int enums are compile-time constants, they
+are compiled into an application that use them. If a new constant is
+added between two existing constants or the order is changed, the
+application must be recompiled. If it is not, it will still run, but
+its behavior will be undefined.</li>
+  <li>Printed values are uninformative - Because they are just ints, if
+you print one out, all you get is a number, which tells you nothing
+about what it represents, or even what type it is.<br>
+  </li>
+</ul>
+It is possible to get around these problems by using the Typesafe Enum
+pattern (see Effective Java Item 21), but this pattern has its own
+problems: It is quite verbose, hence error prone, and its enum
+constants cannot be used in switch statements.<br>
+<br>
+Type-safe Enumeration (enum) allows you to create enumerated types with
+arbitrary methods and fields. It provides all the benefits of the
+Typesafe Enum pattern ("Effective Java", Item 21) without the verbosity
+and the error-proneness.<br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1)
+Example "without" using Type-safe enumerations<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">NotUsingTypeSafeEnum</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"> NotUsingTypeSafeEnum</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang6.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">NotUsingTypeSafeEnum
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">NotUsingTypeSafeEnum.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">NotUsingTypeSafeEnum.java
+</span>as shown in Code-5.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">class FootballScore {<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static final int EXTRAPOINT = 1;<br>
+&nbsp;&nbsp;&nbsp; public static final int TWOPOINTS&nbsp; = 2;<br>
+&nbsp;&nbsp;&nbsp; public static final int
+SAFETY&nbsp;&nbsp;&nbsp;&nbsp; = 2;<br>
+&nbsp;&nbsp;&nbsp; public static final int FIELDGOAL&nbsp; = 3;<br>
+&nbsp;&nbsp;&nbsp; public static final int TOUCHDOWN&nbsp; = 6;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; private int score;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public FootballScore( int score ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.score = score;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public FootballScore() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.score = 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public int getScore() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.score;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}<br>
+      <br>
+      <br>
+public class NotUsingTypeSafeEnum {<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FootballScore[]&nbsp;
+myScores = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.TOUCHDOWN ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.EXTRAPOINT ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.FIELDGOAL ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.TOUCHDOWN ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.SAFETY ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.TOUCHDOWN ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.TWOPOINTS )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FootballScore[] yourScores =
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.FIELDGOAL ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.TOUCHDOWN ),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+FootballScore( FootballScore.FIELDGOAL )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+      <br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mytotal = calcTotal(
+myScores );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int yourtotal = calcTotal(
+yourScores );<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " My
+football team scored " + mytotal );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " Your
+football team scored " + yourtotal );<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( mytotal &gt; yourtotal
+) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " My Team Won! " );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if ( mytotal &lt;
+yourtotal ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " Your Team Won! " );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "What do you know?&nbsp; It is a Tie !! " );<br>
+      <br>
+&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp; public static int calcTotal( FootballScore[] f ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int total = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for ( int i = 0; i &lt; f.length; ++i ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+total += f[i].getScore();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return total;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.11:&nbsp;<span style="color: rgb(0, 0, 0);">
+NotUsingTypeSafeEnum.java<br>
+</span><span style="color: rgb(0, 0, 0);"><br>
+</span>3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">NotUsingTypeSafeEnum
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-5.13 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;My football team scored 26<br>
+&nbsp;Your football team scored 12<br>
+&nbsp;My Team Won! <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.13: Result <br>
+<div style="margin-left: 40px;"><br>
+</div>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.2"></a>(5.2)
+Example "with" using type-safe enumerations<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingTypeSafeEnum</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UsingTypeSafeEnum</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_lang7.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UsingTypeSafeEnum </span>project
+appears and IDE generated <span style="font-weight: bold;">UsingTypeSafeEnum.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UsingTypeSafeEnum.java
+</span>as shown in Code-5.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class UsingTypeSafeEnum {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Note that FootballScore is now enum type<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public enum
+FootballScore {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TOUCHDOWN( 6 ), FIELDGOAL( 3
+), TWOPOINTS( 2 ), SAFETY( 2 ), EXTRAPOINT( 1 );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore( int value ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.score = value;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+private final int score;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public int score() {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return score;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FootballScore[] myScores = {<br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.TOUCHDOWN,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.EXTRAPOINT,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.FIELDGOAL,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.TOUCHDOWN,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.SAFETY,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.TOUCHDOWN,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.TWOPOINTS</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FootballScore[] yourScores =
+{<br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.FIELDGOAL,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.TOUCHDOWN,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FootballScore.FIELDGOAL</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mytotal = calcTotal(
+myScores );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int yourtotal = calcTotal(
+yourScores );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " My
+football team scored " + mytotal );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println( " Your
+football team scored " + yourtotal );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( mytotal &gt; yourtotal
+) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " My Team Won! " );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if ( mytotal &lt;
+yourtotal ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( " Your Team Won! " );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "What do you know?&nbsp; It is a Tie !! " );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static int calcTotal( <span
+ style="font-weight: bold;">FootballScore[] f </span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int total = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for ( int i = 0; i &lt;
+f.length; ++i ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;">
+total += f[i].score();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return total;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.21:&nbsp;<span style="color: rgb(0, 0, 0);">
+UsingAutoBoxging.java</span><br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UsingTypeSafeEnum </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the Output window of the IDE.
+(Figure-5.23 below)&nbsp;<span style="color: rgb(0, 0, 0);"></span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;My football team scored 26<br>
+&nbsp;Your football team scored 12<br>
+&nbsp;My Team Won! <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.23: Result <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of the
+exercise</a></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<br>
+<div style="margin-left: 40px;">In this exercise, you learned how to
+use type-safe enum.<br>
+</div>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+<br>
+<h2><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify<span
+ style="font-weight: bold;"></span>
+<span style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">UsingTypeSafeEnum</span></span>
+NetBeans project you've done in <a href="#Exercise_5">Exercise 5 above</a>.&nbsp;
+(You might want to create a new project by copying
+the&nbsp;<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">UsingTypeSafeEnum</span></span>
+project.&nbsp; You can name the homework project in any way you want
+but here I am going to call it <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">MyUsingTypeSafeEnum</span></span>.)<br>
+<ul>
+  <li>Modify <span style="font-weight: bold;">UsingTypeSafeEnum.java</span>
+so that<span style="font-weight: bold;"> </span>FootballScore enum
+type has <span style="font-weight: bold;">extrapoint </span>field (in
+addition to <span style="font-weight: bold;">score </span>field).
+Take a suggested code change as shown in H-01 below<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class UsingTypeSafeEnum {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Note that FootballScore is now enum type<br>
+&nbsp;&nbsp;&nbsp; public enum FootballScore {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TOUCHDOWN( 6, 2 ),
+FIELDGOAL( 3, 2 ), TWOPOINTS( 2, 2 ), SAFETY( 2, 1 ), EXTRAPOINT( 1, 0
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FootballScore( int value,
+int extrapoint ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.score = value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.extrapoint = extrapoint;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // More code <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+H-01: Modified UsingTypeSafeEnum.java<br>
+<ul>
+  <li>Modify the logic of finding who wins between <span
+ style="font-weight: bold;">myScores </span>and <span
+ style="font-weight: bold;">youScores </span>by considering the values
+of both <span style="font-weight: bold;">score </span>and <span
+ style="font-weight: bold;">extrapoint</span> fields (instead of just <span
+ style="font-weight: bold;">score </span>field.)<br>
+  </li>
+</ul>
+</div>
+<br>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javase5language.<br>
+</span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyUsingTypeSafeEnum</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyUsingTypeSafeEnum</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyUsingTypeSafeEnum</span>)<br>
+    </li>
+    <li>jar cvf MyUsingTypeSafeEnum.zip MyUsingTypeSafeEnum
+(<span style="font-weight: bold;">MyUsingTypeSafeEnum </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javase5language.gif</span>
+or<span style="font-weight: bold;"> JavaIntro-javase5language</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javase5language.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<div style="margin-left: 40px;"></div>
+<br>
+<br>
+<div style="margin-left: 40px;"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

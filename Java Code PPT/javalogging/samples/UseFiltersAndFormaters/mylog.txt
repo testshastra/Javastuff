@@ -1,0 +1,85 @@
+The log number0at the timeMon Mar 26 23:02:04 PDT 2007INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:03:48 PDT 2007INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:04:21 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:05:21 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:06:27 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:06:35 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:07:20 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:07:25 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:11:12 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:11:19 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 2 and the date is : Mon Mar 26 23:12:25 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 2 and the date is : Mon Mar 26 23:12:36 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:13:14 PDT 2007
+INFO doing stuff
+INFO done
+The log number is 1 and the date is : Mon Mar 26 23:13:27 PDT 2007
+INFO doing stuff
+INFO done
+The date is : Mon Mar 26 23:16:06 PDT 2007
+INFO doing stuff
+INFO done
+The date is : Mon Mar 26 23:20:50 PDT 2007
+<font color="red">SEVERE</font> dividing by 0
+The date is : Mon Mar 26 23:21:49 PDT 2007
+<font color="red">SEVERE</font> dividing by 0
+The date is : Mon Mar 26 23:31:16 PDT 2007
+Attention, Attention, AttentionSEVERE dividing by 0
+The date is : Mon Mar 26 23:31:35 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+The date is : Mon Mar 26 23:35:48 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:35:48 PDT 2007The date is : Mon Mar 26 23:36:52 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:36:52 PDT 2007
+
+The date is : Mon Mar 26 23:37:05 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:37:05 PDT 2007
+
+The date is : Mon Mar 26 23:38:41 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:38:41 PDT 2007
+
+The date is : Mon Mar 26 23:40:26 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:40:26 PDT 2007
+
+The date is : Mon Mar 26 23:42:12 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:42:12 PDT 2007
+
+The date is : Mon Mar 26 23:43:34 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:43:34 PDT 2007
+
+The date is : Mon Mar 26 23:49:51 PDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Mon Mar 26 23:49:51 PDT 2007
+
+The date is : Wed Mar 28 07:43:04 EDT 2007
+Attention, Attention, Attention  SEVERE dividing by 0
+End of log at time : Wed Mar 28 07:43:04 EDT 2007
+

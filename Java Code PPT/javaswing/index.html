@@ -1,0 +1,1494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1018: Java Swing</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<h1 style="text-align: center;">Java Swing<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sangshinpassion@gmail.com"></a><a
+ href="http://www.javapassion.com//">www.javapassion.com/</a><br>
+<br>
+<img alt="" src="index_files/sangshin2009.jpg"
+ style="width: 88px; height: 101px;"><br>
+<a href="mailto:sangshinpassion@gmail.com"><i></i></a></div>
+<p>This hands-on lab takes you through the basics of using Java Swing
+APIs for
+building Java-based GUI applications.&nbsp; The sample applications and
+tutorial contents are from <a
+ href="http://java.sun.com/docs/books/tutorial/uiswing/">Java
+Tutorials: Creating a GUI with JFC/Swing.</a>
+</p>
+<br>
+<p></p>
+<p align="center"><b>Expected duration: 180 minutes</b></p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a>Software Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.
+<ul>
+  <li>1018_javaswing.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1018_javaswing.zip">download</a>)</li>
+  <ul>
+    <li>It contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb. 9th, 2007: Created</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+  <li>April 14th, 2010: Updated and tested with NetBeans 6.8, Tuorial
+links are updated (Sang Shin)<br>
+  </li>
+</ul>
+<span style="text-decoration: underline;"><span
+ style="font-weight: bold;"><br>
+<br>
+</span></span>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Learning Swing By Example</a></li>
+  <li><a href="#Homework_exercise">Homework
+Exercise (for people who
+are taking Sang Shin's "Java Intro Programming online course")</a></li>
+</ul>
+<br>
+<br>
+</div>
+<h2><a name="Exercise_1"></a>Exercise 1: Leaning Swing by Example<br>
+</h2>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+</ol>
+<div style="margin-left: 40px;">
+This exercise explains the concepts you need to use Swing components in
+building a user interface. First we examine the simplest Swing
+application you can write. Then we present several progressively
+complicated examples of creating user interfaces using components in
+the&nbsp;<code style="font-weight: bold;"></code><span
+ style="font-weight: bold;">javax.swing</span> package. We
+cover several Swing components, such as buttons, labels, and text
+areas. The handling of events is also discussed, as are layout
+management and accessibility.
+This lesson ends with a set of questions and exercises so you can test
+yourself on what you?¢æ¢âve learned.<br>
+<br>
+Acknowledgment: The sample applications and
+tutorial contents are from <a
+ href="http://java.sun.com/docs/books/tutorial/uiswing/">Java
+Tutorials: Creating a GUI with JFC/Swing.</a><br>
+</div>
+<ol style="margin-left: 40px;">
+  <li><a href="#1.1">Build and run "HelloWorldSwing" sample application<br>
+    </a></li>
+  <li><a href="#1.2">Build and run "SwingApplication" sample application</a></li>
+  <li><a href="#1.3">Add another button to the "SwingApplication"
+sample application</a><br>
+  </li>
+  <li><a href="#1.4">Build and run "CelsiusConverter" sample application</a><br>
+  </li>
+  <li><a href="#1.5">Build and run improved "CelsiusConverter" sample
+application</a></li>
+  <li><a href="#1.6">Build and run "LunaPhases" sample application</a></li>
+  <li><a href="#1.7">Build and run "VoteDialog" sample application</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run "HelloWorldSwing" application<br>
+</h3>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">
+This small example has all the code that every Swing application must
+have.</p>
+<p style="margin-left: 40px;">0. Start NetBeans IDE.&nbsp; <br>
+1. Open <span style="font-weight: bold;">HelloWorldSwing</span>
+NetBeans project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1lunar3.png"
+ style="width: 758px; height: 665px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Open Project</span>
+dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaswing/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under
+C:\
+directory under Windows, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javaswing\samples.</span></li>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory under Solaris/Linux, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javaswing/samples.</span><span
+ style="font-weight: bold;"></span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(255, 0, 0);">HelloWorldSwing</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">HelloWorldSwing</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">HelloWorldSwing</span> project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">HelloWorldSwing</span>
+project and select <span style="font-weight: bold;">Run</span>.&nbsp;</li>
+  <li>Observe GUI shown in Figure-1.13 below displayed.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/1helloworldswing.png"
+ style="width: 253px; height: 92px;"><br>
+Figure-1.13:GUI displayed<br>
+<br>
+3. Double-click <span style="font-weight: bold;">HelloWorldSwing.java</span>
+under <span style="font-weight: bold;">HelloWorldSwing-&gt;Source
+Packages-&gt;helloworldswing </span>to open it in the source editor.
+Read through the code paying attention to the comments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <pre>package helloworldswing;<br><br>/*<br> * HelloWorldSwing.java is a 1.4 example that<br> * requires no other files. <br> */<br>import javax.swing.*;        <br><br>public class HelloWorldSwing {<br>    /**<br>     * Create the GUI and show it.  For thread safety,<br>     * this method should be invoked from the<br>     * event-dispatching thread.<br>     */<br>    private static void createAndShowGUI() {<br>        <span
+ style="font-weight: bold;">//Make sure we have nice window decorations.</span><br>        JFrame.setDefaultLookAndFeelDecorated(true);<br><br>        <span
+ style="font-weight: bold;">//Create and set up the window.</span><br>        JFrame frame = new JFrame("HelloWorldSwing");<br>        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br><br>        <span
+ style="font-weight: bold;">//Add the ubiquitous "Hello World" label.</span><br>        JLabel label = new JLabel("Hello World");<br>        frame.getContentPane().add(label);<br><br>        <span
+ style="font-weight: bold;">//Display the window.</span><br>        frame.pack();<br>        frame.setVisible(true);<br>    }<br><br>    public static void main(String[] args) {<br>        <span
+ style="font-weight: bold;">//Schedule a job for the event-dispatching thread:</span><br
+ style="font-weight: bold;"><span style="font-weight: bold;">        //creating and showing this application's GUI.</span><br>        javax.swing.SwingUtilities.invokeLater(new Runnable() {<br>            public void run() {<br>                createAndShowGUI();<br>            }<br>        });<br>    }<br>}</pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: HelloWorldSwing.java<br>
+<br>
+4. Read <a
+ href="http://137.166.68.100/java-tut/uiswing/learn/example1.html">explanation
+of the HellWorldSwing.java</a> (internet access required).<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Build and run "SwingApplication" sample application<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;">In this step, you are going to exercise
+how to set "look and feel" of your GUI.<br>
+<br>
+1. Open <span style="font-weight: bold;">SwingApplication</span>
+NetBeans project.&nbsp; <br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaswing/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold;">SwingApplication</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">SwingApplication</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+<div style="margin-left: 40px;"></div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">SwingApplication</span> project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">SwingApplication</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+  <li>Observe GUI shown in Figure-1.20 below displayed.</li>
+</ul>
+<img alt="" src="index_files/1swingapplication1.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-1.20: SwingApplication<br>
+<br>
+3. Double-click <span style="font-weight: bold;">SwingApplication.java</span>
+under <span style="font-weight: bold;">SwingApplication-&gt;Source
+Packages-&gt;swingapplication </span>to open it in the source editor.
+(Code-1.21 below) Read through the code.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package swingapplication;<br>
+      <br>
+/*<br>
+&nbsp;* SwingApplication.java is a 1.4 example that requires<br>
+&nbsp;* no other files.<br>
+&nbsp;*/<br>
+import javax.swing.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+      <br>
+public class SwingApplication implements ActionListener {<br>
+&nbsp;&nbsp;&nbsp; private static String labelPrefix = "Number of
+button clicks: ";<br>
+&nbsp;&nbsp;&nbsp; private int numClicks = 0;<br>
+&nbsp;&nbsp;&nbsp; final JLabel label = new JLabel(labelPrefix +
+"0&nbsp;&nbsp;&nbsp; ");<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //Specify the
+look and feel to use.&nbsp; Valid values:</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //null (use
+the default), "Metal", "System", "Motif", "GTK+"</span><br>
+&nbsp;&nbsp;&nbsp; final static String LOOKANDFEEL = null;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Component createComponents() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton button = new
+JButton("I'm a Swing button!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.setMnemonic(KeyEvent.VK_I);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.addActionListener(this);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; label.setLabelFor(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * An easy way to put
+space between a top-level container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * and its contents is
+to put the contents in a JPanel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * that has an "empty"
+border.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JPanel pane = new JPanel(new
+GridLayout(0, 1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(label);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pane.setBorder(BorderFactory.createEmptyBorder(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30, //top<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30, //left<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10, //bottom<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30) //right<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return pane;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void actionPerformed(ActionEvent e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numClicks++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; label.setText(labelPrefix +
+numClicks);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static void initLookAndFeel() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Swing allows you to specify which look
+and feel your program uses--Java,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// GTK+, Windows, and so on as shown below.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String lookAndFeel = null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (LOOKANDFEEL != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(LOOKANDFEEL.equals("Metal")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("System")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getSystemLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("Motif")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("GTK+")) { //new in 1.4.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Unexpected value of LOOKANDFEEL specified: "<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ LOOKANDFEEL);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UIManager.setLookAndFeel(lookAndFeel);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (ClassNotFoundException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Couldn't find class for specified look and feel:"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Did you include the L&amp;F library in the class
+path?");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (UnsupportedLookAndFeelException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Can't use the specified look and feel ("<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ ") on this platform.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (Exception e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Couldn't get specified look and feel ("<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "), for some reason.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Create the GUI and show it.&nbsp; For thread
+safety,<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * this method should be invoked from the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * event-dispatching thread.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; private static void createAndShowGUI() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Set the look and feel.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initLookAndFeel();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Make sure we have nice
+window decorations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JFrame.setDefaultLookAndFeelDecorated(true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Create and set up the
+window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame frame = new
+JFrame("SwingApplication");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SwingApplication app = new
+SwingApplication();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Component contents =
+app.createComponents();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.getContentPane().add(contents, BorderLayout.CENTER);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Display the window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.pack();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setVisible(true);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> //Schedule a job for the event-dispatching
+thread:</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//creating and showing this application's GUI.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+javax.swing.SwingUtilities.invokeLater(new Runnable() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public void run() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+createAndShowGUI();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: SwingApplication.java<br>
+<br>
+4. Read <a
+ href="http://137.166.68.100/java-tut/uiswing/learn/example2.html">explanation
+of the SwingApplication.java</a> (internet access required).<br>
+5. Change the value of <span style="font-weight: bold;">LOOKANDFEEL </span>static
+string to "<span style="font-weight: bold;">Metal</span>" as shown
+below in Code-1.22.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class SwingApplication
+implements ActionListener {<br>
+&nbsp;&nbsp;&nbsp; private static String labelPrefix = "Number of
+button clicks: ";<br>
+&nbsp;&nbsp;&nbsp; private int numClicks = 0;<br>
+&nbsp;&nbsp;&nbsp; final JLabel label = new JLabel(labelPrefix +
+"0&nbsp;&nbsp;&nbsp; ");<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;</span>&nbsp;
+//Specify the look and feel to use.&nbsp; Valid values:<br>
+&nbsp;&nbsp;&nbsp; //null (use the default), "Metal", "System",
+"Motif", "GTK+"<br>
+&nbsp;&nbsp;&nbsp; final static String LOOKANDFEEL =<span
+ style="font-weight: bold; color: rgb(255, 0, 0);"> <span
+ style="color: rgb(0, 0, 153);">"Metal"</span></span>;<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.22: Change the look and feel to "Metal"<br>
+</div>
+<p style="margin-left: 40px;">6. Build and run <span
+ style="font-weight: bold;">SwingApplication</span> project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">SwingApplication</span>
+project and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe GUI shown is the same as shown in Figure-1.20 above. <br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"> </p>
+<div style="margin-left: 40px;">7. Change the value of <span
+ style="font-weight: bold;">LOOKANDFEEL
+</span>static string to "<span style="font-weight: bold;">System</span>",
+"<span style="font-weight: bold;">Motif</span>", and "<span
+ style="font-weight: bold;">GTK+</span>" and run the application
+and observe that different look and feel is displayed.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Add another button to the "SwingApplication"&nbsp; sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">In this step, you are going to add the
+2nd
+button the JPanel.&nbsp; You will also learn how the event handler of
+the buttons is invoked.<br>
+<br>
+1. Modify the <span style="font-weight: bold;">SwingApplication.java</span>
+as shown in Code-1.30 below. You
+are adding anoher button. The code fragments that needed to be added
+are highlighed in <span
+ style="font-weight: bold; color: rgb(0, 0, 153);">bold and blue-colored</span>
+font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package swingapplication;<br>
+      <br>
+/*<br>
+&nbsp;* SwingApplication.java is a 1.4 example that requires<br>
+&nbsp;* no other files.<br>
+&nbsp;*/<br>
+import javax.swing.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+      <br>
+public class SwingApplication implements ActionListener {<br>
+&nbsp;&nbsp;&nbsp; private static String labelPrefix = "Number of
+button clicks: ";<br>
+&nbsp;&nbsp;&nbsp; private int numClicks = 0;<br>
+&nbsp;&nbsp;&nbsp; final JLabel label = new JLabel(labelPrefix +
+"0&nbsp;&nbsp;&nbsp; ");<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; //Specify the look and feel to use.&nbsp; Valid
+values:<br>
+&nbsp;&nbsp;&nbsp; //null (use the default), "Metal", "System",
+"Motif", "GTK+"<br>
+&nbsp;&nbsp;&nbsp; final static String LOOKANDFEEL = null;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Component createComponents() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton button = new
+JButton("I'm a Swing button!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.setMnemonic(KeyEvent.VK_I);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.addActionListener(this);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; label.setLabelFor(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create a second button. The same event handler will be used.<br
+ style="font-weight: bold; color: rgb(0, 0, 153);">
+      </span> <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JButton button2 = new JButton("I'm 2nd Swing button!");</span><br
+ style="font-weight: bold; color: rgb(0, 0, 153);">
+      <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button2.setMnemonic(KeyEvent.VK_L);</span><br
+ style="font-weight: bold; color: rgb(0, 0, 153);">
+      <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button2.addActionListener(this);</span><br
+ style="font-weight: bold; color: rgb(0, 0, 153);">
+      <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+label.setLabelFor(button2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * An easy way to put
+space between a top-level container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * and its contents is
+to put the contents in a JPanel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * that has an "empty"
+border.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JPanel pane = new JPanel(new
+GridLayout(0, 1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(button);<br>
+      <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Add 2nd button to the JPanel</span><br
+ style="font-weight: bold; color: rgb(0, 0, 153);">
+      <span style="font-weight: bold; color: rgb(0, 0, 153);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pane.add(button2); </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(label);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pane.setBorder(BorderFactory.createEmptyBorder(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30, //top<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30, //left<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10, //bottom<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30) //right<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return pane;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void actionPerformed(ActionEvent e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numClicks++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; label.setText(labelPrefix +
+numClicks);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static void initLookAndFeel() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Swing allows you to
+specify which look and feel your program uses--Java,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // GTK+, Windows, and so on
+as shown below.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String lookAndFeel = null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (LOOKANDFEEL != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(LOOKANDFEEL.equals("Metal")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("System")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getSystemLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("Motif")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("GTK+")) { //new in 1.4.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Unexpected value of LOOKANDFEEL specified: "<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ LOOKANDFEEL);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UIManager.setLookAndFeel(lookAndFeel);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (ClassNotFoundException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Couldn't find class for specified look and feel:"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Did you include the L&amp;F library in the class
+path?");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (UnsupportedLookAndFeelException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Can't use the specified look and feel ("<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ ") on this platform.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (Exception e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Couldn't get specified look and feel ("<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "), for some reason.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Create the GUI and show it.&nbsp; For thread
+safety,<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * this method should be invoked from the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * event-dispatching thread.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; private static void createAndShowGUI() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Set the look and feel.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initLookAndFeel();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Make sure we have nice
+window decorations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JFrame.setDefaultLookAndFeelDecorated(true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Create and set up the
+window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame frame = new
+JFrame("SwingApplication");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SwingApplication app = new
+SwingApplication();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Component contents =
+app.createComponents();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.getContentPane().add(contents, BorderLayout.CENTER);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Display the window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.pack();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setVisible(true);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Schedule a job for the
+event-dispatching thread:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //creating and showing this
+application's GUI.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+javax.swing.SwingUtilities.invokeLater(new Runnable() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public void run() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+createAndShowGUI();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.30: Modified SwingApplication.java with new button<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">SwingApplication</span> project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">SwingApplication</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+  <li>Observe GUI shown in Figure-1.31 below is displayed.</li>
+</ul>
+<img alt="" src="index_files/1swingapplicationcomponents1.png"
+ style="width: 247px; height: 151px;"><br>
+Figure-1.31: New button is added<br>
+<br>
+3. Play with the&nbsp; event handler<br>
+<ul>
+  <li>Click both buttons. <br>
+  </li>
+  <li>Observe that either button will trigger the "Number of button
+clicks: &lt;value&gt;" to increase the value.</li>
+</ul>
+<img alt="" src="index_files/1swingapplicationcomponents2.png"
+ style="width: 247px; height: 151px;"><br>
+Figure-1.32: Number of button clicks are increased by clicking either
+button<br>
+<br>
+Now you are going to change the behavior of the event handler depending
+on which button is pressed.<br>
+<br>
+4. Modify <span style="font-weight: bold;">SwingApplication.java</span>
+as shown in Code-1.33 below.&nbsp; You are changing the behavior of the
+event handler depending on which button is pressed. The code fragments
+that needed to be added are highlighed in <span
+ style="font-weight: bold; color: rgb(0, 0, 153);">bold and blue-colored</span>
+font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package swingapplication;<br>
+      <br>
+/*<br>
+&nbsp;* SwingApplication.java is a 1.4 example that requires<br>
+&nbsp;* no other files.<br>
+&nbsp;*/<br>
+import javax.swing.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+      <br>
+public class SwingApplication implements ActionListener {<br>
+&nbsp;&nbsp;&nbsp; private static String labelPrefix = "Number of
+button clicks: ";<br>
+&nbsp;&nbsp;&nbsp; private int numClicks = 0;<br>
+&nbsp;&nbsp;&nbsp; final JLabel label = new JLabel(labelPrefix +
+"0&nbsp;&nbsp;&nbsp; ");<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; //Specify the look and feel to use.&nbsp; Valid
+values:<br>
+&nbsp;&nbsp;&nbsp; //null (use the default), "Metal", "System",
+"Motif", "GTK+"<br>
+&nbsp;&nbsp;&nbsp; final static String LOOKANDFEEL = null;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Component createComponents() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton button = new
+JButton("I'm a Swing button!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.setMnemonic(KeyEvent.VK_I);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.addActionListener(this);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; label.setLabelFor(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create a second button<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton button2 = new
+JButton("I'm 2nd Swing button!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button2.setMnemonic(KeyEvent.VK_I);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button2.addActionListener(this);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+label.setLabelFor(button2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * An easy way to put
+space between a top-level container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * and its contents is
+to put the contents in a JPanel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * that has an "empty"
+border.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JPanel pane = new JPanel(new
+GridLayout(0, 1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Add 2nd button to the
+JPanel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(button2); <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pane.add(label);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pane.setBorder(BorderFactory.createEmptyBorder(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30, //top<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30, //left<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10, //bottom<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30) //right<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return pane;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Modify the
+event handler code depending on which button is pressed.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // If the 1st
+button is pressed, increase the numClicks value by 1, else</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // increase
+the value by 1000.<br>
+      <br>
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+void actionPerformed(ActionEvent e) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Using getActionCommand()
+method is a bit of a hack, but for the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sake of this exercise, it
+serves its purpose.<br style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (e.getActionCommand().equals("I'm a Swing button!")){</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+numClicks++;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else{</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+numClicks += 1000;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+label.setText(labelPrefix + numClicks);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static void initLookAndFeel() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Swing allows you to
+specify which look and feel your program uses--Java,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // GTK+, Windows, and so on
+as shown below.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String lookAndFeel = null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (LOOKANDFEEL != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(LOOKANDFEEL.equals("Metal")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("System")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getSystemLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("Motif")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (LOOKANDFEEL.equals("GTK+")) { //new in 1.4.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Unexpected value of LOOKANDFEEL specified: "<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ LOOKANDFEEL);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UIManager.setLookAndFeel(lookAndFeel);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (ClassNotFoundException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Couldn't find class for specified look and feel:"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Did you include the L&amp;F library in the class
+path?");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (UnsupportedLookAndFeelException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Can't use the specified look and feel ("<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ ") on this platform.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (Exception e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Couldn't get specified look and feel ("<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ lookAndFeel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "), for some reason.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Using the default look and feel.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Create the GUI and show it.&nbsp; For thread
+safety,<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * this method should be invoked from the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * event-dispatching thread.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; private static void createAndShowGUI() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Set the look and feel.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initLookAndFeel();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Make sure we have nice
+window decorations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JFrame.setDefaultLookAndFeelDecorated(true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Create and set up the
+window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame frame = new
+JFrame("SwingApplication");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SwingApplication app = new
+SwingApplication();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Component contents =
+app.createComponents();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.getContentPane().add(contents, BorderLayout.CENTER);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Display the window.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.pack();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setVisible(true);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Schedule a job for the
+event-dispatching thread:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //creating and showing this
+application's GUI.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+javax.swing.SwingUtilities.invokeLater(new Runnable() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public void run() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+createAndShowGUI();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.33: Change the behavior of the event handler<br>
+<br>
+5. Using context-sensitive JavaDoc feature of NetBeans, please see the
+JavaDoc of <span style="font-weight: bold;">ActionEvent </span>class.<br>
+6. Build and run <span style="font-weight: bold;">SwingApplication </span>project.<br>
+<ul>
+  <li>Right-click <span style="font-weight: bold;">SwingApplication</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+  <li>Observe the Number of button clicks changed differently depending
+on which button you pressed. (Clicking the 2nd button will increase the
+value by 1000.)</li>
+</ul>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.4"></a>(1.4)
+Build and run "CelsiusConverter" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Open <span
+ style="font-weight: bold;">CelsiusConverter</span>
+NetBeans project.&nbsp; <br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaswing/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold;">CelsiusConverter</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">CelsiusConverter</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+<div style="margin-left: 40px;"></div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">CelsiusConverter</span> project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">CelsiusConverter</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+  <li>Observe GUI shown in Figure-1.40 below displayed.</li>
+</ul>
+<img alt="" src="index_files/1celsiusconverter1.png"
+ style="width: 378px; height: 132px;"><br>
+Figure-1.40: CelsiusConvter application<br>
+<ul>
+  <li>Type some value in the text field and press Enter or press
+Convert button.</li>
+  <li>Observe the Celsius value is converted into Fahrenheit.
+(Figure-1.41 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1celsiusconverter3.png"
+ style="width: 275px; height: 143px;"><br>
+Figure-1.41: Result of the conversion<br>
+<br>
+3. Read <a
+ href="http://137.166.68.100/java-tut/uiswing/learn/example3.html">explanation
+of the CelsiusConverter application</a> (internet access required).
+(This is very important.)<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.5"></a>(1.5)
+Build and run Improved "CelsiusConverter2" sample application<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+</div>
+<div style="margin-left: 40px;">In this exercise, you are going to
+learn how to use icon image with the application.<br>
+<br>
+1. Open <span style="font-weight: bold;">CelsiusConverter2</span>
+NetBeans project.&nbsp; <br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaswing/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under
+C:\
+directory under Windows, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javaswing\samples.</span></li>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory under Solaris/Linux, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javaswing/samples.</span><span
+ style="font-weight: bold;"></span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold;">CelsiusConverter2</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">CelsiusConverter2</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">CelsiusConverter2</span> project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">CelsiusConverter2</span>
+project and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe GUI shown in Figure-1.13 below displayed.</li>
+</ul>
+<img alt="" src="index_files/1celsiusconverter2.png"
+ style="width: 263px; height: 115px;"><br>
+Figure-1.50: CelsiusConverter2<br>
+<ul>
+  <li>Press converter arrow image.</li>
+  <li>Observe the conversion occurs.</li>
+</ul>
+<img alt="" src="index_files/1celsiusconverter4.png"
+ style="width: 266px; height: 131px;"><br>
+Figure-1.51: Conversion occurs<br>
+<br>
+3. Read <a
+ href="http://137.166.68.100/java-tut/uiswing/learn/example4.html">explanation
+of the CelsiusConverter2 application</a> (internet access required).
+(This is very important.)<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<div style="margin-left: 40px;"></div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.6"></a>(1.6)
+Build and run
+"LunarPhases" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">In this step, you are going learn
+Layout managers.<br>
+<br>
+1. Open <span style="font-weight: bold;">LunarPhases</span>
+NetBeans project.&nbsp; <br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaswing/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under
+C:\
+directory under Windows, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javaswing\samples.</span></li>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory under Solaris/Linux, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javaswing/samples.</span><span
+ style="font-weight: bold;"></span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold;">LunarPhases</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">LunarPhases</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">LunarPhases</span> project. <br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Right-click <span style="font-weight: bold;">LunarPhases</span>
+project and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe GUI shown in Figure-1.60 below displayed.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/1lunar1.png" style="width: 216px; height: 293px;"><br>
+Figure-1.60: Running LunarPhases application<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">Waxing Crescent</span>
+from the drop down menu</li>
+  <li>Observe a new image gets displayed<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1lunar2.png"
+ style="width: 216px; height: 293px;"><br>
+Figure-1.61: Another selection<br>
+<br>
+3. Read <a
+ href="http://137.166.68.100/java-tut/uiswing/learn/example5.html">explanation
+of the LunarPhases application</a> (internet access required). (This is
+very important.)<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.7"></a>(1.7)
+Build and run
+"VoteDialog" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open <span style="font-weight: bold;">VoteDialog</span>
+NetBeans project.&nbsp; <br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaswing/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under
+C:\
+directory under Windows, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javaswing\samples.</span></li>
+    <li>If you unzipped the <span style="font-weight: bold;">1018_javaswing.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory under Solaris/Linux, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javaswing/samples.</span><span
+ style="font-weight: bold;"></span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold;">VoteDialog</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">VoteDialog</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span
+ style="font-weight: bold;">VoteDialog</span> project. <br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Right-click <span style="font-weight: bold;">VoteDialog</span>
+project and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe GUI shown in Figure-1.13 below displayed. </li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/15VoteDialog.gif" style="width: 347px; height: 248px;"><br>
+Figure-1.70: Display from VoteDialog application<br>
+<br>
+3. Read <a
+ href="http://137.166.68.100/java-tut/uiswing/learn/example6.html">explanation
+of the VoteDialog application</a> (internet access required). (This is
+very important.)<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have built
+various Swing applications.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<h2><a name="Homework_exercise"></a>Homework exercise (for people who
+are taking Sang Shin's "Java Intro Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to build a new Swing
+application like LunarPhase sample application as following leveraging
+the knowlege you acquired so far.&nbsp; Call the new NetBeans project "<span
+ style="font-weight: bold;">mySwingApp</span>".<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Instead
+of "Select Phase" JPanel, use "Select WorldCup 2006 Country" JPanel.</li>
+  <ul>
+    <li>The drop-down menu should have 6 countries of your choice from
+16 countries.</li>
+    <li>You can see the countries who made WorldCup 2006 from <a
+ href="http://fifaworldcup.yahoo.com/06/en/w/team/index.html">here</a><br>
+    </li>
+  </ul>
+  <li>Instead of "Display Phase" JPanel, use "National Flag" JPanel.</li>
+  <ul>
+    <li>When a user selects a country, the National Flag JPanel should
+display the country's flag.</li>
+    <li>Please get the icons of the countries from <a
+ href="http://www.kidsdomain.com/icon/flagseurasian.html">this
+website</a> (Some icons are copied into flags directory of the hands-on
+lab zip file)<br>
+    </li>
+  </ul>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javaswing</span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;"> mySwingApp</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">mySwingApp</span> directory&gt; <br>
+    </li>
+    <li>jar cvf mySwing.zip mySwing (<span style="font-weight: bold;">mySwingApp
+      </span>should contain <span style="font-weight: bold;">nbproject
+      </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javaswing.gif</span>
+or<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"> JavaIntro-javaswing.jpg</span> (or
+JavaIntro-javaswing.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.<br>
+    </li>
+  </ul>
+  <li>If you decide to use different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project - war file with necessary source files is OK.</li>
+</ul>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

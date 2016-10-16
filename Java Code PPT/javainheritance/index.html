@@ -1,0 +1,4238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1023: Java Inheritance</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="Free Java Programming Online Training Course"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Inheritance<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">Inheritance is one of the most
+important Object-Oriented Programming
+concepts along with
+encapsulation and polymorphism.&nbsp; Basically it allows reuse of the
+code since a sub-class (child class) can readily use the properties and
+methods defined in the super class (parent class).<br>
+<br>
+The goal of this hands-on lab is to get you exposed to the concept of
+Java inheritance.&nbsp; You will learn how to create a Java class by
+extending another class.&nbsp; You will learn that the Object class is
+the mother of all class. You will learn how to override a method of a
+parent class. You will learn how to do type casting between object
+instances that are related through inheritance. Finally you will learn
+how to use use final class and final method.<br>
+</div>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 120 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<p>Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; </p>
+<ul>
+  <li>1023_javainheritance.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1023_javainheritance.zip">download</a>)</li>
+  <ul>
+    <li>The zip file contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb. 1st, 2007: Created</li>
+  <li>Feb. 5th, 2007: Result of Exercise 2.3 is updated</li>
+  <li>March 2nd, 2007: Homework is added</li>
+  <li>March 5th, 2007: Usage of ArrayList in the homework is removed</li>
+  <li>Sep. 28th, 2007: Homework is using double instead of int</li>
+  <li>June 10th, 2008: JDK 6 and NetBeans 6.1 are used</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Build and run a Java program
+which uses classes that are related through Inheritance (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Constructor calling chain and
+super keyword (30
+minutes)</a></li>
+  <li><a href="#Exercise_3">Exercise 3: Overloading (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_4">Exercise 4: Type casting (30
+minutes)</a></li>
+  <li><a href="#Exercise_5">Exercise 5: Final class and final method
+(20 minutes)</a></li>
+  <li><a href="#Exercise_6">Exercise 6: Build an application (30
+minutes)</a><br>
+  </li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Build and run a Java program
+which uses classes that are related through Inheritance<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to write
+a program in which multiple classes, which are related with
+inheritance,
+are created and used.&nbsp; First, you will create Person class.&nbsp;
+Then you will create sub-classes of the Person class, Student class and
+Teacher class.&nbsp; You will also create sub-class of the Student
+class, which is called InternationalStudent class.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#1.1">Build and run a Java program that uses classes
+that are related</a></li>
+    <li><a href="#1.2">View the inheritance hierarchy through the IDE</a></li>
+  </ol>
+</ul>
+<br>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run a
+Java program that uses classes that are related<br>
+</h3>
+<p style="margin-left: 40px;">0. Start the NetBeans IDE if you have
+not done so.<br>
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<img alt="" src="index_files/111_choosejavaproject.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyPeopleExample</span>.
+(Figure-1.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_mypeople1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create a new project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyPeopleExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+<img alt="" src="index_files/1_mypeople1.1.png"
+ style="width: 892px; height: 747px;"><br>
+<br>
+2. Write <span style="font-weight: bold;">Person.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Person</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypeopleexample</span> </span>or
+choose <span style="font-weight: bold; color: rgb(51, 51, 255);">mypeopleexample</span>
+from
+the drop-down menu. (Figure-1.11 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_mypeople2.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.11: Create a Person.java<br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Person.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Person.java</span>
+as shown in Code-1.12 below.&nbsp; Note that the <span
+ style="font-weight: bold;">Person </span>class has two fields, <span
+ style="font-weight: bold;">name </span>and <span
+ style="font-weight: bold;">address</span>, and getter and setter
+methods of them.</li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private String address;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getAddress() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setAddress(String address) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.address = address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.12: Person.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Student.java</span>. Note
+that the <span style="font-weight: bold;">Student </span>class is a
+sub-class of the <span style="font-weight: bold;">Person </span>class.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Student</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;">mypeopleexample </span>or
+choose <span style="font-weight: bold;">mypeopleexample</span> from
+the drop-down menu. (Figure-1.11 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_mypeople2.1.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Student.java</span>
+gets displayed in the editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Student.java
+    </span>as shown in Code-1.13 below.&nbsp; Note that the <span
+ style="font-weight: bold;">Student </span>class has two fields, <span
+ style="font-weight: bold;">school </span>and <span
+ style="font-weight: bold;">grade</span>, and getter and setter methods
+of them.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class <span style="font-weight: bold;">Student extends Person</span>
+{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String school;<br>
+&nbsp;&nbsp;&nbsp; private double grade;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getSchool() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setSchool(String school) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public double getGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setGrade(double grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: Student.java<br>
+<br>
+4. Write <span style="font-weight: bold;">InternationalStudent.java</span>.
+Note that&nbsp; <span style="font-weight: bold;">InternationalStudent </span>class
+is a
+sub-class of <span style="font-weight: bold;">Student </span>class.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">InternationalStudent</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;">mypeopleexample </span>or
+choose <span style="font-weight: bold;">mypeopleexample</span> from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_mypeople2.2.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">InternationalStudent.java</span>
+gets displayed in the editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">International</span><span
+ style="font-weight: bold;">Student.java </span>as shown in Code-1.14
+below.&nbsp; Note that the <span style="font-weight: bold;">InternationalStudent
+    </span>class has one field, <span style="font-weight: bold;">country</span>,
+and getter and setter methods.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class <span style="font-weight: bold;">InternationalStudent
+extends Student </span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of InternationalStudent */<br>
+&nbsp;&nbsp;&nbsp; public InternationalStudent() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String country;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getCountry() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setCountry(String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.14: InternationalStudent.java<br>
+<br>
+5. Write <span style="font-weight: bold;">Teacher.java</span>.&nbsp;
+Note that Teacher class is a sub-class of Person class.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Teacher</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;">mypeopleexample </span>or
+choose <span style="font-weight: bold;">mypeopleexample</span> from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_mypeople2.3.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Teacher.java</span>
+gets displayed in the editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Teacher.java
+    </span>as shown in Code-1.16 below. Note that the <span
+ style="font-weight: bold;">Teacher </span>class has one field, <span
+ style="font-weight: bold;">subject</span>, and getter and setter
+methods of it.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public <span style="font-weight: bold;">class Teacher extends Person</span>
+{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String subject;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getSubject() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return subject;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setSubject(String subject) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.subject = subject;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.16: Teacher.java<br>
+<br>
+6. Modify <span style="font-weight: bold;">Main.java</span>.<br>
+<ul>
+  <li>Modify the<span style="font-weight: bold;"> Main.java</span> as
+shown in Code-1.17 below. The change is to create object instances of
+the <span style="font-weight: bold;">Person</span>, <span
+ style="font-weight: bold;">Student</span>, <span
+ style="font-weight: bold;">InternationalStudent</span>, and <span
+ style="font-weight: bold;">Teacher </span>classes.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create object instances
+and invoke methods.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Note that you can use
+methods defined in a parent</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// class for object
+instances of the child class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person1.setName("Tom Jones");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student1.setName("CCR");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+student1.setSchool("Lexington High");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InternationalStudent
+internationalStudent1 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.setName("Bill Clinton");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.setSchool("Lexington High");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.setCountry("Korea");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teacher teacher1 = new
+Teacher();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; teacher1.setName("Beatles");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+teacher1.setSubject("History");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Display name of object
+instances using the getName() method</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// defined in the Person
+class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Displaying names of all object instances...");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+person1.getName() = " + person1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+student1.getName() = " + student1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+internationalStudent1.getName() = " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+teacher1.getName() = " + teacher1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.17: Main.java<br>
+<br>
+7. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPeopleExample </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-1.18 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Displaying names of all object
+instances...<br>
+&nbsp; person1.getName() = Tom Jones<br>
+&nbsp; student1.getName() = CCR<br>
+&nbsp; internationalStudent1.getName() = Bill Clinton<br>
+&nbsp; teacher1.getName() = Beatles<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.18: Result of running the application<br>
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <br>
+</div>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Display the class inheritance hierarchy through getSuperclass() method
+of the Class class<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to display the class hierarchy through a
+programming API - getSuperclass() method of a Class class - in your
+program.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-1.30
+below.&nbsp; The code fragment that need to be added are highlighted in
+<span style="font-weight: bold; color: rgb(51, 51, 255);">bold
+and blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create object instances
+and invoke methods.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Note that you can use
+methods defined in a parent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // class for object
+instances of the child class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person1.setName("Tom Jones");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student1.setName("CCR");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+student1.setSchool("Lexington High");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InternationalStudent
+internationalStudent1 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.setName("Bill Clinton");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.setSchool("Lexington High");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.setCountry("Korea");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teacher teacher1 = new
+Teacher();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; teacher1.setName("Beatles");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+teacher1.setSubject("History");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display name of object
+instances using the getName() method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // defined in the Person
+class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Displaying names of all object instances...");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+person1.getName() = " + person1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+student1.getName() = " + student1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+internationalStudent1.getName() = " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("&nbsp;
+teacher1.getName() = " + teacher1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Display the class hierarchy of the InternationalStudent</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// class through getSuperclass() method of Class class.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Class class1 = internationalStudent1.getClass();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Displaying class hierarchy of InternationalStudent
+Class...");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+while (class1.getSuperclass() != null){ </span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String child = class1.getName();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String parent = class1.getSuperclass().getName();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("&nbsp; " + child + " class is a child class of " +
+parent);</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+class1 = class1.getSuperclass();&nbsp;&nbsp; </span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.30: Modified Main.java<br>
+<br>
+2. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPeopleExample </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-1.31 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Displaying names of all object
+instances...<br>
+&nbsp; person1.getName() = Tom Jones<br>
+&nbsp; student1.getName() = CCR<br>
+&nbsp; internationalStudent1.getName() = Bill Clinton<br>
+&nbsp; teacher1.getName() = Beatles<br>
+Displaying class hierarchy of InternationalStudent Class...<br>
+&nbsp; mypeopleexample.InternationalStudent class is a child class of
+mypeopleexample.Student<br>
+&nbsp; mypeopleexample.Student class is a child class of
+mypeopleexample.Person<br>
+&nbsp; mypeopleexample.Person class is a child class of java.lang.Object<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.31: Result of running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExample.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+</div>
+<p style="margin-left: 40px;"></p>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have learned how to
+create object instances that are related through inheritance.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Constructor calling chain<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">In this exercise, you are going to
+exercise the concept of constructor calling chain and how to use
+super()
+method and super reference.<br>
+</p>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#2.1">Constructor call chain</a><br>
+  </li>
+  <li><a href="#2.2">super() method</a></li>
+  <li><a href="#2.3">super reference</a><br>
+  </li>
+</ol>
+<ol>
+</ol>
+</div>
+<p style="margin-left: 40px;"></p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Constructor call chain<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPeopleExample </span>project
+for the change you are going to make in this step or you might want to
+create a new project, for example, <span style="font-weight: bold;">MyPeopleExampleConstructor</span>,
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Person.java</span> as shown
+in Code-2.10 below.&nbsp; The change is to add a display statement
+within the constructor.&nbsp; The code fragment that needs to be added
+is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<span style="font-weight: bold;"></span><br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public Person() {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Person: constructor is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private String address;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getAddress() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setAddress(String address) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.address = address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: Person.java<br>
+<br>
+2. Modify <span style="font-weight: bold;">Student.java</span> as
+shown in Code-2.11 below.&nbsp; The change is to add a display
+statement within the constructor.&nbsp; The code fragment that needs to
+be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Student extends Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;
+public Student() {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Student: constructor is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String school;<br>
+&nbsp;&nbsp;&nbsp; private double grade;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getSchool() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSchool(String school) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setGrade(double grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.12: Result of running the application<br>
+<br>
+3. Modify <span style="font-weight: bold;">InternationalStudent.java </span>as
+shown in Code-2.12 below.&nbsp; The change is to add a display
+statement within the constructor.&nbsp; The code fragment that needs to
+be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class InternationalStudent extends Student {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;
+public InternationalStudent() {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("InternationalStudent: constructor is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}&nbsp;&nbsp;&nbsp; </span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String country;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getCountry() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setCountry(String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.13: Code that generates compile error.<br>
+<br>
+4. Modify <span style="font-weight: bold;">Teacher.java</span> as
+shown in Code-2.14 below.&nbsp; The
+change is to add a display statement within the constructor.&nbsp; The
+code fragment that needs to be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Teacher extends Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">public Teacher() {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Teacher: constructor is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String subject;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getSubject() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return subject;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSubject(String subject) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.subject = subject;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.14: Code that generates compile error.<br>
+<br>
+5. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-2.15 below.&nbsp; The
+change is to add a display statement within the constructor.&nbsp; The
+code fragment that needs to be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create an object instance of </span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// InternationalStudent class.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("---- About to create an object instance of
+InternationalStudent class...");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+InternationalStudent internationalStudent1 =</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create an object instance of </span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Teacher class.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("---- About to create an object instance of Teacher
+class...");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Teacher teacher1 = new Teacher();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.15: Modified Main.java<br>
+<br>
+6. Build and run the program.<br>
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleConstructor</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-2.16 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- About to create an object
+instance of InternationalStudent class...<br>
+Person: constructor is called<br>
+Student: constructor is called<br>
+InternationalStudent: constructor is called<br>
+---- About to create an object instance of Teacher class...<br>
+Person: constructor is called<br>
+Teacher: constructor is called<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.16: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleConstructor.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+super() method<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPeopleExample </span>project
+for the change you are going to make in this step or you might want to
+create a new project, for example, <span style="font-weight: bold;">MyPeopleExampleConstructorSuper</span>,
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Person.java</span> as
+shown in Code-2.10 below.&nbsp; The change is to add another
+constructor that can be called from a sub class.&nbsp; The code
+fragment that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<span style="font-weight: bold;"></span><br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+      </span><span style="color: rgb(0, 0, 0);">public Person() {</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Person: constructor is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+public Person(String name) {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.name = name;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Person: constructor 2 is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+      </span>&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private String address;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getAddress() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setAddress(String address) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.address = address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: Person.java<br>
+<br>
+2. Modify <span style="font-weight: bold;">Student.java</span> as
+shown in Code-2.11 below.&nbsp; The change is to call the constructor
+method of the super class using <span style="font-weight: bold;">super</span>()
+method.&nbsp; The code fragment that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Student extends Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;
+      </span><span style="color: rgb(0, 0, 0);">public Student() {</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Student: constructor is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> public
+Student(String name, String school, double grade) {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super(name);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.school = school;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.grade = grade;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Student: constructor 2 is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+      </span>&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String school;<br>
+&nbsp;&nbsp;&nbsp; private double grade;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getSchool() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSchool(String school) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setGrade(double grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.12: Result of running the application<br>
+<br>
+3. Modify <span style="font-weight: bold;">InternationalStudent.java </span>as
+shown in Code-2.12 below.&nbsp; The change is to call the constructor
+method of the super class using <span style="font-weight: bold;">super</span>()
+method.&nbsp; The code fragment that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class InternationalStudent extends Student {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="color: rgb(0, 0, 0);">&nbsp; public
+InternationalStudent() {</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("InternationalStudent: constructor is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }&nbsp; <br>
+      <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public InternationalStudent(String name, String school, double grade,
+String country) {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super(name, school, grade);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.country = country;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("InternationalStudent: constructor 2 is called");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}&nbsp;</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> </span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String country;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getCountry() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setCountry(String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.13: Code that generates compile error.<br>
+<br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-2.12 below.&nbsp; The
+change is to create an object instance of InternationalStudent class
+with initialization parameters.&nbsp; The code fragment that needs to
+be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create an object instance of</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// InternationalStudent class.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("---- About to create an object instance of
+InternationalStudent class...");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+InternationalStudent internationalStudent1 =</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent("Sang Shin",&nbsp;&nbsp; // Name</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"1 Dreamland", // Address</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4.5,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Grade</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"Korea");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Country</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("internationalStudent1.getName() = " +
+internationalStudent1.getName());</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("internationalStudent1.getAddress() = " +
+internationalStudent1.getAddress());</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("internationalStudent1.getGrade() = " +
+internationalStudent1.getGrade());</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("internationalStudent1.getCountry() = " +
+internationalStudent1.getCountry());</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.14: Code that generates compile error.<br>
+<br>
+5. Build and run the program.<br>
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleConstructorSuper</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-2.15 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- About to create an object
+instance of InternationalStudent class...<br>
+Person: constructor 2 is called<br>
+Student: constructor 2 is called<br>
+InternationalStudent: constructor 2 is called<br>
+internationalStudent1.getName() = Sang Shin<br>
+internationalStudent1.getAddress() = null<br>
+internationalStudent1.getGrade() = 4.5<br>
+internationalStudent1.getCountry() = Korea<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.15: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleConstructorSuper.&nbsp;
+</span>You can just open it and run it.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a>&nbsp; <span style="font-weight: bold;"></span></div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+super reference<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPeopleExample </span>project
+for the change you are going to make in this step or you might want to
+create a new project, for example, <span style="font-weight: bold;">MyPeopleExampleConstructorSuper2</span>,
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumes you have created a new project.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Person.java</span> as
+shown in Code-2.10 below.&nbsp; The change is to change the access
+modifiers of the fields to <span style="font-weight: bold;">protected </span>so
+that they can be accessed from sub classes.&nbsp; The code fragment
+that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<span style="font-weight: bold;"></span><br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Person:
+constructor is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Person:
+constructor 2 is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> protected String
+name;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+protected String address;</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getAddress() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setAddress(String address) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.address = address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: Person.java<br>
+<br>
+2. Modify <span style="font-weight: bold;">Student.java</span> as
+shown in Code-2.11 below.&nbsp; The change is to change the access
+modifiers of the fields to <span style="font-weight: bold;">protected </span>so
+that they can be accessed from sub classes.&nbsp; The code fragment
+that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Student extends Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;
+      </span><span style="color: rgb(0, 0, 0);">public Student() {</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Student: constructor is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;<span style="color: rgb(0, 0, 0);"> public
+Student(String name, String school, double grade) {</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super(name);</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.school = school;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.grade = grade;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Student: constructor 2 is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }</span><br>
+      </span>&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> protected String
+school;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+protected double grade;</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getSchool() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSchool(String school) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setGrade(double grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.12: Result of running the application<br>
+<br>
+3. Modify <span style="font-weight: bold;">InternationalStudent.java </span>as
+shown in Code-2.12 below.&nbsp;&nbsp; The change is to change the
+access modifiers of the fields to <span style="font-weight: bold;">protected
+</span>so that they can be accessed from the sub class.&nbsp; The code
+fragment that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class InternationalStudent extends Student {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="color: rgb(0, 0, 0);">&nbsp; public
+InternationalStudent() {</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("InternationalStudent: constructor is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }&nbsp; <br>
+      <br>
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; public
+InternationalStudent(String name, String school, double grade, String
+country) {</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="color: rgb(51, 51, 255); font-weight: bold;">super.name
+= name;</span><br style="color: rgb(51, 51, 255); font-weight: bold;">
+      <span style="color: rgb(51, 51, 255); font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super.school = school;</span><br
+ style="color: rgb(51, 51, 255); font-weight: bold;">
+      <span style="color: rgb(51, 51, 255); font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super.grade = grade;</span></span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.country = country;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("InternationalStudent: constructor 2 is called");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }&nbsp;</span>
+      </span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String country;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getCountry() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setCountry(String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.13: Code that generates compile error.<br>
+<br>
+4. Build and run the program.<br>
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleConstructorSuper2</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-2.15 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- About to create an object
+instance of InternationalStudent class...<br>
+Person: contructor is called<br>
+Student: contructor is called<br>
+InternationalStudent: contructor 2 is called<br>
+internationalStudent1.getName() = Sang Shin<br>
+internationalStudent1.getAddress() = null<br>
+internationalStudent1.getGrade() = 4.5<br>
+internationalStudent1.getCountry() = Korea<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.15: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleConstructorSuper2.&nbsp;
+</span>You can just open it and run it.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a>&nbsp; <span style="font-weight: bold;"></span></div>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have learned
+how constructors of related classes are chained when an object
+instance is created.&nbsp; You also learned how to use super() method
+in order to invoke a constructor of a parent class.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Overriding method<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will exercise the
+concept of overriding method, which is probably the most important
+feature of Java inheritance.<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#3.1">Override methods<br>
+    </a></li>
+  <li><a href="#3.2">Runtime-polymorphism</a></li>
+  <li><a href="#3.3">Hiding methods</a> (applies only for static
+methods)<br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Override methods <br>
+</h3>
+<br>
+<div style="margin-left: 40px;">You can use the <span
+ style="font-weight: bold;">MyPeopleExample </span>project for the
+change you are going to make in this step or you might want to create a
+new project, for example, <span style="font-weight: bold;">MyPeopleExampleOverriding</span>,
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Person.java</span> as
+shown in Code-3.10 below.&nbsp; The change is to add a new method <span
+ style="font-weight: bold;">myMethod</span>(<span
+ style="font-weight: bold;">String t)</span> that will be overridden by
+the sub class.&nbsp; The code fragment
+that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font. The println methods in the constructors are
+commented out for the sake of simplicity.<span
+ style="font-weight: bold;"></span><br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">//
+System.out.println("Person: constructor is called");</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(255, 0, 0);">&nbsp; //
+System.out.println("Person: constructor 2 is called");</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> </span><span
+ style="color: rgb(0, 0, 0);">protected String
+name;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+protected String address;</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getAddress() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setAddress(String address) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.address = address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">// A method that
+will be overridden by sub-class</span><br>
+&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">public void
+myMethod(String t){</span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myMethod(" + t + ") in Person class");<br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      </span><span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+      <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-3.10: Person.java<br>
+<br>
+2. Modify <span style="font-weight: bold;">Student.java</span> as
+shown in Code-3.11 below.&nbsp; The change is to change the access
+modifiers of the fields to <span style="font-weight: bold;">protected </span>so
+that they can be accessed from the sub class.&nbsp; The code fragment
+that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.&nbsp; The println methods in the constructors
+are commented out for the sake of simplicity.<br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Student extends Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;
+      </span><span style="color: rgb(0, 0, 0);">public Student() {</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold; color: rgb(255, 0, 0);">//
+System.out.println("Student: constructor is called");</span></span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;<span style="color: rgb(0, 0, 0);"> public
+Student(String name, String school, double grade) {</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super(name);</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.school = school;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.grade = grade;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(255, 0, 0);">
+// System.out.println("Student: constructor 2 is called");</span></span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }</span><br>
+      </span>&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> </span><span
+ style="color: rgb(0, 0, 0);">protected String
+school;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+protected double grade;</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getSchool() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSchool(String school) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setGrade(double grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+// A overriding method</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public void myMethod(String t){</span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myMethod(" + t + ") in Student class");<br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      </span><span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+      <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.11: Student.java with overriding method<br>
+<br>
+3. Modify <span style="font-weight: bold;">InternationalStudent.java </span>as
+shown in Code-3.12 below.&nbsp;&nbsp; The change is to change the
+access modifiers of the fields to <span style="font-weight: bold;">protected
+</span>so that they can be accessed from the sub class.&nbsp; The code
+fragment that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font. The println methods in the constructors are
+commented out for the sake of simplicity.<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class InternationalStudent extends Student {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="color: rgb(0, 0, 0);">&nbsp; public
+InternationalStudent() {</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="color: rgb(255, 0, 0); font-weight: bold;">
+// System.out.println("InternationalStudent: constructor is called");</span></span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }&nbsp; <br>
+      <br>
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; public
+InternationalStudent(String name, String school, double grade, String
+country) {</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="color: rgb(0, 0, 0);">super.name
+= name;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super.school = school;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super.grade = grade;</span></span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.country = country;</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold; color: rgb(255, 0, 0);">//
+System.out.println("InternationalStudent: constructor 2 is called");</span></span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp; }&nbsp;</span>
+      </span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String country;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getCountry() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setCountry(String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+      <span style="font-weight: bold;">&nbsp;<span
+ style="color: rgb(51, 51, 255);">&nbsp;&nbsp; // A overriding method</span></span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public void myMethod(String t){</span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myMethod(" + t + ") in InternationalStudent class");<br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      </span><span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-3.12: InternationalStudent.java with overriding method<br>
+<br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-3.13 below.&nbsp; The
+change is to create object instances of <span
+ style="font-weight: bold;">Person</span>, <span
+ style="font-weight: bold;">Student</span>, and <span
+ style="font-weight: bold;">InternationalStudent </span>classes which
+are related through inheritance and invoke overridden <span
+ style="font-weight: bold;">myMethod</span>() for each of these object
+instances.&nbsp; The code fragment that needs to
+be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">System.out.println("----
+Observe overriding method behavior ----");<br>
+      <br>
+      </span><span style="font-weight: bold; color: rgb(51, 51, 255);"></span>&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Person person1 = new Person();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person1.myMethod("test1");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Student student1 = new Student();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+student1.myMethod("test2");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+InternationalStudent internationalStudent1 =</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.myMethod("test3");</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.13: Main.java<br>
+<br>
+5. Build and run the program.<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleOverriding</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-3.14 below)</li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- Observe overriding behavior
+----<br>
+myMethod(test1) in Person class<br>
+myMethod(test2) in Student class<br>
+myMethod(test3) in InternationalStudent class</td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.14: Result<span style="font-weight: bold;"></span>
+<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleOverriding.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of
+the exercise</a> <br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Runtime polymorphism<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">You can use the <span
+ style="font-weight: bold;">MyPeopleExample </span>project for the
+change you are going to make in this step or you might want to create a
+new project, for example, <span style="font-weight: bold;">MyPeopleExampleOverridingPolymorphism</span>,
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+<br>
+Note: This sample code does not meant to show the capability of runtime
+polymorphism but the underlying scheme that enables it.&nbsp; The
+capability of polymorphic behavior will be explored again in another
+hands-on lab.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-3.20 below.&nbsp; The
+change is to observe runtime polymorphic behavior.&nbsp; The code
+fragment that needs to
+be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("----
+Observe overriding method behavior ----");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person1.myMethod("test1");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student1.myMethod("test2");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InternationalStudent
+internationalStudent1 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.myMethod("test3");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp; //
+Polymorphic behavior</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("---- Observe polymorphic behavior ----");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Person person2 = new Student();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person2.myMethod("test4");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Person person3 = new InternationalStudent();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person3.myMethod("test5");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Student student2 = new InternationalStudent();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+student2.myMethod("test6");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.20: Main.java<br>
+<br>
+2. Build and run the program.<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleOverridingPolymorphism</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-3.21 below)</li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- Observe overriding behavior
+----<br>
+myMethod(test1) in Person class<br>
+myMethod(test2) in Student class<br>
+myMethod(test3) in InternationalStudent class<br>
+---- Observe polymorphic behavior ----<br>
+myMethod(test4) in Student class<br>
+myMethod(test5) in InternationalStudent class<br>
+myMethod(test6) in InternationalStudent class</td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.21: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleOverridingPolymorphism.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of
+the exercise</a><span style="font-weight: bold;"></span>
+</div>
+<br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.3"></a>(3.3)
+Hide methods <br>
+</h3>
+<br>
+<div style="margin-left: 40px;">You can use the <span
+ style="font-weight: bold;">MyPeopleExample </span>project for the
+change you are going to make in this step or you might want to create a
+new project, for example, <span style="font-weight: bold;">MyPeopleExampleHidingMethods</span>,
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+<br>
+1. Modify <span style="font-weight: bold;">Person.java</span> as
+shown in Code-3.30 below.&nbsp; The change is to add a static method
+that will be hidden by the sub class. The code fragment
+that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font. <span style="font-weight: bold;"></span><br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("Person: constructor is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("Person: constructor 2 is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; protected String name;<br>
+&nbsp;&nbsp;&nbsp; protected String address;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getAddress() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setAddress(String address) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.address = address;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A method that will be overridden by sub-class<br>
+&nbsp;&nbsp;&nbsp; public void myMethod(String t){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myMethod(" + t + ") in Person class");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">// A method that
+will be hidden by sub-class</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public static void myStaticMethod(String t){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myStaticMethod(" + t + ") in Person class");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.30: Person.java with a static method<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+2. Modify <span style="font-weight: bold;">Student.java</span> as
+shown in Code-3.31 below.&nbsp; The change is to add a static method
+that will be hidden by the sub class. The code fragment
+that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.&nbsp; <br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Student extends Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Student() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("Student: constructor is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Student(String name, String school, double
+grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("Student: constructor 2 is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; protected String school;<br>
+&nbsp;&nbsp;&nbsp; protected double grade;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getSchool() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSchool(String school) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setGrade(double grade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.grade = grade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A overriding method<br>
+&nbsp;&nbsp;&nbsp; public void myMethod(String t){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myMethod(" + t + ") in Student class");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+// A method that will be hidden by sub-class</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public static void myStaticMethod(String t){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myStaticMethod(" + t + ") in Student class");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.31: Student.java with a static method
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+3. Modify <span style="font-weight: bold;">InternationalStudent.java </span>as
+shown in Code-3.32 below.&nbsp; The change is to add a static method
+that will be hidden by the sub class. &nbsp; The code
+fragment that needs to be added is
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font. <br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class InternationalStudent extends Student {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public InternationalStudent() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("InternationalStudent: constructor is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public InternationalStudent(String name, String
+school, double grade, String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.name = name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.school = school;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.grade = grade;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("InternationalStudent: constructor 2 is called");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String country;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getCountry() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setCountry(String country) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.country = country;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A overriding method<br>
+&nbsp;&nbsp;&nbsp; public void myMethod(String t){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myMethod(" + t + ") in InternationalStudent class");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+// A method that will be hidden by sub-class</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public static void myStaticMethod(String t){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myStaticMethod(" + t + ") in InternationalStudent
+class");</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.32: InternationalStudent.java
+with a static method<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-3.33 below.&nbsp; The change is to call hiding method and
+observe that the static method of the type used is invoked. &nbsp; The
+code fragment that needs to
+be added is highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("----
+Observe overriding behavior ----");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person1.myMethod("test1");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student1.myMethod("test2");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InternationalStudent
+internationalStudent1 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.myMethod("test3");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Polymorphic behavior<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("----
+Observe polymorphic behavior ----");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person2 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person2.myMethod("test4");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person3 = new
+InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person3.myMethod("test5");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student2 = new
+InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student2.myMethod("test6");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Calling hiding methods</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("---- Observe how calling hiding methods work ----");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person2.myStaticMethod("test7");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person3.myStaticMethod("test8");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+student2.myStaticMethod("test9");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.33: Main.java<br>
+<br>
+5. Build and run the program.<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleHidingMethods</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE paying special attention to the
+ones in bold font.
+(Figure-3.34 below)</li>
+</ul>
+<table style="width: 100%; text-align: left; margin-left: 40px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- Observe overriding behavior
+----<br>
+myMethod(test1) in Person class<br>
+myMethod(test2) in Student class<br>
+myMethod(test3) in InternationalStudent class<br>
+---- Observe polymorphic behavior ----<br>
+myMethod(test4) in Student class<br>
+myMethod(test5) in InternationalStudent class<br>
+myMethod(test6) in InternationalStudent class<br>
+      <span style="font-weight: bold;">---- Observe how calling hiding
+methods work ----</span><br>
+      <span style="font-weight: bold;">myStaticMethod(test7) in Person
+class</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">myStaticMethod(test8) in Person
+class</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">myStaticMethod(test9) in Student
+class</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-left: 40px;">Figure-3.34: Result<span
+ style="font-weight: bold;"></span>
+<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleHidingMethods.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of
+the exercise</a><br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Type casting<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will exercise type
+casting between types (classes) that are related through
+inheritance.&nbsp; <br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#4.1">Implicit type casting</a></li>
+  <li><a href="#4.2">Explicit type casting with a runtime
+ClassCastException</a></li>
+  <li><a href="#4.3">Explicit type casting without a runtime
+ClassCastException</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Implicit type casting<br>
+</h3>
+<p style="margin-left: 40px;">You can use the <span
+ style="font-weight: bold;">MyPeopleExample </span>project for the
+change you are going to make in this step or you might want to create a
+new project, for example, <span style="font-weight: bold;">MyPeopleExampleImplicitCasting</span><span
+ style="font-weight: bold;">,</span> by "copying" <span
+ style="font-weight: bold;">MyPeopleExample </span>project - Right
+click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+</p>
+<p style="margin-left: 40px;">1. Modify the <span
+ style="font-weight: bold;">Main.java</span> as shown in Code-4.11
+below.&nbsp; The change is to add a few more statements in which
+implicit type casting between types that are related are done.</p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypeopleexample;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("----
+Observe overriding behavior ----");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person1.myMethod("test1");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student1.myMethod("test2");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InternationalStudent
+internationalStudent1 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new InternationalStudent();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internationalStudent1.myMethod("test3");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Polymorphic behavior<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("----
+Observe polymorphic behavior ----");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// This is an implicit type casting between Student and Person class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person2 = new
+Student();&nbsp;&nbsp; // Example 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="color: rgb(51, 51, 255);"> </span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">person2 =
+student1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Example 2</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person2.myMethod("test4");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// This is an implicit type casting between
+InternationalStudent and Person class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person3 = new
+InternationalStudent();&nbsp;&nbsp; // Example 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="color: rgb(51, 51, 255);"> </span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">person3 =&nbsp;
+internationalStudent1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Example 4</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; person3.myMethod("test5");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// This is an implicit type casting between
+InternationalStudent and Student class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student2 = new
+InternationalStudent();&nbsp; // Example 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">student2 =
+internationalStudent1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Example 6</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; student2.myMethod("test6");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+ style="color: rgb(0, 0, 0);"> // Calling hiding methods</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("---- Observe how calling hiding methods work ----");</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person2.myStaticMethod("test7");</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+person3.myStaticMethod("test8");</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+student2.myStaticMethod("test9");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+} </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11: Modified Main.java<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">2. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyPeopleExampleImplicitCasting</span><span
+ style="font-weight: bold;"> </span>project node and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the NetBeans IDE.
+(Figure-4.12 below)&nbsp; <br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">---- Observe overriding behavior
+----<br>
+myMethod(test1) in Person class<br>
+myMethod(test2) in Student class<br>
+myMethod(test3) in InternationalStudent class<br>
+---- Observe polymorphic behavior ----<br>
+myMethod(test4) in Student class<br>
+myMethod(test5) in InternationalStudent class<br>
+myMethod(test6) in InternationalStudent class<br>
+---- Observe how calling hiding
+methods work ----<br>
+myStaticMethod(test7) in Person
+class<br>
+myStaticMethod(test8) in Person
+class<br>
+myStaticMethod(test9) in Student
+class<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.12: Result <br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyPeopleExampleImplicitCasting.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Explicit type casting with a runtime ClassCastException<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPeopleExample </span>project
+for the change you are going to make in this step or you might want to
+create a new project, for example, <span style="font-weight: bold;">MyTypeMismatchExampleProject1,</span>
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.<br>
+<br>
+1. Modify the <span style="font-weight: bold;">Main.java</span>
+as shown in Code-4.21 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+mytypemismatchexampleproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Implicit casting -
+Student object instance is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // type of Person.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Implicit casting -
+Teacher object instance is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // type of Person.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person2 = new
+Teacher();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Explicit type casting.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = (Student)
+person1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Explicit type casting -
+no compile error.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // But ClassCastException
+will occur during runtime.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student2 = (Student)
+person2;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.21: Explicit casting with a potental for runtime type mismatch
+exception<br>
+<br>
+2. Build and run the program<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyTypeMismatchExampleProject1</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that there is a <span style="font-weight: bold;">java.lang.ClassCastException</span>
+runtime exception.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_mypeople5.png" style="width: 832px; height: 728px;"><br>
+Figure-4.22: java.lang.ClassCastException occurs<span
+ style="font-weight: bold;"><br>
+</span></p>
+<div style="margin-left: 40px;"><span
+ style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyTypeMismatchExampleProject1.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.3"></a>(4.3)
+Explicit type casting without ClassCastException<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPeopleExample </span>project
+for the change you are going to make in this step or you might want to
+create a new project, for example, <span style="font-weight: bold;">MyTypeMismatchExampleProject2,</span>
+by "copying" <span style="font-weight: bold;">MyPeopleExample </span>project
+- Right click <span style="font-weight: bold;">MyPeopleExample </span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created a new project.</div>
+<div style="margin-left: 40px;"><br>
+1. Modify the <span style="font-weight: bold;">Main.java</span>
+as shown in Code-4.23 below.&nbsp; The code fragment that needs to be
+changed is highlighted in bold and blue-colored font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><br>
+package mytypemismatchexampleproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Implicit casting -
+Student object instance is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // type of Person.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Student();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Implicit casting -
+Teacher object instance is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // type of Person.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person2 = new
+Teacher();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Explicit type casting.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = (Student)
+person1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Do the casting only when the type is verified</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (person2 instanceof Student) {</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Student student2 = (Student) person2;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("person2 instanceof Student = " + true);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} else{</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("person2 instanceof Student = " + false);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.23: Use instanceOf operator to check the type of the object
+instance<br>
+<br>
+2. Build and run the program.<br>
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;">MyTypeMismatchExampleProject2</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.&nbsp;
+(Figure-4.24 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">person2 instanceof Student =
+false<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.24: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyTypeMismatchExampleProject2.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned how
+to do implicit and explicit casting between object instances that are
+related through inheritance.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a><br>
+<h2><a name="Exercise_5"></a>Exercise 5: Final Class and Final Method<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will exercise the
+concept of final class and final method.&nbsp; </p>
+<ol style="margin-left: 40px;">
+  <li><a href="index.html#2.1">Build and run a Java program with a
+final class</a></li>
+  <li><a href="#5.2">Try to extend String class or Wrapper class</a><br>
+  </li>
+  <li><a href="#5.3">Build and run a Java program with a final method</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1)
+Build and run a Java program with a final class<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyFinalClassExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyFinalClassExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Write <span style="font-weight: bold;">Person.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Person</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myfinalclassexample</span> </span>or
+choose <span style="font-weight: bold; color: rgb(51, 51, 255);">myfinalclassexample</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Person.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Person.java</span>
+as shown in Code-5.10 below.&nbsp; Note that the <span
+ style="font-weight: bold;">Person </span>class is a final class,
+which means it cannot be extended.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myfinalclassexample;<br>
+      <br>
+// Make the Person class as a final class<br>
+public <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">final</span> </span>class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Person() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.10: Person.java as a final class<br>
+<br>
+3. Write <span style="font-weight: bold;">Teacher.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Teacher</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myfinalclassexample</span> </span>or
+choose <span style="font-weight: bold; color: rgb(51, 51, 255);">myfinalclassexample</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Teacher.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Teacher.java</span>
+as shown in Code-5.11 below.&nbsp; The change is to extend the <span
+ style="font-weight: bold;">Person </span>class, which will result in
+a compile error.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myfinalclassexample;<br>
+      <br>
+/**<br>
+&nbsp;*<br>
+&nbsp;* @author sang<br>
+&nbsp;*/<br>
+public class Teacher <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">extends Person</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Teacher */<br>
+&nbsp;&nbsp;&nbsp; public Teacher() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.11: Teacher.java<br>
+<br>
+4. Observe the compile error.&nbsp; (Figure-5.12 below)<br>
+<br>
+<img alt="" src="index_files/1_mypeople6.png"
+ style="width: 832px; height: 728px;"><br>
+Figure-5.12: Observe the compile error<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyFinalClassExample.&nbsp;
+</span>You can just open it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of
+the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.2"></a>(5.2)
+Try to extend String class or Wrapper class<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyFinalClassExample2</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyFinalClassExample2
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Write <span style="font-weight: bold;">Teacher.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Teacher</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myfinalclassexample2</span> </span>or
+choose <span style="font-weight: bold; color: rgb(51, 51, 255);">myfinalclassexample2</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Teacher.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Teacher.java</span>
+as shown in Code-5.21 below.&nbsp; The change is to extend the String
+class, which will result in a compile error.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myfinalclassexample2;<br>
+      <br>
+/**<br>
+&nbsp;*<br>
+&nbsp;* @author sang<br>
+&nbsp;*/<br>
+public class Teacher <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">extends String</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Teacher */<br>
+&nbsp;&nbsp;&nbsp; public Teacher() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.21: Teacher.java<br>
+</div>
+<br>
+<div style="margin-left: 40px;">3. Observe the compile error. <br>
+<br>
+<img alt="" src="index_files/1_mypeople7.png"
+ style="width: 832px; height: 728px;"><br>
+Figure-5.22: Observe the compile error<br>
+<br>
+4. Display the Javadoc of the String class to verify that the String
+class is a final class.<br>
+<ul>
+  <li>Move your cursor to the <span style="font-weight: bold;">String </span>and
+right click <span style="font-weight: bold;">Show Javadoc</span>.</li>
+  <li>Observe the browser displayed with the Javadoc of <span
+ style="font-weight: bold;">String </span>class.</li>
+  <li>Note that String class is a final class. (Figure-5.23 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_mypeople8.png"
+ style="width: 857px; height: 718px;"><br>
+Figure-5.23: Javadoc of String class, which is a final class<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyFinalClassExample2.&nbsp;
+</span>You can just open it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.3"></a>(5.3)
+Build and run a Java program with a final method<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyFinalMethodExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyFinalMethodExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Write <span style="font-weight: bold;">Person.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalMethodExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Person</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myfinalmethodexample</span> </span>or
+choose <span style="font-weight: bold; color: rgb(51, 51, 255);">myfinalmethodexample</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Person.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Person.java</span>
+as shown in Code-5.30 below.&nbsp; Note that the <span
+ style="font-weight: bold;">Person </span>class is a final class,
+which means it cannot be extended.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myfinalmethodexample;<br>
+      <br>
+public class Person {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Person */<br>
+&nbsp;&nbsp;&nbsp; public Person() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // myMethod() is a final method<br>
+&nbsp;&nbsp;&nbsp; public <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">final </span>void
+myMethod(){<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.30: Person.java has a final method<br>
+<br>
+3. Write <span style="font-weight: bold;">Teacher.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalMethodExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Teacher</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span> </span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myfinalmethodexample
+    </span></span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myfinalmethodexample</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Teacher.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Teacher.java</span>
+as shown in Code-5.31 below.&nbsp; The change is to make Teacher class
+to extend Person and and then to override the <span
+ style="font-weight: bold;">myMethod()</span> of the <span
+ style="font-weight: bold;">Person </span>class, which will result in
+a compile error.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myfinalmethodexample;<br>
+      <br>
+public class Teacher<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> extends Person</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Teacher */<br>
+&nbsp;&nbsp;&nbsp; public Teacher() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Try to override this method<br>
+&nbsp;&nbsp;&nbsp; public void myMethod(){<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.31: Teacher.java<br>
+<br>
+4. Observe the compile error. (Figure-5.32 below)<br>
+<br>
+<img alt="" src="index_files/1_mypeople9.png"
+ style="width: 832px; height: 728px;"><br>
+Figure-5.32: Compile error<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyFinalMethodExample.&nbsp;
+</span>You can just open it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned that
+a final class cannot be extended and a final method cannot be
+overridden by a sub-class.<br>
+</p>
+<div style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; <a href="#Tutorial_Exercises">return to the
+top</a><br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"></div>
+</div>
+<br>
+<h2><a name="Exercise_6"></a>Exercise 6: Build a simple program using
+Inheritance<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will build a simple
+program using several classes that are related through
+Inheritance.&nbsp; The Product class is sub-class'ed by Electronics and
+Book class. The Electronics class is further sub-classed by MP3Player
+and TV class.&nbsp; You will also learn how to add polymorphic behavior
+to the program through method overriding.<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#6.1">Build MyOnlineShop program</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="6.1"></a>(6.1)
+Build MyOnlineShop program<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyOnlineShop</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span
+ style="font-weight: bold; color: rgb(0, 0, 0);">MyOnlineShop</span><span
+ style="font-weight: bold;"> </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Write <span style="font-weight: bold;">Product.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Product</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Product.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Product.java</span>
+as shown in Code-6.10 below. <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Product {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private double regularPrice;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Product */<br>
+&nbsp;&nbsp;&nbsp; public Product(double regularPrice) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.regularPrice =
+regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Method that will
+be overridden</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public double
+computeSalePrice(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 0;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; public double getRegularPrice() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setRegularPrice(double regularPrice) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.regularPrice =
+regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.10: Product.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Electronics.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Electronics</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Electronics.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Electronics.java</span>
+as shown in Code-6.11 below.&nbsp; Note that Electronics class extends
+Product class.&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Electronics extends Product{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String manufacturer;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Electronics */<br>
+&nbsp;&nbsp;&nbsp; public Electronics(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.manufacturer =
+manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Override this
+method</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public double
+computeSalePrice(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return super.getRegularPrice() * 0.6;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getManufacturer() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setManufacturer(String manufacturer) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.manufacturer =
+manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.11: Electronics.java<br>
+<br>
+4. Write <span style="font-weight: bold;">MP3Player.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">MP3Player</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">MP3Player.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">MP3Player.java</span>
+as shown in Code-6.12 below.&nbsp; Note that <span
+ style="font-weight: bold;">MP3Player </span>class extends <span
+ style="font-weight: bold;">Electronics </span>class.&nbsp; Note also
+that the <span style="font-weight: bold;">MP3Player </span>class has <span
+ style="font-weight: bold;">computeSalePrice</span>() method which is
+an overriding method.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class MP3Player extends Electronics{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String color;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Creates a new instance of MP3Player<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public MP3Player(double regularPrice, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String color) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice,
+manufacturer);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.color = color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp; // Override this
+method</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public double
+computeSalePrice(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return super.getRegularPrice() * 0.9;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getColor() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setColor(String color) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.color = color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.12: MP3Player.java<br>
+<br>
+5. Write <span style="font-weight: bold;">TV.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">TV</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">TV.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">TV.java</span>
+as shown in Code-6.14 below.&nbsp; Note that<span
+ style="font-weight: bold;"> TV</span> class extends <span
+ style="font-weight: bold;">Electronics </span>class.&nbsp; Note also
+that the <span style="font-weight: bold;">TV</span> class has <span
+ style="font-weight: bold;">computeSalePrice()</span> method which is
+an overriding method.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class TV extends Electronics {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int size;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of TV */<br>
+&nbsp;&nbsp;&nbsp; public TV(double regularPrice, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int size) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice,
+manufacturer);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.size = size;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Override this
+method</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public double
+computeSalePrice(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return super.getRegularPrice() * 0.8;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.14: TV.java<br>
+<br>
+6. Write <span style="font-weight: bold;">Book.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Book</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Book.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Book.java</span>
+as shown in Code-6.15 below.&nbsp; Note that<span
+ style="font-weight: bold;"> Book</span> class extends <span
+ style="font-weight: bold;">Product </span>class.&nbsp; Note also that
+the <span style="font-weight: bold;">Book</span> class has <span
+ style="font-weight: bold;">computeSalePrice()</span> method which is
+an overriding method.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Book extends Product{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String publisher;<br>
+&nbsp;&nbsp;&nbsp; private int yearPublished;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Book */<br>
+&nbsp;&nbsp;&nbsp; public Book(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Override this
+method</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public double
+computeSalePrice(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return super.getRegularPrice() * 0.5;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getPublisher() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setPublisher(String publisher) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public int getYearPublished() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setYearPublished(int yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.15: Book.java<br>
+<br>
+7. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-6.16 below.&nbsp; Study the code by special attention to the
+bold fonted comments,<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Declare and create
+Product array of size 5</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Product[] pa = new
+Product[5];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create object instances</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[0] = new TV(1000,
+"Samsung", 30);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[1] = new TV(2000, "Sony",
+50);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[2] = new MP3Player(250,
+"Apple", "blue");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[3] = new Book(34, "Sun
+press", 1992);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[4] = new Book(15, "Korea
+press", 1986);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Compute total regular
+price and total</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// sale price.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalRegularPrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalSalePrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;pa.length; i++){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">//
+Call a method of the super class to get</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+the regular price.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalRegularPrice += pa[i].getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">//
+Since the sale price is computed differently</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+depending on the product type, overriding</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+method of the object instance of the sub-class</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+gets invoked.&nbsp; This is runtime polymorphic</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+behavior.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalSalePrice += pa[i].computeSalePrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Item number " + i +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+": Type = " + pa[i].getClass().getName() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Regular price = " + pa[i].getRegularPrice() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Sale price = " + pa[i].computeSalePrice());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalRegularPrice = " + totalRegularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalSalePrice = " + totalSalePrice); <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.16: Main.java<br>
+<br>
+8. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.&nbsp;
+(Figure-6.17 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price =
+2000.0, Sale price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price =
+250.0, Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price =
+34.0, Sale price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price =
+15.0, Sale price = 7.5<br>
+totalRegularPrice = 3299.0<br>
+totalSalePrice = 2649.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-6.17: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainheritance/samples/MyOnlineShop.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+9. For your own exercise 1, modify the <span style="font-weight: bold;">MyOnlineShop</span>
+as following:<span style="font-weight: bold;"><br>
+</span>
+<ul>
+  <li>Add <span style="font-weight: bold;">Camera </span>class which
+is a sub-class of <span style="font-weight: bold;">Eletronics </span>class</li>
+  <li>Compute the sale price of Camera with the following business logic</li>
+  <ul>
+    <li>Regular price * 0.7</li>
+  </ul>
+  <li>In the <span style="font-weight: bold;">Main.java</span>,
+initialize two object instances of Camera class<br>
+  </li>
+</ul>
+10. For your own exercise 2, modify the <span
+ style="font-weight: bold;">MyOnlineShop</span> as following:<span
+ style="font-weight: bold;"><br>
+</span>
+<ul>
+  <li>Add another overriding method to the classes like following<br>
+  </li>
+  <ul>
+    <li>double computeSpecialCustomerPrice()</li>
+    <li>The computation logic should be as following:</li>
+    <ul>
+      <li>For TV, subtract 100 from the sale price</li>
+      <li>For MP3Player, substract 15 from the sale price</li>
+      <li>For Book, subtract 2 from the sale price</li>
+    </ul>
+  </ul>
+  <li>In the Main.java, display Special Customer Price for each product
+iteam<br>
+  </li>
+</ul>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you will build a simple
+program using several classes that are related through
+Inheritance.&nbsp; You also built a polymorphic behavior through
+overloading methods.
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; <a href="#Tutorial_Exercises">return to the
+top</a>
+<br>
+<br>
+<br>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to create a new
+NetBeans project called "<span style="font-weight: bold;">MyOwnAutoShopProject</span>"
+as following:<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Create
+a super class called Car.&nbsp; The Car class has the following fields
+and methods.</li>
+  <ul>
+    <li>int speed;</li>
+    <li>double regularPrice;<br>
+    </li>
+    <li>String color;</li>
+    <li>double getSalePrice();</li>
+  </ul>
+  <li>Create a subclass of Car class and name it as Truck.&nbsp; The
+Truck class has the following fields and methods.<br>
+  </li>
+  <ul>
+    <li>int weight;</li>
+    <li>double getSalePrice();&nbsp; // If weight &gt; 2000, 10%
+discount.
+Otherwise, 20% discount.<br>
+    </li>
+  </ul>
+  <li>Create a subclass of Car class and name it as Ford.&nbsp; The
+Ford class has the following fields and methods</li>
+  <ul>
+    <li>int year;</li>
+    <li>int manufacturerDiscount;<br>
+    </li>
+    <li>double getSalePrice();&nbsp; // From the sale price computed
+from
+Car class, subtract the manufacturerDiscount.</li>
+  </ul>
+  <li>Create a subclass of Car class and name it as Sedan. The Sedan
+class has the following fields and methods.</li>
+  <ul>
+    <li>int length;</li>
+    <li>double getSalePrice();&nbsp; // If length &gt; 20 feet, 5%
+discount, Otherwise, 10% discount.<br>
+    </li>
+  </ul>
+  <li>Create MyOwnAutoShop class which contains the main()
+method.&nbsp; Perform the following within the main() method.<br>
+  </li>
+  <ul>
+    <li>Create an instance of Sedan class and initialize all the fields
+with appropriate values.&nbsp; Use super(...) method in the constructor
+for initializing the fields of the super class.</li>
+    <li>Create two instances of the Ford class and initialize all the
+fields with appropriate values.&nbsp; Use super(...) method in the
+constructor for initializing the fields of the super class.</li>
+    <li>Create an instance of Car class and and initialize all the
+fields with appropriate values.</li>
+  </ul>
+  <li>Display the sale prices of all instance.</li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javainheritance.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyOwnAutoShopProject</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyOwnAutoShopProject</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyOwnAutoShopProject</span>)<br>
+    </li>
+    <li>jar cvf MyOwnAutoShopProject.zip MyOwnAutoShopProject
+(<span style="font-weight: bold;">MyOwnAutoShopProject </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javainheritance.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javainheritance</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javainheritance.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

@@ -1,0 +1,3600 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1016: Java Collections Frameworks</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Using Java Collection Frameworks<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sang.shin@sun.com"></a><a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><br>
+<br>
+<img alt="" src="index_files/sangshin2009.jpg"
+ style="width: 88px; height: 101px;"><br>
+<a href="mailto:sang.shin@sun.com"><i></i></a></div>
+<p><br>
+A <i>collections framework</i> is a unified architecture for
+representing and manipulating collections. All collections frameworks
+contain the following:
+</p>
+<ul>
+  <li><b>Interfaces:</b> These are abstract data types that represent
+collections. Interfaces allow collections to be manipulated
+independently of the details of their representation. In
+object-oriented languages, interfaces generally form a hierarchy. </li>
+  <li><b>Implementations:</b> These are the concrete implementations of
+the collection interfaces. In essence, they are reusable data
+structures. </li>
+  <li><b>Algorithms:</b> These are the methods that perform useful
+computations, such as searching and sorting, on objects that implement
+collection interfaces. The algorithms are said to be <i>polymorphic</i>:
+that is, the same method can be used on many different implementations
+of the appropriate collection interface. In essence, algorithms are
+reusable functionality. </li>
+</ul>
+<p>This hands-on lab takes you through the basics of using Java
+Collection Framework for
+developing Java applications. <br>
+</p>
+<br>
+<p></p>
+<p align="center"><b>Expected duration: 75 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a>Software Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.
+<ul>
+  <ul>
+    <li> If you have not installed it yet, install it as described <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#0.2">here</a>.</li>
+  </ul>
+  <li>1016_javacollections.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1016_javacollections.zip">download</a>)</li>
+  <ul>
+    <li>It contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb. 9th, 2007: Created</li>
+  <li>April 12th, 2007: Homework is changed to use HashSet instead of
+TreeSet</li>
+  <li>June 10th, 2008: JDK 6 and NetBeans 6.1 are used</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+  <li>Nov. 7th, 2009: Some cosmetic changes are made<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Build and run applications that
+use "Set" Collection objects (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Build and run applications that
+use "List" Collection objects (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_3">Exercise 3: Build and run applications that
+use "Map" Collection
+objects
+(30 minutes)</a></li>
+  <li><a href="#Exercise_4">Exercise 4: Iterator (10 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_5">Exercise 5: Algorithms (30 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+<ul>
+</ul>
+<br>
+<ul>
+  <ul>
+  </ul>
+</ul>
+</div>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_1"></a>Exercise 1: Build and run "Set"
+Collection Objects <br>
+</h2>
+<br>
+<div style="margin-left: 40px;">The <span style="font-weight: bold;">Set
+</span>interface
+extends the Collection interface and, by definition, forbids duplicates
+within the collection. All the original methods are present and no new
+methods are introduced. The concrete Set implementation classes rely on
+the equals() method of the object added to check for equality.<br>
+<br>
+The Collections Framework provides two general-purpose implementations
+of the Set interface: <span style="font-weight: bold;">HashSet </span>and
+<span style="font-weight: bold;">TreeSet</span>. More often than not,
+you will use a <span style="font-weight: bold;">HashSet </span>for
+storing your duplicate-free collection. For efficiency, objects added
+to a HashSet need to implement the hashCode() method in a manner that
+properly distributes the hash codes. While most system classes override
+the default hashCode() implementation in Object, when creating your own
+classes to add to a HashSet remember to override hashCode(). The
+TreeSet implementation is useful when you need to extract elements from
+a collection in a sorted manner. In order to work property, elements
+added to a TreeSet must be sortable. The Collections Framework adds
+support for Comparable elements and will be covered in detail later.
+For now, just assume a tree knows how to keep elements of the java.lang
+wrapper classes sorted. It is generally faster to add elements to a
+HashSet, then convert the collection to a TreeSet for sorted traversal.<br>
+<br>
+To optimize HashSet space usage, you can tune the initial capacity and
+load factor. The TreeSet has no tuning options, as the tree is always
+balanced, ensuring log(n) performance for insertions, deletions, and
+queries.<br>
+<br>
+Tasks to be performed:<br>
+<ol>
+  <li><a href="#1.1">Build and run an application that uses HashSet</a></li>
+  <li><a href="#1.2">Find duplication via HashSet</a></li>
+  <li><a href="#1.3">Find duplication via HasetSet 2</a></li>
+  <li><a href="#1.4">Build and run an application that uses TreeSet</a></li>
+  <li><a href="#1.5">Build and run an application that uses
+LinkedHashSet</a></li>
+  <li><a href="#1.6">Set and polymorphism</a><br>
+  </li>
+</ol>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run an application that uses HashSet<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to build an application that uses <span
+ style="font-weight: bold;">HashSet</span>.&nbsp; You are going to
+exercise various methods of the <span style="font-weight: bold;">HashSet
+</span>class.&nbsp; The following is quoted from online <a
+ href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/HashSet.html">JavaDoc
+of the HashSet</a><br>
+<p style="margin-left: 40px;">This class implements the <tt>Set</tt>
+interface, backed by a hash table (actually a <tt>HashMap</tt>
+instance). It makes no guarantees as to the iteration order of the set;
+in particular, it does not guarantee that the order will remain
+constant over time. This class permits the <tt>null</tt> element.</p>
+<p style="margin-left: 40px;"> This class offers constant time
+performance for the basic operations (<tt>add</tt>, <tt>remove</tt>, <tt>contains</tt>
+and <tt>size</tt>), assuming the hash function disperses the elements
+properly among the buckets. Iterating over this set requires time
+proportional to the sum of the <tt>HashSet</tt> instance's size (the
+number of elements) plus the "capacity" of the backing <tt>HashMap</tt>
+instance (the number of buckets). Thus, it's very important not to set
+the initial capacity too high (or the load factor too low) if iteration
+performance is important.</p>
+0. Start NetBeans IDE if you have not done so yet.<br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<img alt="" src="index_files/111_choosejavaproject.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Set-HashSet-add</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value <span style="font-weight: bold;">sethashsetadd.Main</span>
+provided by the IDE.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_set1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create a new project<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Set-HashSet-add </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.10 below.&nbsp; Study the code by paying
+special attention to the bold fonted comments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package sethashsetadd;<br>
+      <br>
+import java.util.HashSet;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Create HashSet object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HashSet hs = new HashSet(5,
+0.5f);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(hs.add("one"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(hs.add("two"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(hs.add("three"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(hs.add("four"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(hs.add("five"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Print out the HashSet object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(hs);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Add a duplicate item to the HashSet</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Boolean b = hs.add("one");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Duplicate item allowed = " + b);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(hs);&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.10: Modified Main.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Set-HashSet-add </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.11 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">true<br>
+true<br>
+true<br>
+true<br>
+true<br>
+[one, two, five, three, four]<br>
+Duplicate item allowed = false<br>
+[one, two, five, three, four]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.11: Result of running Set-HashSet-add application<br>
+<br>
+<span style="color: rgb(255, 0, 0);">Trouble-shooting<span
+ style="color: rgb(0, 0, 0);"> </span><span
+ style="color: rgb(51, 51, 255);"><span style="color: rgb(0, 0, 0);">and</span>
+solution</span></span>: If you are seeing the following warning message
+during compilation, that is expected behavior.&nbsp; This warning
+message is generated by javac compiler since you are not specifying the
+type of the collection using Generics.&nbsp; For now, just ignore the
+message.&nbsp; <br>
+<ul>
+  <li>Compiling 1 source file to
+C:\handson2\development\javacollections\samples\Set-HashSet-add\build\classes<br>
+Note:
+C:\handson2\development\javacollections\samples\Set-HashSet-add\src\sethashsetadd\Main.java
+uses unchecked or unsafe operations.<br>
+Note: Recompile with -Xlint:unchecked for details.<br>
+  </li>
+</ul>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Set-HashSet-add</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+</div>
+<div style="margin-left: 40px;">4. For your own exercise, please do the
+following<br>
+<ul>
+  <li>Create your own NetBeans project named as <span
+ style="font-weight: bold;">MyHashSet</span><br>
+  </li>
+  <li>Create your own <span style="font-weight: bold;">HashSet </span>object
+with initial capacity of 5<br>
+  </li>
+  <li>Add the following objects to the newly created <span
+ style="font-weight: bold;">HashSet </span>object<br>
+  </li>
+  <ul>
+    <li>2 String objects<br>
+    </li>
+    <li>2 MyOwnClass object (You will have to create MyOwnClass.java
+first)<br>
+    </li>
+    <li>3 Integer objects</li>
+  </ul>
+  <li>Display the HashSet object<br>
+    <br>
+  </li>
+</ul>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Find duplication
+via HashSet<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Set-HashSet-FindDup</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value <span style="font-weight: bold;">sethashsetfinddup.Main</span>
+provided by the IDE.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Set-HashSet-FindDup
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.20 below.&nbsp; Study the code by paying
+special attention to the bold fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package sethashsetfinddup;<br>
+      <br>
+import java.util.HashSet;<br>
+import java.util.Set;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create HashSet object
+instance and </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// assign it to a variable
+of Set type.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">Set s = new HashSet();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;name.length; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(!s.add(name[i]))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Duplicate detected: "+name[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(s.size()+" distinct words detected: "+s);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.20: Modified Main.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Set-HashSet-FindDup
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.21 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Duplicate detected: Shin<br>
+3 distinct words detected: [Shin, Sang, Boston]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.21: Result of running Set-HashSet-FindDup application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Set-HashSet-FindDup</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+4. For your own exercise, please do the
+following tasks:<br>
+<ul>
+  <li>Modify Main.java as following</li>
+  <ul>
+    <li>Create your array of Strings called myownnames[] with
+duplicates <br>
+    </li>
+    <li>Create a HashSet object from the array and display it and make
+sure there is no duplcates in the set.<br>
+    </li>
+  </ul>
+</ul>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Find duplication via HashSet 2<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to exercise removeAll() method.<br>
+<br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Set-HashSet-FindDup2</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value provided by the IDE.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Set-HashSet-FindDup2
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.30 below.&nbsp; Study the code by paying
+special attention to the bold fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package sethashsetfinddup2;<br>
+      <br>
+import java.util.HashSet;<br>
+import java.util.Set;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Set uniques = new HashSet();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Set dups = new HashSet();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;name.length; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(!uniques.add(name[i]))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dups.add(name[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Remove items that duplicates </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+uniques.removeAll(dups);&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Unique
+words:&nbsp;&nbsp;&nbsp; " + uniques);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Duplicate words: " + dups);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.30: Modified Main.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Set-HashSet-FindDup2
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.31 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Unique words:&nbsp;&nbsp;&nbsp;
+[Sang, Boston]<br>
+Duplicate words: [Shin]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.31: Result of running Set-HashSet-FindDup2 application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Set-HashSet-FindDup2</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+4. For your own exercise, please do the
+following tasks:<br>
+<ul>
+  <li>Modify Main.java or create your own project as following<br>
+  </li>
+  <ul>
+    <li>Create your array of Strings called myownnames[] with
+duplicates <br>
+    </li>
+    <li>Create two HashSet objectts and use removeAll() method to
+remove items that have duplicates from the original set.</li>
+    <li>Display the two HashSet objects<br>
+    </li>
+  </ul>
+</ul>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.4"></a>(1.4)
+Build and run an application that uses TreeSet<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+In this step, you are going to build an application that uses <span
+ style="font-weight: bold;">TreeSet</span>.&nbsp; You are going to
+exercise various methods of the <span style="font-weight: bold;">TreeSet
+</span>class.&nbsp; The following is quoted from online <a
+ href="http://java.sun.com/javase/6/docs/api/java/util/TreeSet.html">JavaDoc
+of the TreeSet</a><br>
+<div style="margin-left: 40px;">
+<p>This class implements the <tt>Set</tt> interface, backed by a <tt>TreeMap</tt>
+instance. This class guarantees that the sorted set will be in
+ascending element order, sorted according to the <i>natural order</i>
+of the elements (see <tt>Comparable</tt>), or by the comparator
+provided at set creation time, depending on which constructor is used.</p>
+<p> This implementation provides guaranteed log(n) time cost for the
+basic operations (<tt>add</tt>, <tt>remove</tt> and <tt>contains</tt>).</p>
+<p> Note that the ordering maintained by a set (whether or not an
+explicit comparator is provided) must be <i>consistent with equals</i>
+if it is to correctly implement the <tt>Set</tt> interface. (See <tt>Comparable</tt>
+or <tt>Comparator</tt> for a precise definition of <i>consistent with
+equals</i>.) This is so because the <tt>Set</tt> interface is defined
+in terms of the <tt>equals</tt> operation, but a <tt>TreeSet</tt>
+instance performs all key comparisons using its <tt>compareTo</tt> (or
+<tt>compare</tt>) method, so two keys that are deemed equal by this
+method are, from the standpoint of the set, equal. The behavior of a
+set <i>is</i> well-defined even if its ordering is inconsistent with
+equals; it just fails to obey the general contract of the <tt>Set</tt>
+interface.</p>
+</div>
+<br>
+1. Create a NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Set-TreeSet</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value provided by the IDE.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Set-TreeSet </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.40 below. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package settreeset;<br>
+      <br>
+import java.util.Set;<br>
+import java.util.TreeSet;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set ts = new TreeSet();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("one");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("two");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("three");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("four");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("three");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Members
+from TreeSet = " + ts);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set ts2 = new TreeSet();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(4);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Members
+from TreeSet = " + ts2);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.40: Modified Set-TreeSet.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Set-TreeSet </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.41 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">[Members from TreeSet = [four,
+one, three, two]<br>
+Members from TreeSet = [1, 2, 3, 4]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.41: Result of running Set-TreeSet application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Set-TreeSet</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.5"></a>(1.5)
+Build and run an application that uses LinkedHashSet<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Set-LinkedHashSet</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value provided by the IDE.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Set-LinkedHashSet </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.50 below.&nbsp; Study the code by paying
+special attention to the bold fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package setlinkedhashset;<br>
+      <br>
+import java.util.LinkedHashSet;<br>
+import java.util.Set;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set ts = new LinkedHashSet();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("one");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("two");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("three");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("four");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts.add("two");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Members
+from LinkedHashSet = " + ts);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set ts2 = new
+LinkedHashSet();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ts2.add(3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Members
+from LinkedHashSet = " + ts2);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.50: Modified Main.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Set-LinkedHashSet </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.51 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Members from LinkedHashSet =
+[one, two, three, four]<br>
+Members from LinkedHashSet = [2, 1, 3]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.51: Result of running Set-LinkedHashSet application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Set-LinkedHashSet</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+</div>
+<div style="margin-left: 40px;">
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.6"></a>(1.6)
+Set and
+polymorphism<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Set-Polymorphism</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value provided by the IDE.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Set-Polymorphism </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.60 below.&nbsp; Study the code by paying
+special attention to the bold fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package setpolymorphism;<br>
+      <br>
+import java.util.HashSet;<br>
+import java.util.LinkedHashSet;<br>
+import java.util.Set;<br>
+import java.util.TreeSet;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String numbers[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("2"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("3"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("4"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("1"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("2")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Set s = new HashSet();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyOwnUtilityClass.checkDuplicate(s, numbers);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+s = new TreeSet();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyOwnUtilityClass.checkDuplicate(s, numbers);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+s = new LinkedHashSet();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyOwnUtilityClass.checkDuplicate(s, numbers);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.60: Modified Main.java<br>
+<br>
+3. Write MyOwnUtilityClass.java.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package setpolymorphism;<br>
+      <br>
+import java.util.Set;<br>
+      <br>
+public class MyOwnUtilityClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void checkDuplicate(Set s, String[]
+numbers){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;numbers.length; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(!s.add(numbers[i]))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Set type
+= " + s.getClass().getName() + " " + s);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.61: MyOwnUtilityClass.java<br>
+<br>
+4. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Set-Polymorphism </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.62 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Set type = java.util.HashSet [3,
+2, 4, 1]<br>
+Set type = java.util.TreeSet [1, 2, 3, 4]<br>
+Set type = java.util.LinkedHashSet [2, 3, 4, 1]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.62: Result of running Set-Polymorphism application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Set-Polymorphism</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you have learned how to use HashSet, TreeSet, and
+LinkedHashSet.<br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tutorial_Exercises">return to the top</a><br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Build and run applications
+that use List Collection objects <br>
+</h2>
+<p style="margin-left: 40px;">The List interface extends the Collection
+interface to define an ordered collection, permitting duplicates. The
+interface adds position-oriented operations, as well as the ability to
+work with just a part of the list.<br>
+</p>
+<div style="margin-left: 40px;">There are two general-purpose List
+implementations in the Collections Framework: <span
+ style="font-weight: bold;">ArrayList </span>and <span
+ style="font-weight: bold;">LinkedList</span>.
+Which of the two List implementations you use depends on your specific
+needs. If you need to support random access, with inserting or
+removing elements from any place other than the end, then ArrayList
+offers the optimal collection. If, however, you need to frequently add
+and remove elements from the middle of the list and only access the
+list elements sequentially then LinkedList offers the better
+implementation.</div>
+<p style="margin-left: 40px;">In this step, you are going to build an
+application that uses <span style="font-weight: bold;">ArrayList</span>.&nbsp;
+You are going to exercise
+various methods of the <span style="font-weight: bold;">ArrayList </span>class.&nbsp;
+The following is quoted from online <a
+ href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ArrayList.html">JavaDoc
+of the ArrayList</a>.<br>
+</p>
+<p style="margin-left: 80px;"><span style="font-weight: bold;">ArrayList
+</span>is a resizable-array implementation of the
+List interface. Implements all optional list operations, and permits
+all elements, including null. In addition to implementing the List
+interface, this class provides methods to manipulate the size of the
+array that is used internally to store the list. (This class is roughly
+equivalent to Vector, except that it is unsynchronized.)<br>
+<br>
+The size, isEmpty, get, set, iterator, and listIterator operations run
+in constant time. The add operation runs in amortized constant time,
+that is, adding n elements requires O(n) time. All of the other
+operations run in linear time (roughly speaking). The constant factor
+is low compared to that for the LinkedList implementation.<br>
+<br>
+Each ArrayList instance has a capacity. The capacity is the size of the
+array used to store the elements in the list. It is always at least as
+large as the list size. As elements are added to an ArrayList, its
+capacity grows automatically. The details of the growth policy are not
+specified beyond the fact that adding an element has constant amortized
+time cost.<br>
+<br>
+An application can increase the capacity of an ArrayList instance
+before adding a large number of elements using the ensureCapacity
+operation. This may reduce the amount of incremental reallocation.<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#2.1">Build and run an application that uses ArrayList</a></li>
+  <li><a href="#2.2">Build and run another application that uses
+ArrayList</a><br>
+  </li>
+  <li><a href="#2.3">Build and run an application that uses LinkedList</a></li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run an application that uses ArrayList<br>
+</h3>
+<p style="margin-left: 40px;">0. Start NetBeans IDE if you have not
+done so yet. <br>
+1. Create a new NetBeans project.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">List-ArrayList</span> </span>as
+project name. </li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value that is provided by the IDE. (Figure-2.11
+below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.<br>
+  </li>
+  <li>Observe that <span style="font-weight: bold;">List-ArrayList </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-2.12 below. <br>
+</div>
+<div style="margin-left: 40px;">
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>package
+listarraylist;<br>
+      <br>
+import java.util.ArrayList;<br>
+import java.util.ListIterator;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create ArrayList object with capacity of
+2 elements</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ArrayList al = new
+ArrayList(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(al+",
+size = "+al.size());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Add items to the ArrayList</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al.add("R");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al.add("U");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al.add("O");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al.add(new String("x"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al.add(2, new Integer(10));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(al+",
+size = " + al.size());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Remove item</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al.remove("U");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(al+",
+size = " + al.size());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Check if the list contains the specified
+element</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Boolean b = al.contains("x");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("The list
+contains x = " + b);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = al.contains("p");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("The list
+contains p = " + b);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = al.contains(new
+Integer(10));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("The list
+contains Integer of 10 = " + b);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create ListIterator and iterate
+entries in it</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ListIterator li =
+al.listIterator();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (li.hasNext())<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("From ListIterator = " + li.next());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Create Object array from ArrayList</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object a[] = al.toArray();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0; i&lt;a.length;
+i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("From an Array = " + a[i]);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<span style="font-weight: bold; color: rgb(51, 51, 255);"></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.12: Modified LinkedListDemo.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">List-ArrayList </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.13 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">[], size = 0<br>
+[R, U, 10, O, x], size = 5<br>
+[R, 10, O, x], size = 4<br>
+The list contains x = true<br>
+The list contains p = false<br>
+The list contains Integer of 10 = true<br>
+From ListIterator = R<br>
+From ListIterator = 10<br>
+From ListIterator = O<br>
+From ListIterator = x<br>
+From an Array = R<br>
+From an Array = 10<br>
+From an Array = O<br>
+From an Array = x<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.13: Result of running List-ArrayList application<br>
+</div>
+<br>
+<div style="margin-left: 40px;">4. For your own exercise, please do the
+following<br>
+<ul>
+  <li>Create your own NetBeans project named as <span
+ style="font-weight: bold;">MyOwnArrayList</span><br>
+  </li>
+  <li>Create your own <span style="font-weight: bold;">ArrayList </span>object
+with initial capacity of 5<br>
+  </li>
+  <li>Add the following objects to the newly created <span
+ style="font-weight: bold;">ArrayList </span>object.<br>
+  </li>
+  <ul>
+    <li>2 String objects<br>
+    </li>
+    <li>1 MyOwnClass object (You will have to create MyOwnClass.java
+first)<br>
+    </li>
+    <li>3 Integer ojbects</li>
+  </ul>
+  <li>Create Iterator object from the <span style="font-weight: bold;">ArrayList
+    </span>object and iterate them to get displayed</li>
+  <li>Create Object array from the <span style="font-weight: bold;">ArrayList
+    </span>object and display them in a <span
+ style="font-weight: bold;">for </span>loop</li>
+</ul>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">List-ArrayList</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Build another Java application that uses ArrayList<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">List-ArrayList-Deal</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">listarraylistdeal.Deal</span>.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">List-ArrayList-Deal
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">Deal.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Deal.java
+</span>as shown in Code-2.20 below.&nbsp; Study the code.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package listarraylistdeal;<br>
+import java.util.*;<br>
+      <br>
+class Deal {<br>
+&nbsp;&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int numHands =
+Integer.parseInt(args[0]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cardsPerHand =
+Integer.parseInt(args[1]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Make a normal 52-card deck<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] suit = new String[]
+{"spades", "hearts", "diamonds", "clubs"};<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] rank = new String[]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{"ace","2","3","4","5","6","7","8","9","10","jack","queen","king"};<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List deck = new ArrayList();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;suit.length; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int j=0; j&lt;rank.length; j++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+deck.add(rank[j] + " of " + suit[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collections.shuffle(deck);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0; i&lt;numHands;
+i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(dealHand(deck, cardsPerHand));<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static List dealHand(List deck, int n) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int deckSize = deck.size();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List handView =
+deck.subList(deckSize-n, deckSize);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List hand = new
+ArrayList(handView);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; handView.clear();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return hand;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.20: Modified Deal.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">List-ArrayList-Deal
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.21 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">[6 of spades, 4 of hearts, 8 of
+spades, 8 of hearts]<br>
+[ace of spades, 6 of hearts, ace of diamonds, king of clubs]<br>
+[jack of hearts, 8 of clubs, 6 of diamonds, jack of diamonds]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.21: Result of running List-ArrayList-Deal application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">List-ArrayList</span><span
+ style="font-weight: bold;">-Deal.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+</div>
+<div style="margin-left: 40px;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a>
+</div>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Build and run an application that uses LinkedList<br>
+</h3>
+<br>
+<p style="margin-left: 40px;">In this step, you are going to build an
+application that uses <span style="font-weight: bold;">LinkedList</span>.&nbsp;
+You are going to exercise
+various methods of the <span style="font-weight: bold;">LinkedList </span>class.&nbsp;
+The following is quoted from online <a
+ href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/LinkedList.html">JavaDoc
+of the LinkedList</a>.</p>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">LinkedList
+</span>is an implementation of the <span style="font-weight: bold;">List
+</span>interface. It implements all
+optional list operations, and permits all elements (including null). In
+addition to implementing the List interface, the LinkedList class
+provides uniformly named methods to get, remove and insert an element
+at the beginning and end of the list. These operations allow linked
+lists to be used as a stack, queue, or double-ended queue (deque).<br>
+<br>
+</div>
+<div style="margin-left: 40px;">1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">List-LinkedList</span> </span>as
+project name. </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">List-LinkedList </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-2.31 below. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package listlinkedlist;<br>
+      <br>
+import java.util.LinkedList;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create LinkedList object
+and add 4 Integer objects to it.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedList list = new
+LinkedList();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(new Integer(1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(new Integer(2));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(new Integer(3));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(new Integer(1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list+",
+size = "+list.size());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Add Integer objects to
+the beginning and end of the LinkedList object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.addFirst(new
+Integer(0));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.addLast(new Integer(4));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(list.getFirst() + ", " + list.getLast());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(list.get(2)+", "+list.get(3));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Remove the first and the
+last objects from the LinkedList object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.removeFirst();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.removeLast();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Remove the first instance
+of Integer(1) object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.remove(new Integer(1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Add a String and Long
+objects to the LinkedList<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s = new
+String("Boston");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(s);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(2, new Long(45L));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get the index of the
+"Boston" String object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Index of
+Boston String = " + list.indexOf(s));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Remove the 3rd object in
+the Linked List<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.remove(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set the value of the
+second item to "one"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.set(1, "one");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Clone the LinkedList
+object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedList clonedLinkedList
+= (LinkedList) list.clone();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clonedLinkedList.add(0, new
+String("Cloned LinkedList"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.add(0, new
+String("Original LinkedList"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(list);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(clonedLinkedList);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.31: Modified Main.java<br>
+</div>
+<div style="margin-left: 40px;"><br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">List-LinkedList </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.32 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">[1, 2, 3, 1], size = 4<br>
+[0, 1, 2, 3, 1, 4]<br>
+0, 4<br>
+2, 3<br>
+[1, 2, 3, 1]<br>
+[2, 3, 1]<br>
+[2, 3, 45, 1, Boston]<br>
+Index of Boston String = 4<br>
+[2, 3, 1, Boston]<br>
+[2, one, 1, Boston]<br>
+[Original LinkedList, 2, one, 1, Boston]<br>
+[Cloned LinkedList, 2, one, 1, Boston]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.32: Result of running List-LinkedList application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">List-LinkedList</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+</div>
+<br>
+<div style="margin-left: 40px;">4. For your own exercise, please do the
+following<br>
+<ul>
+  <li>Create your own NetBeans project named as <span
+ style="font-weight: bold;">MyOwnLinkedList</span><br>
+  </li>
+  <li>Create your own <span style="font-weight: bold;">LinkedList </span>object<br>
+  </li>
+  <li>Add the following objects to the newly created <span
+ style="font-weight: bold;">LinkedList </span>object<br>
+  </li>
+  <ul>
+    <li>2 String objects<br>
+    </li>
+    <li>1 MyOwnClass object (You will have to create MyOwnClass.java
+first)<br>
+    </li>
+    <li>3 Integer ojbects</li>
+  </ul>
+  <li>Exercise the following methods</li>
+  <ul>
+    <li>Add the 2nd instance of the MyOwnClass object to the 3rd
+position</li>
+  </ul>
+</ul>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have built
+and run Java applications that use ArrayList and LinkedList Collection
+objects.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a><br>
+<br>
+<br>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Build and run applications
+that use "Map" Collection Objects<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">The Map interface is not an extension
+of the Collection interface. Instead, the interface starts off its own
+interface hierarchy, for maintaining key-value associations. The
+interface describes a mapping from keys to values, without duplicate
+keys, by definition.<br>
+<br>
+The interface methods can be broken down into three sets of operations:
+altering, querying, and providing alternative views.<br>
+<br>
+The alteration operations allow you to add and remove key-value pairs
+from the map. Both the key and value can be null. However, you should
+not add a Map to itself as a key or value.<br>
+<br>
+&nbsp;&nbsp;&nbsp; * Object put(Object key, Object value)<br>
+&nbsp;&nbsp;&nbsp; * Object remove(Object key)<br>
+&nbsp;&nbsp;&nbsp; * void putAll(Map mapping)<br>
+&nbsp;&nbsp;&nbsp; * void clear() <br>
+<br>
+The query operations allow you to check on the contents of the map:<br>
+<br>
+&nbsp;&nbsp;&nbsp; * Object get(Object key)<br>
+&nbsp;&nbsp;&nbsp; * boolean containsKey(Object key)<br>
+&nbsp;&nbsp;&nbsp; * boolean containsValue(Object value)<br>
+&nbsp;&nbsp;&nbsp; * int size()<br>
+&nbsp;&nbsp;&nbsp; * boolean isEmpty() <br>
+<br>
+The last set of methods allow you to work with the group of keys or
+values as a collection.<br>
+<br>
+&nbsp;&nbsp;&nbsp; * public Set keySet()<br>
+&nbsp;&nbsp;&nbsp; * public Collection values()<br>
+&nbsp;&nbsp;&nbsp; * public Set entrySet() <br>
+<br>
+Since the collection of keys in a map must be unique, you get a Set
+back. Since the collection of values in a map may not be unique, you
+get a Collection back. The last method returns a Set of elements that
+implement the Map.Entry interface, described next.<br>
+<br>
+The entrySet() method of Map returns a collection of objects that
+implement Map.Entry interface. Each object in the collection is a
+specific key-value pair in the underlying Map.<br>
+<br>
+Iterating through this collection, you can get the key or value, as
+well as change the value of each entry. However, the set of entries
+becomes invalid, causing the iterator behavior to be undefined, if the
+underlying Map is modified outside the setValue() method of the
+Map.Entry interface.<br>
+<br>
+The Collections Framework provides two general-purpose Map
+implementations: <span style="font-weight: bold;">HashMap </span>and <span
+ style="font-weight: bold;">TreeMap </span>. As with all the concrete
+implementations, which implementation you use depends on your specific
+needs. For inserting, deleting, and locating elements in a Map, the
+HashMap offers the best alternative. If, however, you need to traverse
+the keys in a sorted order, then TreeMap is your better alternative.
+Depending upon the size of your collection, it may be faster to add
+elements to a HashMap, then convert the map to a TreeMap for sorted key
+traversal. Using a HashMap requires that the class of key added have a
+well-defined hashCode() implementation. With the TreeMap
+implementation, elements added to the map must be sortable. Again, more
+on sorting later.<br>
+<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+    <li><a href="#3.1">Build and run a simple application that uses
+HashMap</a><br>
+    </li>
+    <li><a href="#3.2">Build and run a simple application that uses
+TreeMap</a></li>
+    <li><a href="#3.3">Build and run a simple application that uses
+LinkedHashMap</a></li>
+    <li><a href="#3.4">Map and polymorphism</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Build and run a simple application that uses HashMap<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Map-HashMap</span> </span>as
+project name. </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Map-HashMap </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-3.10 below. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package maphashmap;<br>
+      <br>
+import java.util.HashMap;<br>
+import java.util.Map;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static final Integer ONE = new Integer(1);<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up testing data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Passion"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create a HashMap object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Map m = new HashMap();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Initialize frequency table with testing
+data</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;name.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Integer freq = (Integer) m.get(name[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Adding an entry to the HashMap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+m.put(name[i], (freq==null ? ONE :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Integer(freq.intValue() + 1)));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Display the size of the Map object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(m.size()
++ " distinct words detected:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Display Map object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Display
+of the HashMap object = " + m);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.10: Main.java<br>
+<span style="font-weight: bold;"></span><br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click<span style="font-weight: bold;"> Map-HashMap </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-3.11 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">4 distinct words detected:<br>
+Display of the HashMap object = {Shin=2, Sang=1, Passion=1, Boston=1}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.11: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Map-HashMap</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+</div>
+<br>
+<div style="margin-left: 40px;">4. For your own exercise, please do the
+following<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Create your own NetBeans project named as <span
+ style="font-weight: bold;">MyHashMap</span><br>
+  </li>
+  <li>Create your own <span style="font-weight: bold;">HashMap </span>object
+    <br>
+  </li>
+  <li>Add the following objects to the newly created<span
+ style="font-weight: bold;"> HashMap </span>object.<br>
+  </li>
+  <ul>
+    <li>2 String objects with keys "1st", "2nd"<br>
+    </li>
+    <li>2 MyOwnClass objects with keys "3rd", "4th"<br>
+    </li>
+    <li>1 Integer ojbects with keys "5th"<br>
+    </li>
+  </ul>
+  <li>Display them in both unsorted and sorted order</li>
+</ul>
+<div style="margin-left: 40px;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of the
+exercise</a></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Build and run a simple application that uses TreeMap <br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Map-TreeMap</span> </span>as
+project name. </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Map-TreeMap </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-3.10 below. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package maptreemap;<br>
+      <br>
+import java.util.Map;<br>
+import java.util.TreeMap;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static final Integer ONE = new Integer(1);<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Passion"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Create TreeMap object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Map m = new TreeMap();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Initialize frequency table with testing
+data</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;name.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Integer freq = (Integer) m.get(name[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Adding an entry to the TreeMap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+m.put(name[i], (freq==null ? ONE :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Integer(freq.intValue() + 1)));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Display the size of the Map object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(m.size()
++ " distinct words detected:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Display Map object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Display
+of the TreeMap object = " + m);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.10: Main.java<br>
+<span style="font-weight: bold;"></span><br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click<span style="font-weight: bold;"> Map-TreeMap </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-3.11 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">4 distinct words detected:<br>
+Display of the TreeMap object = {Boston=1, Passion=1, Sang=1, Shin=2}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.11: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Map-TreehMap</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of the
+exercise</a><br>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.3"></a>(3.3)
+Build and run a simple application that uses LinkedHashMap<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Map-LinkedHashMap</span> </span>as
+project name. </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Map-LinkedHashMap </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-3.10 below. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package maplinkedhashmap;<br>
+      <br>
+import java.util.LinkedHashMap;<br>
+import java.util.Map;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static final Integer ONE = new Integer(1);<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Set up testing data</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Passion"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Create a LinkedHashMap object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Map m = new LinkedHashMap();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Initialize frequency table with testing
+data</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;name.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Integer freq = (Integer) m.get(name[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Adding an entry to the LinkedHashMap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+m.put(name[i], (freq==null ? ONE :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Integer(freq.intValue() + 1)));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Display the size of the Map object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(m.size()
++ " distinct words detected:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Display Map object</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Display
+of the LinkedHashMap object = " + m);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.10: Main.java<br>
+<span style="font-weight: bold;"></span><br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click<span style="font-weight: bold;"> Map-LinkedHashMap </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-3.11 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">4 distinct words detected:<br>
+Display of the LinkedHashMap object = {Sang=1, Shin=2, Boston=1,
+Passion=1}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.11: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Map-LinkedHashMap</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of the
+exercise</a><br>
+<div style="margin-left: 40px;"><br>
+</div>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.4"></a>(3.4)
+Map and
+polymorphism<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Map-Polymorphism</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the default value provided by the IDE.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that <span style="font-weight: bold;">Map-Polymorphism </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java
+</span>as shown in Code-3.40 below.&nbsp; Study the code by paying
+special attention to the bold fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mappolymorphism;<br>
+      <br>
+import java.util.HashMap;<br>
+import java.util.LinkedHashMap;<br>
+import java.util.Map;<br>
+import java.util.TreeMap;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up testing data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String names[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Passion"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Map m = new HashMap();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyOwnUtilityClass.checkDuplicate(m, names);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = new TreeMap();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyOwnUtilityClass.checkDuplicate(m, names);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = new LinkedHashMap();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyOwnUtilityClass.checkDuplicate(m, names);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.40: Modified Main.java<br>
+<br>
+3. Write <span style="font-weight: bold;">MyOwnUtilityClass</span>.java.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.Map;<br>
+      <br>
+public class MyOwnUtilityClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private static final Integer ONE = new Integer(1);<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void checkDuplicate(Map m, String[]
+names){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;names.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Integer freq = (Integer) m.get(names[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Adding an entry to the HashMap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+m.put(names[i], (freq==null ? ONE :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+new Integer(freq.intValue() + 1)));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Map type
+= " + m.getClass().getName() + " " + m);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.41: MyOwnUtilityClass.java<br>
+<br>
+4. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">Map-Polymorphism </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.62 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Map type = java.util.HashMap
+{Shin=2, Sang=1, Passion=1, Boston=1}<br>
+Map type = java.util.TreeMap {Boston=1, Passion=1, Sang=1, Shin=2}<br>
+Map type = java.util.LinkedHashMap {Sang=1, Shin=2, Boston=1, Passion=1}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.42: Result of running Map-Polymorphism application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Map-Polymorphism</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you have created an application that use HashMap and
+TreeMap Collection objects.<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;<a href="index.html#Tutorial_Exercises">
+return to the top</a><br>
+<br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Iterator<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you are going to
+exercise how to create Iterator object from a Collection object.<br>
+</div>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#4.1">Build and run a simple application that uses
+Iterator</a><br>
+  </li>
+</ol>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Build and run a simple application that uses Iterator<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Collection-Iterator</span> </span>as
+project name.</li>
+  <li>For Create Main Class field, type in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">collectioniterator.OysterMonths</span>.&nbsp;
+(Figure-4.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/4_oys1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-4.10: Create a new project<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Collection-Iterator
+    </span>project
+appears and IDE generated&nbsp;<span style="font-weight: bold;">OysterMonths.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated OysterMonths<span
+ style="font-weight: bold;">.java
+</span>as shown in Code-4.11 below. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package collectioniterator;<br>
+      <br>
+import java.util.Collection;<br>
+import java.util.ArrayList;<br>
+import java.util.Arrays;<br>
+import java.util.Iterator;<br>
+import java.text.DateFormatSymbols;<br>
+      <br>
+public class OysterMonths {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; Collection&nbsp; safeMonths;<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Collection&nbsp; filter(Collection c) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collection&nbsp;
+filteredCollection = new ArrayList();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Creator Iterator object from a Collection object</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// and do the iteration.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Iterator i =
+c.iterator(); i.hasNext(); )
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s = (String) i.next();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(condition(s)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+filteredCollection.add(s);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return filteredCollection;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public boolean condition(String s) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.contains("r")) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return true;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OysterMonths om = new
+OysterMonths();&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DateFormatSymbols dfs = new
+DateFormatSymbols();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] monthArray =
+dfs.getMonths();&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collection&nbsp; months =
+Arrays.asList(monthArray);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; om.safeMonths =
+om.filter(months);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("The
+following months are safe for oysters:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(om.safeMonths);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11: OysterMonths.java<br>
+<span style="font-weight: bold;"></span><br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click<span style="font-weight: bold;"> Collection-Iterator </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-4.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">The following months are safe
+for oysters:<br>
+[January, February, March, April, September, October, November,
+December]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.12: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Collection-Iterator</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of the
+exercise</a><br>
+</div>
+<br>
+<h2><a name="Exercise_5"></a>Exercise 5: Sorting, Searching, Shuffling,
+Data Manipulation <br>
+</h2>
+<ul>
+  <ol>
+    <li><a href="index.html#5.1">Sort a list using natural order</a></li>
+    <li><a href="index.html#5.2">Sort a list using Comparator</a></li>
+    <li><a href="index.html#5.3">Shuffle a list</a></li>
+    <li><a href="index.html#5.4">Data manipulation</a></li>
+    <li><a href="index.html#5.5">Binary search</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1)
+Sort a list using natural order<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Sorting-NaturalOrder</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the IDE filled in value, <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">sortingnaturalorder.Main</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Sorting-NaturalOrder
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-5.11 below.&nbsp; Study the code by paying
+special attention to bold-fonted code fragments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package sortingnaturalorder;<br>
+      <br>
+import sortingnaturalorder.Name;<br>
+import java.util.Arrays;<br>
+import java.util.Collections;<br>
+import java.util.List;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String n[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("John"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Karl"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Groucho"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Oscar")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create a List from an
+array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List l = Arrays.asList(n);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Perform the sorting operation</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> Collections.sort(l);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sorting
+list of strings = " + l);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Integer int1[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+Integer(56),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+Integer(78),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+Integer(34),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+Integer(10)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create a List from an
+array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List l2 =
+Arrays.asList(int1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Perform the sorting operation</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Collections.sort(l2);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sorting
+list of numbers = " + l2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.11: Main.java<br>
+<span style="font-weight: bold;"></span><br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click<span style="font-weight: bold;"> Sorting-NaturalOrder
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-5.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Sorting list of strings =
+[Groucho, John, Karl, Oscar]<br>
+Sorting list of numbers = [10, 34, 56, 78]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.12: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Sorting-NaturalOrder</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of the
+exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.2"></a>(5.2)
+Sort a list using Comparator<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Sorting-Comparator</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the IDE filled in value, <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">sortingcomparator.Main</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Sorting-Comparator
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-5.11 below.&nbsp; Study the code by paying
+special attention to bold-fonted code fragments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package sortingcomparator;<br>
+      <br>
+import java.util.ArrayList;<br>
+import java.util.Arrays;<br>
+import java.util.Collections;<br>
+import java.util.Comparator;<br>
+      <br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an ArrayList
+object and add items to it.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ArrayList a1 = new
+ArrayList();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add("Boston");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add("New York");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add("Seoul");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add("Tokyo");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add("London");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add("Bangkok");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Before
+sorting = " + a1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get String Comparator
+object and sort the list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Comparator comp =
+Comparators.stringComparator();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collections.sort(a1, comp);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the sorted list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sorted
+list using String Comparator = " + a1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an ArrayList
+object and add items to it.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ArrayList a2 = new
+ArrayList();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a2.add(new Integer(33));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a2.add(new Integer(17));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a2.add(new Integer(45));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a2.add(new Integer(100));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a2.add(new Integer(3));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Before
+sorting = " + a2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get Integer Comparator
+object and sort the list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Comparator comp2 =
+Comparators.integerComparator();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collections.sort(a2, comp2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the sorted list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sorted
+list using Integer Comparator = " + a2);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.11: Main.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Comparators.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package sortingcomparator;<br>
+      <br>
+import java.util.Comparator;<br>
+import java.util.Date;<br>
+      <br>
+public class Comparators {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // String Comparator object<br>
+&nbsp;&nbsp;&nbsp; public static Comparator stringComparator() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Comparator() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public int compare(Object o1, Object o2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s1 = (String)o1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s2 = (String)o2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int len1 = s1.length();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int len2 = s2.length();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int n = Math.min(len1, len2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+char v1[] = s1.toCharArray();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+char v2[] = s2.toCharArray();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int pos = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+while (n-- != 0) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+char c1 = v1[pos];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+char c2 = v2[pos];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (c1 != c2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return c1 - c2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pos++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return len1 - len2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Integer Comparator object<br>
+&nbsp;&nbsp;&nbsp; public static Comparator integerComparator() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Comparator() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public int compare(Object o1, Object o2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int val1 = ((Integer)o1).intValue();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int val2 = ((Integer)o2).intValue();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (val1&lt;val2 ? -1 : (val1==val2 ? 0 : 1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Date&nbsp; Comparator object<br>
+&nbsp;&nbsp;&nbsp; public static Comparator dateComparator() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Comparator() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public int compare(Object o1, Object o2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+long val1 = ((Date)o1).getTime();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+long val2 = ((Date)o2).getTime();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (val1&lt;val2 ? -1 : (val1==val2 ? 0 : 1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.12: Comparators.java<br>
+<span style="font-weight: bold;"></span><br>
+4. Build and run the project<br>
+<ul>
+  <li>Right click<span style="font-weight: bold;"> Sorting-Comparator </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-5.13 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Before sorting = [Boston, New
+York, Seoul, Tokyo, London, Bangkok]<br>
+Sorted list using String Comparator = [Bangkok, Boston, London, New
+York, Seoul, Tokyo]<br>
+Before sorting = [33, 17, 45, 100, 3]<br>
+Sorted list using Integer Comparator = [3, 17, 33, 45, 100]<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.13: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Sorting-Comparator</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of the
+exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.3"></a>(5.3)
+Shuffle a list<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">Shuffling</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the IDE filled in value, <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">shuffling.Main</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Shuffling </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-5.31 below.&nbsp; Study the code by paying
+special attention to bold-fonted code fragments.<br>
+<br>
+</div>
+<br>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package shuffling;<br>
+      <br>
+import java.util.Arrays;<br>
+import java.util.Collections;<br>
+import java.util.List;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up testing data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Passion"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Create a List object from an array</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List l = Arrays.asList(name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Before
+shuffling = " + l);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Shuffle the list</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Collections.shuffle(l);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">System.out.println("Shuffled list = " + l);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Sort the list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collections.sort(l);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sorted
+list = " + l);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-5.31: Main.java<br>
+<span style="font-weight: bold;"></span><br>
+3. Build and run the project<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click<span style="font-weight: bold;"> Shuffling </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-5.32 below)</li>
+</ul>
+<br>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Before shuffling = [Sang, Shin,
+Boston, Passion, Shin]<br>
+Shuffled list = [Sang, Passion, Shin, Boston, Shin]<br>
+Sorted list = [Boston, Passion, Sang, Shin, Shin]</td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.32: Result <br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">Shuffling</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of the
+exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.4"></a>(5.4)
+Data manipulation<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DataManipulation</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the IDE filled in value, <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">datamanipulation.Main</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">DataManipulation </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-5.41 below.&nbsp; Study the code by paying
+special attention to bold-fonted code fragments.<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package datamanipulating;<br>
+      <br>
+import sortingnaturalorder.Name;<br>
+import java.util.Arrays;<br>
+import java.util.Collections;<br>
+import java.util.List;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String n[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("New York"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Seoul"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shanghai")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create a List from an
+array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List l = Arrays.asList(n);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Perform the sorting
+operation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collections.sort(l);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sorted
+list = " + l);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Reverse the list</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Collections.reverse(l);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Reversed list = " + l);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-5.41: Main.java<br>
+<br>
+3. Build and run the project<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click<span style="font-weight: bold;"> DataManipulation </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-5.42 below)</li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Sorted list = [Boston, New York,
+Seoul, Shanghai]<br>
+Reversed list = [Shanghai, Seoul, New York, Boston]</td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.42: Result of the running the application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">DataManipulation</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of the
+exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.5"></a>(5.5)
+Binary searching<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane, <span style="font-weight: bold;">select Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">BinarySearching</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, take the IDE filled in value, <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">binarysearching.Main</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">BinarySearching </span>project
+appears and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">Main.java
+</span>as shown in Code-5.51 below.&nbsp; Study the code by paying
+special attention to bold-fonted code fragments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package binarysearching;<br>
+      <br>
+import java.util.Arrays;<br>
+import java.util.Collections;<br>
+import java.util.List;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set up testing data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name[] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Sang"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Boston"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Passion"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new
+String("Shin"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create a List object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List l = Arrays.asList(name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Perform binary search</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int position = Collections.binarySearch(l, "Boston");</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Position of the searched item = " + position);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-5.51: Main.java <br>
+</div>
+<div style="margin-left: 40px;"><br>
+3. Build and run the project<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click<span style="font-weight: bold;"> DataManipulation </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-5.52 below)</li>
+</ul>
+<table style="width: 100%; text-align: left; margin-left: 40px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Position of the searched item = 2</td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-left: 40px;">Figure-5.52: Result of the running the
+application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javacollections/samples/</span><span
+ style="font-weight: bold;">BinarySearching</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+</div>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of the
+exercise</a><br>
+<br>
+<br>
+<h2><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to create a NetBeans
+project
+as following.&nbsp; (You can name the homework project in any way you
+want
+but here I am going to call it <span style="font-weight: bold;">MyCollectionProject</span>.)
+</div>
+<ul style="margin-left: 40px;">
+  <li>Create your own <span style="font-weight: bold;">HashSet </span>object
+    <br>
+  </li>
+  <li>Add the following objects with properly initialized values to the
+newly created <span style="font-weight: bold;">HashSet </span>object<br>
+  </li>
+  <ul>
+    <li>2 String objects<br>
+    </li>
+    <li>2 MyOwnClass object (You will have to create MyOwnClass.java
+first)</li>
+    <ul>
+      <li>MyOwnClass class has name (String type) and age (int type)<br>
+      </li>
+    </ul>
+    <li>3 Integer ojbects</li>
+  </ul>
+  <li>Create <span style="font-weight: bold;">Iterator </span>object
+from the <span style="font-weight: bold;">HashSet </span>object and
+iterate them to get displayed</li>
+  <li>Repeat the above for LinkedHashSet, ArrayList<br>
+  </li>
+</ul>
+<br>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javacollections.<br>
+</span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyCollectionProject</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyCollectionProject</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyCollectionProject</span>)<br>
+    </li>
+    <li>jar cvf MyCollectionProject.zip MyCollectionProject
+(<span style="font-weight: bold;">MyCollectionProject </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javacollections.gif</span>
+or<span style="font-weight: bold;"> JavaIntro-javacollections</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javacollections.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+</ul>
+<br>
+<br>
+<div style="margin-left: 40px;"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

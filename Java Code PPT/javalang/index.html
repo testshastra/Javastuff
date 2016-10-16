@@ -1,0 +1,1700 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1010: Tour of java.lang.* and java.util.* classes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite"
+ style="background-image: url(index_files/beige.jpg);">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<h1 style="text-align: center;">Tour of java.lang.* and java.util.*
+classes<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sang.shin@sun.com"></a> <a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><a
+ href="mailto:sang.shin@sun.com"><i><br>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<p>This hands-on lab takes you through the important classes of
+java.lang.* and java.util.* packages.<br>
+<br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 80 minutes</b></p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a>Software Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.
+<ul>
+  <li>1010_javalang.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1010_javalang.zip">download</a>)</li>
+  <ul>
+    <li>It contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb 27th, 2007: Homework is added</li>
+  <li>Sep. 13th, 2007: Some correction is made</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Boolean class, Various data
+types, Date class, Math class (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: System properties (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_3">Exercise 3: System class
+(20 minutes)</a></li>
+  <li><a href="#Exercise_4">Exercise 4: Runtime class (20 minutes)</a><br>
+  </li>
+</ul>
+<br>
+</div>
+<h2><a name="Exercise_1"></a>Exercise 1: Boolean class, Various data
+types, Date class, Math class<br>
+</h2>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+</ol>
+<p style="margin-left: 40px;">In this exercise, you are going to use
+various classes.<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#1.1">Boolean class</a></li>
+  <li><a href="#1.2">Various data types</a><br>
+  </li>
+  <li><a href="#1.3">Date class<br>
+    </a></li>
+  <li><a href="#1.4">Math class</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+BooleanWrapper<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>.</li>
+  <li>&nbsp;Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">BooleanWrapper</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">BooleanWrapper</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">BooleanWrapper </span>project
+appears and IDE generated <span style="font-weight: bold;">BooleanWrapper.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">BooleanWrapper.java
+</span>as shown in Code-1.121 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">class BooleanWrapper {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean booleanVar = 1&gt;2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">Boolean
+booleanObj = new Boolean("TRue");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* primitive to object; can also use
+valueOf <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; method */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">Boolean
+booleanObj2 = new
+Boolean(booleanVar);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("booleanVar = " +
+booleanVar);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("booleanObj = " +
+booleanObj);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("booleanObj2 = "
++&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+booleanObj2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("compare 2 wrapper
+objects: " <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ booleanObj.equals(booleanObj2));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* object to primitive */ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">
+booleanVar = booleanObj.booleanValue();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("booleanVar = " +
+booleanVar);<br>
+&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.11: BooleanWrapper.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">BooleanWrapper </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">booleanVar = false<br>
+booleanObj = true<br>
+booleanObj2 = false<br>
+compare 2 wrapper objects: false<br>
+booleanVar = true<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.12: Result of running BooleanWrapper application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">BooleanWrapper</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Various data types<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DataTypePrintTest</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DataTypePrintTest</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">DataTypePrintTest </span>project
+appears and IDE generated <span style="font-weight: bold;">DataTypePrintTest.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">DataTypePrintTest.java
+</span>as shown in Code-1.21 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class DataTypePrintTest {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+Thread objectData = new
+Thread();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String stringData = "Java
+Mania";</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+char[] charArrayData = {
+'a', 'b', 'c' };</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int integerData = 4;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+long longData =
+Long.MIN_VALUE;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+float floatData =
+Float.MAX_VALUE;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+double doubleData = Math.PI;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+boolean booleanData = true;</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(objectData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(stringData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(charArrayData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(integerData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(longData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(floatData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(doubleData);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(booleanData);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: DataTypePrintTest.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">DataTypePrintTest </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.22 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Thread[Thread-0,5,main]<br>
+Java Mania<br>
+abc<br>
+4<br>
+-9223372036854775808<br>
+3.4028235E38<br>
+3.141592653589793<br>
+true<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.22: Result of running DataTypePrintTest application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">DataTypePrintTest</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Date class<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DateTest</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DateTest</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">DateTest </span>project
+appears and IDE generated <span style="font-weight: bold;">DateTest.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">DateTest.java
+</span>as shown in Code-1.31 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.Date;<br>
+      <br>
+public class DateTest {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+// Return the number of milliseconds in the Date</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// as a long, using the getTime() method</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Date d1 = new Date();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // timed code goes here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0; i&lt;10000000;
+i++) { int j = i;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">Date d2 = new Date();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long elapsed_time =
+d2.getTime() - d1.getTime();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("That
+took " + elapsed_time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ " milliseconds");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.31: DateTest.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">DateTest </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.32 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">That took 15 milliseconds<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.32: Result of running DateTest application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">DateTest</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.4"></a>(1.4)
+Math class<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">MathDemo</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">MathDemo</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">MathDemo </span>project
+appears and IDE generated <span style="font-weight: bold;">MathDemo.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">MathDemo.java
+</span>as shown in Code-1.41 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">class MathDemo {<br>
+&nbsp;&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("absolute
+value of -5: " +&nbsp; <span style="font-weight: bold;">Math.abs(-5)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("absolute
+value of 5: " +&nbsp; <span style="font-weight: bold;">Math.abs(5)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("random
+number(max is 10): " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.random()</span>*10);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("max of
+3.5 and 1.2: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.max(3.5,1.2)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("min of
+3.5 and 1.2: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.min(3.5,1.2)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("ceiling
+of 3.5: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.ceil(3.5)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("floor of
+3.5: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;">
+Math.floor(3.5)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("e raised
+to 1: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.exp(1)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("log 10:
+" + <span style="font-weight: bold;">Math.log(10)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("10
+raised to 3: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.pow(10,3)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("rounded
+off value of pi: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.round(Math.PI)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("square
+root of 5 = " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.sqrt(5)</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("10
+radian = " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.toDegrees(10)</span> + "
+degrees");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("sin(90):
+" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">Math.sin(Math.toRadians(90)</span>));<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.41: MathDemo.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MathDemo </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.42 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">absolute value of -5: 5<br>
+absolute value of 5: 5<br>
+random number(max is 10): 5.992489039705273<br>
+max of 3.5 and 1.2: 3.5<br>
+min of 3.5 and 1.2: 1.2<br>
+ceiling of 3.5: 4.0<br>
+floor of 3.5: 3.0<br>
+e raised to 1: 2.7182818284590455<br>
+log 10: 2.302585092994046<br>
+10 raised to 3: 1000.0<br>
+rounded off value of pi: 3<br>
+square root of 5 = 2.23606797749979<br>
+10 radian = 572.9577951308232 degrees<br>
+sin(90): 1.0<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.42: Result of running MathDemo application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">MathDemo</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have built and run
+Java applications that use the Boolean class, the Date class, the Math
+class, and various data types found in the java.lang.* package.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_2"></a>Exercise 2: System Properties <br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you are going to
+learn how to get and set system properties.<span
+ style="font-weight: bold;"></span><br>
+<ol>
+  <li><a href="#2.1">Display user name property</a><br>
+  </li>
+  <li><a href="#2.2">Display all system properties</a><br>
+  </li>
+  <li><a href="#2.3">Set system property</a><br>
+  </li>
+</ol>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Display user name property<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UserNameTest</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UserNameTest</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/10_new2.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-2.21: New Java Application dialog box<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UserNameTest </span>project
+appears and IDE generated <span style="font-weight: bold;">UserNameTest.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UserNameTest.java
+</span>as shown in Code-2.22 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class UserNameTest {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">String name =
+System.getProperty("user.name");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("user.name property = " + name);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.22: UserNameTest.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UserNameTest </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.23 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">user.name property = sang<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.23: Result of running UserNameTest application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">UserNameTest</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Display system properties<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+</div>
+<div style="margin-left: 40px;">
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DisplaySystemProps</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">DisplaySystemProps</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">DisplaySystemProps
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">DisplaySystemProps.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">DisplaySystemProps.java
+</span>as shown in Code-2.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.Properties;<br>
+      <br>
+public class DisplaySystemProps {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Get all system properties and display them.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Properties p1 = System.getProperties();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+p1.list(System.out);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: DisplaySystemProps.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">DisplaySystemProps </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.22 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">-- listing properties --<br>
+java.runtime.name=Java(TM) 2 Runtime Environment, Stand...<br>
+sun.boot.library.path=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+java.vm.version=1.5.0_06-b05<br>
+java.vm.vendor=Sun Microsystems Inc.<br>
+java.vendor.url=http://java.sun.com/<br>
+path.separator=;<br>
+java.vm.name=Java HotSpot(TM) Client VM<br>
+file.encoding.pkg=sun.io<br>
+user.country=US<br>
+sun.os.patch.level=Service Pack 2<br>
+java.vm.specification.name=Java Virtual Machine Specification<br>
+user.dir=C:\handson2\development\javalang\samp...<br>
+java.runtime.version=1.5.0_06-b05<br>
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment<br>
+java.endorsed.dirs=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+os.arch=x86<br>
+java.io.tmpdir=C:\DOCUME~1\sang\LOCALS~1\Temp\<br>
+line.separator=<br>
+      <br>
+java.vm.specification.vendor=Sun Microsystems Inc.<br>
+user.variant=<br>
+os.name=Windows XP<br>
+sun.jnu.encoding=Cp1252<br>
+java.library.path=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+java.specification.name=Java Platform API Specification<br>
+java.class.version=49.0<br>
+sun.management.compiler=HotSpot Client Compiler<br>
+os.version=5.1<br>
+user.home=C:\Documents and Settings\sang<br>
+user.timezone=<br>
+java.awt.printerjob=sun.awt.windows.WPrinterJob<br>
+file.encoding=Cp1252<br>
+java.specification.version=1.5<br>
+user.name=sang<br>
+java.class.path=C:\handson2\development\javalang\samp...<br>
+java.vm.specification.version=1.0<br>
+sun.arch.data.model=32<br>
+java.home=C:\Program Files\Java\jdk1.5.0_06\jre<br>
+java.specification.vendor=Sun Microsystems Inc.<br>
+user.language=en<br>
+awt.toolkit=sun.awt.windows.WToolkit<br>
+java.vm.info=mixed mode, sharing<br>
+java.version=1.5.0_06<br>
+java.ext.dirs=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+sun.boot.class.path=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+java.vendor=Sun Microsystems Inc.<br>
+file.separator=\<br>
+java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport...<br>
+sun.cpu.endian=little<br>
+sun.io.unicode.encoding=UnicodeLittle<br>
+sun.desktop=windows<br>
+sun.cpu.isalist=<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.22: Result of running DisplaySystemProps application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">DisplaySystemProps</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+</div>
+<div style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Set System properties<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SetSystemProperties</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SetSystemProperties</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/10_new3.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-2.31: New Java Application<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">SetSystemProperties
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">SetSystemProperties.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">SetSystemProperties.java
+</span>as shown in Code-2.32 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 0, 0);">import java.io.FileInputStream;<br>
+import java.util.Properties;<br>
+      <br>
+public class SetSystemProperties {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) throws
+Exception {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set up new properties
+object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // from file
+"myProperties.txt"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FileInputStream propFile =
+new FileInputStream(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"<span style="font-weight: bold;">myProperties.txt</span>");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Properties p = new
+Properties(System.getProperties());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.load(propFile);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set a property through
+setProperty() method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.setProperty("myKey1",
+"myValue1");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set the system properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperties(p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // display new properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.getProperties().list(System.out);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.32: SetSystemProperties.java<br>
+<br>
+You will experience compile error as shown below.&nbsp; This is
+expected.<br>
+<br>
+<img alt="" src="index_files/10_new4.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-2.33: SetSystemProperties<br>
+<br>
+3. Provide <span style="font-weight: bold;">myProperties.txt</span> as
+an input file.<br>
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;"> </span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">SetSystemProperties
+    </span></span>project
+and select <span style="font-weight: bold;">New-&gt;Other</span>.</li>
+</ul>
+<img alt="" src="index_files/10_new5.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-2.34: New-&gt;Other<br>
+<ul>
+  <li>Observe the <span style="font-weight: bold;">New File</span>
+dialog box appears.</li>
+  <li>Choose <span style="font-weight: bold;">Other </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Empty File</span> under <span
+ style="font-weight: bold;">File Types</span>.&nbsp; (Figure-2.35 below)</li>
+</ul>
+<img alt="" src="index_files/10_new1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-2.35: Create Empty File<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">New Empty File</span>
+dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">File Name</span> field,
+type in <span style="font-weight: bold; color: rgb(255, 0, 0);">myProperties.txt</span>.</li>
+  <li>Observe that the empty<span style="font-weight: bold;">
+myProperties.txt</span> appears in the editor window.</li>
+  <li>Cut and paste the contents from the input file (File-2.36) below
+to the
+empty file.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">subliminal.message=Buy Java Now!<br>
+myown.property=Life is worth living with Passion!<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+File-2.36: myProperties.txt<br>
+<br>
+4. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">SetSystemProperties
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.37 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">-- listing properties --<br>
+java.runtime.name=Java(TM) 2 Runtime Environment, Stand...<br>
+sun.boot.library.path=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+java.vm.version=1.5.0_06-b05<br>
+java.vm.vendor=Sun Microsystems Inc.<br>
+java.vendor.url=http://java.sun.com/<br>
+path.separator=;<br>
+java.vm.name=Java HotSpot(TM) Client VM<br>
+file.encoding.pkg=sun.io<br>
+user.country=US<br>
+sun.os.patch.level=Service Pack 2<br>
+java.vm.specification.name=Java Virtual Machine Specification<br>
+user.dir=C:\handson2\development\javalang\samp...<br>
+java.runtime.version=1.5.0_06-b05<span style="font-weight: bold;"></span><br>
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment<br>
+java.endorsed.dirs=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+os.arch=x86<br>
+java.io.tmpdir=C:\DOCUME~1\sang\LOCALS~1\Temp\<br>
+line.separator=<br>
+      <br>
+java.vm.specification.vendor=Sun Microsystems Inc.<br>
+user.variant=<br>
+os.name=Windows XP<br>
+      <span style="font-weight: bold;">myown.property=Life is worth
+living with Passion!</span><br>
+sun.jnu.encoding=Cp1252<br>
+      <span style="font-weight: bold;">subliminal.message=Buy Java Now!</span><br>
+java.library.path=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+java.specification.name=Java Platform API Specification<br>
+java.class.version=49.0<br>
+sun.management.compiler=HotSpot Client Compiler<br>
+os.version=5.1<br>
+user.home=C:\Documents and Settings\sang<br>
+user.timezone=<br>
+java.awt.printerjob=sun.awt.windows.WPrinterJob<br>
+file.encoding=Cp1252<br>
+java.specification.version=1.5<br>
+user.name=sang<br>
+java.class.path=C:\handson2\development\javalang\samp...<br>
+java.vm.specification.version=1.0<br>
+sun.arch.data.model=32<br>
+java.home=C:\Program Files\Java\jdk1.5.0_06\jre<br>
+java.specification.vendor=Sun Microsystems Inc.<br>
+user.language=en<br>
+awt.toolkit=sun.awt.windows.WToolkit<br>
+java.vm.info=mixed mode, sharing<br>
+java.version=1.5.0_06<br>
+java.ext.dirs=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+sun.boot.class.path=C:\Program Files\Java\jdk1.5.0_06\jre...<br>
+java.vendor=Sun Microsystems Inc.<br>
+file.separator=\<br>
+java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport...<br>
+sun.cpu.endian=little<br>
+sun.io.unicode.encoding=UnicodeLittle<br>
+sun.desktop=windows<br>
+sun.cpu.isalist=<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.37: Result of running SetSystemProperties application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">SetSystemProperties</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: System class<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you are going to run
+various methods of the System class.<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+    <li><a href="#3.1">Call methods of the System class</a><br>
+    </li>
+    <li><a href="#3.2">Get environment variables</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Call methods of the System class<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SystemClass</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SystemClass</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">SystemClass </span>project
+appears and IDE generated <span style="font-weight: bold;">SystemClass.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">SystemClass.java
+</span>as shown in Code-3.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.*;<br>
+      <br>
+class SystemClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; public static void main(String args[]) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int arr1[] = new int[1050000];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int arr2[] = new int[1050000];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long startTime, endTime;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* initialize arr1 */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; arr1.length; i++)
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr1[i] = i + 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* copying manually */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">startTime
+= System.currentTimeMillis();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; arr1.length; i++)
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr2[i] = arr1[i];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; endTime = System.currentTimeMillis();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Time for manual
+copy: " + <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(endTime-startTime) + " ms.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* using the copy utility provided by
+java */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; startTime = System.currentTimeMillis();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.arraycopy(arr1, 0, arr2, 0,
+arr1.length);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; endTime = System.currentTimeMillis();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Time for copy
+utility provided: " + <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(endTime-startTime) + " ms.");<br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.gc();&nbsp;&nbsp;&nbsp; //request garbage collector to work</span><span
+ style="font-weight: bold;"></span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.exit(0);</span><br>
+&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11: SystemClass.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">SystemClass </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-3.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Time for manual copy: 44 ms.<br>
+Time for copy utility provided: 5 ms.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.12: Result of running SystemClass application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">SystemClass</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_3">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Get environment variables<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;">1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SystemClass2</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SystemClass2</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">SystemClass2 </span>project
+appears and IDE generated <span style="font-weight: bold;">SystemClass2.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">SystemClass2.java
+</span>as shown in Code-3.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.Map;<br>
+      <br>
+class SystemClass2 {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; public static void main(String args[]){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">Map
+m1 = System.getenv();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("System
+environment variables = " + m1);<br>
+&nbsp;<br>
+&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.21: SystemClass2.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">SystemClass2 </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-3.22 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">System environment variables =
+{PROCESSOR_ARCHITECTURE=x86, LOGONSERVER=\\PASSION2, HOMEDRIVE=C:,
+HOMEPATH=\Documents and Settings\sang, SESSIONNAME=Console,
+TMP=C:\DOCUME~1\sang\LOCALS~1\Temp, windir=C:\WINDOWS,
+PROCESSOR_IDENTIFIER=x86 Family 15 Model 72 Stepping 2, AuthenticAMD,
+SystemDrive=C:, USERPROFILE=C:\Documents and Settings\sang,
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH,
+CommonProgramFiles=C:\Program Files\Common Files, =::=::\,
+NUMBER_OF_PROCESSORS=2, ComSpec=C:\WINDOWS\system32\cmd.exe,
+COMPUTERNAME=PASSION2, OS=Windows_NT, USERNAME=sang,
+TEMP=C:\DOCUME~1\sang\LOCALS~1\Temp, USERDOMAIN=PASSION2,
+ALLUSERSPROFILE=C:\Documents and Settings\All Users,
+PROCESSOR_LEVEL=15, SystemRoot=C:\WINDOWS, APPDATA=C:\Documents and
+Settings\sang\Application Data,
+Path=d:\bin;c:\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program
+Files\ATI Technologies\ATI.ACE\;"C:\Program
+Files\Java\jdk1.5.0_06"\bin;c:\cygwin\bin;C:\Sun\AppServer9\bin;;C:\PROGRA~1\COMMON~1\MUVEET~1\030625,
+JAVA_HOME="C:\Program Files\Java\jdk1.5.0_06", FP_NO_HOST_CHECK=NO,
+PROCESSOR_REVISION=4802, ProgramFiles=C:\Program Files}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.22: Result of running SystemClass2 application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">SystemClass2</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_3">return to top of the exercise</a>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you have learned how to invoke methods of System
+class.<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+</div>
+<h2><a name="Exercise_4"></a>Exercise 4: Runtime class<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you are going to run
+OS specific programs using Runtime class.<br>
+</div>
+<ul>
+  <ol>
+    <li><a href="#4.1">Run OS specific program</a></li>
+    <li><a href="#4.2">Memory related methods of the Runtime class</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Run OS specific program<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">RunOSProgram</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">RunOSProgram</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">RunOSProgram </span>project
+appears and IDE generated <span style="font-weight: bold;">RunOSProgram.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">RunOSProgram.java
+</span>as shown in Code-4.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">class RunOSProgram {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">Runtime rt = Runtime.getRuntime();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Process proc;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(System.getProperty("os.name").startsWith("Windows")){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Run a OS specific program<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">proc = rt.exec("notepad");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> proc = rt.exec("gedit");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+proc.waitFor();&nbsp;&nbsp;&nbsp; //try removing this line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("notepad is an unknown command.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11: RunOSProgram.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">RunOSProgram </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe that a OS specific program gets run.&nbsp; (Figure-4.12
+below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_linkedlistdemo2.png"
+ style="width: 724px; height: 519px;"><br>
+Figure-4.12: Notepad program under Windows platform gets executed<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">RunOSProgram</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_4">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Memory related methods of Runtime class <br>
+</h3>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;">
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">RuntimeClass</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">RuntimeClass</span></span>.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">RuntimeClass </span>project
+appears and IDE generated <span style="font-weight: bold;">RuntimeClass.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">RuntimeClass.java
+</span>as shown in Code-4.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">class RuntimeClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Runtime rt =
+Runtime.getRuntime();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> long maxMemory = rt.maxMemory();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+long totalMemory = rt.totalMemory();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Maximum
+amount of memory that the Java virtual machine will attempt to use = "
++ maxMemory + " bytes");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Total
+amount of memory currently available for current and future objects,
+measured in bytes = " + totalMemory + " bytes");<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.21: RuntimeClass.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">RuntimeClass </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-4.22 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Maximum amount of memory that
+the Java virtual machine will attempt to use = 66650112 bytes<br>
+Total amount of memory currently available for current and future
+objects, measured in bytes = 2031616 bytes<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.22: Result of running RuntimeClass application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalang/samples/</span><span
+ style="font-weight: bold;">RuntimeClass</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_4">return to top of the exercise</a>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you have learned how to use memory related methods of
+the Runtime class.<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a></div>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. Build a NetBeans project called <span
+ style="font-weight: bold;">MyOwnProject </span>performing the
+following tasks.<br>
+<ul>
+  <li>Write a program in which the following properties are added to a
+Properties object called <span style="font-weight: bold;">myProperties</span>.&nbsp;
+Use <span style="font-weight: bold;">setProperty()</span>
+method.&nbsp; <br>
+  </li>
+  <ul>
+    <li>mykey20=myValue20</li>
+    <li>mykey30=myValue30</li>
+    <li>mykey40=myValue40</li>
+  </ul>
+  <li>Display the properties via <span style="font-weight: bold;">list()</span>
+method.<br>
+  </li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javalang.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;"> MyOwnProject</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyOwnProject</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyOwnProject</span>)<br>
+    </li>
+    <li>jar cvf MyOwnProject.zip MyOwnProject
+(<span style="font-weight: bold;">MyOwnProject </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javalang.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javalang</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javalang.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

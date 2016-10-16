@@ -1,0 +1,1255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-5119: NetBeans GUI Builder (Matisse)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="NetBeans 6 GUI Builder" name="description">
+</head>
+<body onload="loginfocus()" class="composite"
+ style="background-image: url(index_files/beige.jpg);">
+1<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">NetBeans GUI Builder<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><a
+ href="http://www.javapassion.com/j2ee"></a><a
+ href="mailto:sang.shin@sun.com"><i>
+</i></a></div>
+<div class="indent"><br>
+<div style="text-align: center;"><img alt=""
+ src="index_files/l2_shin_sang_portrait.gif"
+ style="width: 100px; height: 88px;"><br>
+</div>
+<p text-align="" justify="">As of NetBeans 5.0, the IDE's GUI Builder
+has been revamped to make it more powerful and intuitive, liberating
+users to build professional looking GUIs without an intimate
+understanding of layout managers. NetBeans' GUI Builder eliminates
+the difficulties of building GUIs, enabling you to lay out your forms
+by simply placing components where you want them.<br>
+</p>
+<p text-align="" justify="">This tutorial is geared to the
+beginner and introduces the basic construction of a GUI. A basic
+understanding of the Java Programming Language
+is expected.</p>
+<font face="Helvetica, Arial, sans-serif"></font><b><br>
+</b>
+<div style="text-align: center;"><b>Expected duration: 60 minutes
+(excluding homework)<br>
+<br>
+</b></div>
+<br>
+<br>
+<p></p>
+<h3 class="tutorial"><a name="Software_Needed"></a>Software Needed</h3>
+<p>Before you begin, you need to install the following software on your
+computer.&nbsp; <br>
+</p>
+<ul>
+  <li>Java Standard Development Kit (JDK™) version
+6.0 (<a href="http://java.sun.com/javase/downloads/index.jsp">download</a>)<br>
+  </li>
+  <ul>
+    <li>If you have not installed it yet, install it as described <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#0.1">here</a>.<br>
+    </li>
+  </ul>
+  <li>NetBeans IDE 6.5 (<a
+ href="http://www.netbeans.org/community/releases/65/">download</a>)<br>
+  </li>
+  <ul>
+    <li> If you have not installed it yet, install it as described <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#0.2">here</a>.</li>
+  </ul>
+</ul>
+<ul>
+  <li>5119_nbguibuilder.zip (<a
+ href="http://www.javapassion.com/handsonlabs/5119_nbguibuilder.zip">download</a>)</li>
+  <ul>
+    <li>It contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial">OS platforms you can use<br>
+</h3>
+<ul>
+  <li>Windows</li>
+  <li>Solaris x86, Solaris Sparc</li>
+  <li>Linux</li>
+  <li>Mac OS X</li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Nov.&nbsp; 10th, 2007: Created</li>
+  <li>March 20th, 2010: Homework email address changed (Michèle Garoche)</li> 
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Create ContactEditor GUI using
+NetBeans GUI Builder (30 minutes)</a></li>
+  <li><a href="#Exercise_2">Exercise 2: Add event handlers to GUI
+components (30 minutes)</a><br>
+  </li>
+  <li><a href="#Homework_Exercise">Homework
+Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_1"></a>Exercise 1: Create ContactEditor GUI using
+NetBeans GUI Builder<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">This exercise guides you through the
+process of creating the graphical user interface (GUI) for an
+application called ContactEditor using the NetBeans IDE's GUI Builder
+(also known by the code name Matisse). In the process, you will layout
+a
+GUI front-end that enables you to view and edit contact information of
+individuals included in an employee database.<br>
+</p>
+<p style="margin-left: 40px;">This exercise is based on the <a
+ href="http://www.netbeans.org/kb/55/quickstart-gui.html">GUI Building
+in NetBeans IDE</a> article written by Talley Mulligan from
+www.netbeans.org.<br>
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+</ol>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#1.1">Create a new NetBeans project</a></li>
+  <li><a href="#1.2">Add a Panel to the project</a></li>
+  <li><a href="#1.3">Add components to the Panel</a></li>
+  <li><a href="#1.4">Insert a component</a> <br>
+  </li>
+  <li><a href="#1.5">Preview the design work</a></li>
+  <li><a href="#1.6">Fix abnormalities</a></li>
+  <li><a href="#1.7">Add a Combo Box component</a></li>
+  <li><a href="#1.8">Observe the source code generated</a><br>
+  </li>
+</ol>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Create a new NetBeans project<br>
+</h3>
+<p style="margin-left: 40px;">0. Start NetBeans IDE.&nbsp; <br>
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select<span style="font-weight: bold;"> File-&gt;New Project</span>.
+(Figure-1.11 below)</li>
+</ul>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact1.png" style="width: 805px; height: 689px;"><br>
+Figure-1.11: Create a new NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.<br>
+  </li>
+  <li>Select <span style="font-weight: bold;">Java</span> under <span
+ style="font-weight: bold;">Categories</span> and<span
+ style="font-weight: bold;"> Java Desktop Application</span> under <span
+ style="font-weight: bold;">Projects</span>. (Figure-1.12 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact2.png" style="width: 729px; height: 505px;"><br>
+Figure-1.12: Create Java Desktop Application project<br>
+</p>
+<p style="margin-left: 40px;">2.&nbsp; Give a name to the project.<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project Name</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">ContactEditor</span>.</li>
+  <li>Leave the default selection of<span style="font-weight: bold;">
+Basic
+Application</span>
+under <span style="font-weight: bold;">Choose Application Shell</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.
+(Figure-1.13 below)<br>
+  </li>
+</ul>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact3.png" style="width: 729px; height: 505px;"><br>
+Figure-1.13: Name and Location pane</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return
+to top of this exercise</a>
+</p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)&nbsp;
+Add a Panel to the project<br>
+</h3>
+<p style="margin-left: 40px;">1. Add a Panel component to the Design
+window.&nbsp; (In this document, the terms "Panel" and "JPanel" are
+used interchangeably.)<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Drag <span style="font-weight: bold;">Panel </span>component
+under <span style="font-weight: bold;">Swing Containers</span> section<font>
+to
+the upper left corner of the Design window. When the component is
+located near the container's top
+and left edges, horizontal and vertical alignment guidelines appear
+indicating the preferred margins. Click in the form to place the Panel
+in this location.&nbsp;</font></li>
+  <li>Observe that the Panel component appears in the designer with
+orange colored line highlighting that it is selected, as shown in <a
+ name="Figure-1.21_below"></a>Figure-1.21 below. <br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"> </p>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact4.png" style="width: 805px; height: 689px;"><br>
+Figure-1.21: Add a JPanel container component to the GUI<br>
+</p>
+<p style="margin-left: 40px;">2. Resize the Panel component.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select the JPanel you just added. The small square resize
+handles reappear around the component's perimeter.</li>
+  <li>Click and hold the resize handle on the right edge of the
+JPanel and drag until the dotted alignment guideline appears near the
+form's edge.</li>
+  <li>Release the resize handle to resize the component.&nbsp; <br>
+  </li>
+  <li>Observe that <span>the</span> JPanel <span>component is
+extended to span
+between the container's left and right margins in accordance with the
+recommended offset, as shown in the following illustration.&nbsp;
+(<a name="Figure-1.22_below"></a>Figure-1.22 below)<br>
+    </span></li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact5.png" style="width: 805px; height: 689px;"><br>
+Figure-1.22: Extend the JPanel&nbsp; to the right<br>
+</p>
+<p style="margin-left: 40px;">3. Change the properties of the JPanel
+component to add a border.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>In the <span style="font-weight: bold;">Properties </span>pane
+in the right and lower corner of the IDE,
+click the ellipsis button (...) next
+to the <span style="font-weight: bold;">border </span>property.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact6.png" style="width: 805px; height: 689px;"><br>
+Figure-1.23: Change the border property of the JPanel container<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">jPanel1[JPanel]
+- border</span> property editor dialog
+box appears.<br>
+  </li>
+  <li>Select <span style="font-weight: bold;">TitledBorder</span>.</li>
+  <li>Set the value of the Title field to <span
+ style="font-weight: bold;">Name</span>.</li>
+  <li>Change the color to your favorite color.</li>
+  <li>Change the <span style="font-weight: bold;">Font</span> to
+Bold.&nbsp; (Figure-1.24 below)<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"></p>
+<div style="margin-left: 40px;">
+<ul>
+</ul>
+</div>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/1_contact7.png" style="width: 515px; height: 580px;"><br>
+Figure-1.24: Set title, color, font for the Panel component<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)&nbsp;
+Add
+components to the Panel<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+Now we need to start adding the components that will present the
+actual contact information in our contact list. In this step, we'll add
+four JTextFields that will display the contact information and the
+JLabels that will describe them. While accomplishing this, notice the
+horizontal and vertical guidelines that the GUI Builder displays,
+suggesting the preferred component spacing as defined by your operating
+system's look and feel. This ensures that your GUI is automatically
+rendered respecting the target operating system's look and feel at
+runtime.<br>
+<br>
+1. Add a <span style="font-weight: bold;">Label </span>and <span
+ style="font-weight: bold;">Text Field</span> components to the <span
+ style="font-weight: bold;">JPanel</span> container component.&nbsp;
+(In this document, the terms "Label" and "JLabel" are used
+interchangeably.)<br>
+<ul>
+  <li>Drag the <span style="font-weight: bold;">Label </span>component
+under <span style="font-weight: bold;">Swing Controls</span> section
+to the top left
+corner of the <span style="font-weight: bold;">Name </span>JPanel.
+When the
+guidelines appear indicating that the JLabel is positioned in the top
+left corner of the JPanel with a small margin at the top and left
+edges, click to place the label.&nbsp; (Figure-1.31 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact8.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.31: Add a Label component to the JPanel container<br>
+<ul>
+  <li>Double click the newly added <span style="font-weight: bold;">Label</span>
+component and change the value
+to <span style="font-weight: bold;">First Name</span>.</li>
+  <li>Drag the <span style="font-weight: bold;">Text Field</span>
+under <span style="font-weight: bold;">Swing Controls</span> section
+and drop it just next to
+the <span style="font-weight: bold;">First Name</span> Label
+component.&nbsp; (Figure-1.32 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact9.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.32: Add Label and Text Field components to the JPanel container<br>
+<br>
+2. Add another set of Label and Text Field components.&nbsp; (In this
+document, the terms "Text Field" and "JTextField" are used
+interchaneably.)<br>
+<ul>
+  <li>Drag and drop another set of Label and Text Field components just
+next to the first set.</li>
+  <li>Change the name of the Label to <span style="font-weight: bold;">Last
+Name</span>.</li>
+  <li> Drag the JTextField's right edge resize handle toward the
+right edge of the enclosing JPanel.&nbsp; When the vertical alignment
+guidelines appear suggesting the
+margin between the text field and right edge of the JPanel, release the
+mouse button to resize the JTextField. <br>
+  </li>
+  <li>Observe that the JTextField's right edge snaps into alignment
+with the
+JPanel's recommended edge margin, as shown in the following
+illustration. (Figure-1.33 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact10.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.33: Add Last Name Label and Text Field components<br>
+<br>
+3. Add two Label Components.<br>
+<br>
+Now we'll add the <span style="font-weight: bold;">Title:</span> and <span
+ style="font-weight: bold;">Nickname:</span> JLabels that describe two
+JTextFields that we're going to add in a minute. We'll pick and plop
+the components while pressing the Shift key, to quickly add them to the
+form. While accomplishing this, again notice that the GUI Builder
+displays horizontal and vertical guidelines suggesting the preferred
+component spacing.<br>
+<ul>
+  <li>In the Palette window, select the JLabel component from the
+Swing category by clicking and releasing the mouse button. </li>
+  <li>Move the cursor over the form directly below the First Name:
+JLabel we added earlier. When the guidelines appear indicating that the
+new JLabel 's left edge is aligned with that of the JLabel above and a
+small margin exists between them, shift-click to place the first JLabel</li>
+  <li>While still pressing the Shift key, click to place another
+JLabel immediately to the right of the first. Make certain to release
+the Shift key prior to positioning the second JLabel If you forget to
+release the Shift key prior to positioning the last JLabel simply press
+the Escape key.</li>
+  <li>The JLabel are added to the form creating a second row. Nodes
+representing each component are
+added to the Inspector window.</li>
+  <li>Change the values of the Labels to <span
+ style="font-weight: bold;">Title:</span> and <span
+ style="font-weight: bold;">Nickname:</span> respectively.&nbsp;
+(Figure-1.34 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact11.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.34: Add Title: and Nickname: Label components<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.4"></a>(1.4)
+Insert components<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+Often it is necessary to add a component between components that
+are already placed in a form. Whenever you add a component between two
+existing components, the GUI Builder automatically shifts them to make
+room for the new component. To demonstrate this, we'll insert a
+JTextField component between the Title: and Nickname: components we
+added previously.<br>
+<br>
+1. Inser<span>t a JTextField component between two JLabel components<br>
+</span>
+<ul>
+  <li>In the Palette window, select the <span
+ style="font-weight: bold;">JTextField </span>component from the
+Swing Controls section.</li>
+  <li>Move the cursor over the <span style="font-weight: bold;">Title:</span>
+and <span style="font-weight: bold;">Nickname:</span> JLabels on the
+second row such that the JTextField overlaps both and is aligned to
+their baselines. (Figure-1.41 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact12.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.41: Insert a Text Field component between the two Label
+component<br>
+<ul>
+  <li>Observe that the Text Field component is inserted between the
+Title: and Nickname: Labels. (Figure-1.42 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact13.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.42: Text Field component is now inserted between the two Label
+components<br>
+<br>
+2. Add a Text Field component.<br>
+<ul>
+  <li>Drag a new Text Field component and place it just beside
+Nickname: Label component. (Figure-1.43 below)</li>
+  <li>Extend the newly added Text Field component to the right edge of
+the Panel.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact14.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.43: New Text Field component is added<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.5"></a>(1.5)
+Preview the
+design work<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+You can do the Preview to see what you've done so far.<br>
+<br>
+1. Click the <span style="font-weight: bold;">Preview Design</span>
+button.&nbsp; (Figure-1.51 below)<br>
+<br>
+<img alt="" src="index_files/1_contact15.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.51: Preview Design<br>
+<br>
+2. Observe abnormalities.&nbsp; <br>
+<ul>
+  <li>Observe that a ContactEditorView dialog box appears</li>
+  <li>Note that the <span style="font-weight: bold;">First Name:</span>
+and <span style="font-weight: bold;">Title:</span> Labels are not
+right aligned
+yet.&nbsp; Same as <span style="font-weight: bold;">Last Name:</span>
+and <span style="font-weight: bold;">Nickname: </span>Labels.<br>
+  </li>
+  <li>Note also that the four Text Fields are not in the same
+size.&nbsp;
+(Figure-1.52 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact16.png"
+ style="width: 471px; height: 332px;"><br>
+Figure-1.52: Preview<br>
+<br>
+3. Observe the resizing abnormality.<br>
+<ul>
+  <li>Resize the window (by extending the right edge of the window
+toward the right edge of the Panel) and observe that the Text Fields of
+the Last
+Name: and Nickname: fields are resizing while the Text Fields of the
+First Name: and Title: fields are not resizing.&nbsp; (Figure-1.53
+below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact17.png"
+ style="width: 591px; height: 332px;"><br>
+Figure-1.53: Resizing abnormality<br>
+<br>
+In this step, you have observed three abnormalities.&nbsp; In the next
+step, you are going to address them.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.6"></a>(1.6)
+Fix the
+abnormalities<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+1. Right align the Labels.<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">First Name:</span> and <span
+ style="font-weight: bold;">Title:</span> JLabel components and select "<span
+ style="font-weight: bold;">Align
+right in column</span>" icon. (Figure-1.61 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact18.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.61: Right align the First Name: and Title: JLabel components<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">Last Name:</span> and<span
+ style="font-weight: bold;"> Nickname:</span> JLabel components and
+select
+"<span style="font-weight: bold;">Align right in column</span>" icon.
+(Figure-1.62 below)</li>
+</ul>
+<img alt="" src="index_files/1_contact19.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.62: Right alignment is performed<br>
+<br>
+2. Fix resizing problem.<br>
+<ul>
+  <li>Select Text Field components of the <span
+ style="font-weight: bold;">First Name:</span> and <span
+ style="font-weight: bold;">Title:</span> and select <span
+ style="font-weight: bold;">Change horizontal resizability</span> icon.
+(Figure-1.63 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact20.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.63: Change horizontal resizability<br>
+<br>
+3. Make all Text Fields to be the default size.<br>
+<ul>
+  <li>Select all Text Field components and then select <span
+ style="font-weight: bold;">Set Default Size</span>.&nbsp;
+(Figure-1.64 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact21.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.64: Set Default size<br>
+<br>
+4. Preview Design<br>
+<ul>
+  <li>Click Preview Design icon.</li>
+  <li>Observe that the First Name: and Title: Labels are right
+aligned.&nbsp; Also observe that the Last Name: and Nickname: Labels
+are right aligned as well.</li>
+  <li>Observe that the Text Field components are the same size. <br>
+  </li>
+  <li>Observe that the resizing works for all 4 Text Field components.
+(Figure-1.65 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact22.png"
+ style="width: 574px; height: 332px;"><br>
+Figure-1.65: Preview Design with corrected behavior<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.7"></a>(1.7)
+Add a Combo Box
+component<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+1. Add a new Label component. (Figure-1.71 below)<br>
+<ul>
+  <li>Drag the <span style="font-weight: bold;">Label </span>component
+and drop it under the Title: label
+right aligned.&nbsp; (Figure-1.71 below)<br>
+  </li>
+  <li>Change the value of the label to <span style="font-weight: bold;">Display
+Format:</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact23.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.71: Add a new label<br>
+<br>
+2. Add a Combo Box component.<br>
+<ul>
+  <li>Drag the <span style="font-weight: bold;">Combo Box</span> and
+drop it right beside the <span style="font-weight: bold;">Display
+Format:</span>
+Label component.</li>
+  <li>Drag the right handle of the Combo Box component to be
+right-aligned with the other components.&nbsp;
+(Figure-1.72 below.)<br>
+  </li>
+</ul>
+<br>
+<img alt="" src="index_files/1_contact24.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.72: Combo Box is added<br>
+<ul>
+  <li>Adjust the lower handle of the JPanel upward.&nbsp; (Figure-1.73
+below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_contact25.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.73: Resize the height of the JPanel container<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.8"></a>(1.8)
+Observe the
+source code generated<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Click Source tab window and observe the source code that was
+generated by the GUI Builder. (Figure-1.81 below)<br>
+<br>
+<img alt="" src="index_files/1_contact26.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-1.81: Source code that was generated by the GUI Builder<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return
+to top of this exercise</a><br>
+<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have created
+a ContactEditor GUI form by using NetBeans GUI builder.&nbsp; You
+learned how to drag the GUI components and position them in the right
+place with the help from the GUI builder. You learned how to resize and
+realign components.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; <a href="#Tutorial_Exercises">return to the
+top</a>
+<br>
+</p>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Add Event Handlers to GUI
+Components<br>
+</h2>
+<p style="margin-left: 40px;">This exercises shows you how to build a
+simple GUI with event handler functionality.&nbsp;<br>
+</p>
+<p style="margin-left: 40px;">This exercise is based on the <a
+ href="http://www.netbeans.org/kb/articles/gui-functionality.html">Adding
+Functionality to Buttons: A Beginners Guide</a> article written by
+Saleem Gul and Tomas Pavek, maintained by Ruth Kusterer from
+www.netbeans.org.<br>
+</p>
+<ol>
+  <ol>
+    <li><a href="#2.1">Create a NetBeans project</a></li>
+    <li><a href="#2.2">Add JPanel container</a></li>
+    <li><a href="#2.3">Add components to the JPanel container</a></li>
+    <li><a href="#2.4">Add event handlers to the components</a><br>
+    </li>
+  </ol>
+</ol>
+<p style="margin-left: 40px;"></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Create a NetBeans project<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select<span style="font-weight: bold;"> File-&gt;New Project</span>.
+    <br>
+  </li>
+  <li>Observe that the New Project dialog box appears.<br>
+  </li>
+  <li>Select <span style="font-weight: bold;">Java</span> under <span
+ style="font-weight: bold;">Categories</span> and<span
+ style="font-weight: bold;"> Java Desktop Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click Next.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.</li>
+  <li>For the <span style="font-weight: bold;">Project Name</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">NumberAddition</span>.&nbsp;
+(Figure-2.11
+below)<br>
+  </li>
+  <li>Click Finish.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_number1.png" style="width: 729px; height: 505px;"><br>
+Figure-2.11: Create NumberAddition project<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_2">return
+to top of this exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Add JPanel container<br>
+</h3>
+<p style="margin-left: 40px;">1. Add JPanel component to the Designer
+window.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Drag the <span style="font-weight: bold;">Panel </span>component
+under <span style="font-weight: bold;">Swing Containers</span> section<font>
+to
+the upper left corner of the design window as you did in <a
+ href="#Figure-1.21_below">Figure-1.21</a> above.<br>
+    </font></li>
+  <li>Observe that the JPanel component appears in the designer.</li>
+</ul>
+2. Resize the JPanel component.<br>
+<ul>
+  <li>Click and hold the resize handle on the right edge of the
+JPanel and drag until the dotted alignment guideline appears near the
+form's edge as you did in <a href="#Figure-1.22_below">Figure-1.22</a>
+above.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">3. Change the properties of the JPanel
+component.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>In the Properties pane in the right and lower corner of the IDE,
+click the ellipsis button (...) next
+to the <span style="font-weight: bold;">border </span>property.</li>
+  <li>Observe that the jPanel1[JPanel] - border property editor dialog
+box appears.<br>
+  </li>
+  <li>Select <span style="font-weight: bold;">TitledBorder</span>.</li>
+  <li>Change the Title to<span style="color: rgb(255, 0, 0);"> </span><span
+ style="font-weight: bold; color: rgb(255, 0, 0);">Number
+Addition</span>.</li>
+  <li>Change the color to your favorite color.</li>
+  <li>Change the Font to Bold.&nbsp; (Figure-2.21 below)<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_number2.png" style="width: 515px; height: 580px;"><br>
+Figure-2.21: Change properties of the JPanel<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_2">return
+to top of this exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Add components <br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Add various component as shown in Figure-2.31 below.&nbsp; You are
+adding three Label components and three Text Field components and three
+Button components.<br>
+<br>
+<img alt="" src="index_files/2_number3.png"
+ style="width: 805px; height: 689px;"><br>
+<br>
+Figure-2.31: Add components to the JPanel <br>
+<br>
+2. Change the text display values of the Label components&nbsp; to <span
+ style="font-weight: bold;">First Number:</span>, <span
+ style="font-weight: bold;">Second Number:</span>, and <span
+ style="font-weight: bold;">Result: </span>as shown in
+Figure-2.32 below.&nbsp; <br>
+3. Right align the three Label components.<br>
+<br>
+<img alt="" src="index_files/2_number4.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.32: Change text values of the Labels<br>
+<br>
+4. Right click <span style="font-weight: bold;">jTextField1 </span>Text
+Field component and select <span style="font-weight: bold;">Edit Text</span>.
+(Figure-2.33 below)<br>
+<br>
+<img alt="" src="index_files/2_number5.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.33: Select Edit Text<br>
+<br>
+5. Remove <span style="font-weight: bold;">jTextField1 </span>string.<br>
+6. Repeat the process for the other two Text Field components.<br>
+7. Right click <span style="font-weight: bold;">jButton1 </span>component
+and select <span style="font-weight: bold;">Edit Text</span> and
+charge the value to <span style="font-weight: bold;">Add</span>.
+(Figure-2.34 below)<br>
+8. Repeat the process for the other two Button components and change
+the
+value to <span style="font-weight: bold;">Clear </span>and <span
+ style="font-weight: bold;">Exit</span>. <br>
+<br>
+<img alt="" src="index_files/2_number6.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.34: Change the text values of the components<br>
+<br>
+9. Observe the the final result looks as shown in Figure-2.35 below.<br>
+<br>
+<img alt="" src="index_files/2_number7.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.35: Number Addition GUI<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_2">return
+to top of this exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.4"></a>(2.4)
+Add an event handler to GUI components<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to register event handlers to the
+Buttons.&nbsp; When a button is pressed, the event handler that is
+registered for that button will be invoked.<br>
+<br>
+1. Right click <span style="font-weight: bold;">Exit </span>button
+and select <span style="font-weight: bold;">Events-&gt;Action-&gt;actionPerformed</span>.<br>
+<br>
+<img alt="" src="index_files/2_number8.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.41: Add event handler to Exit button<br>
+<br>
+2. Modify the event handler for the <span style="font-weight: bold;">Exit
+</span>button as shown in Figure-2.42 below. When Exit button is
+pressed, the event handler called <span style="font-weight: bold;">jButton3ActionPerformed
+</span>gets
+invoked. The code fragment that needs to be added is
+highlighted in bold-font.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">private void
+jButton3ActionPerformed(java.awt.event.ActionEvent evt) {<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">System.exit(0);</span><br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<img alt="" src="index_files/2_number9.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.42: System.exit(0) method is added to the event handler<br>
+<br>
+3. Right click <span style="font-weight: bold;">Clear </span>button
+and select <span style="font-weight: bold;">Events-&gt;Action-&gt;actionPerformed</span>.
+(Figure-2.43 below)<br>
+<br>
+<img alt="" src="index_files/2_number10.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.43: Add event handler<br>
+<br>
+4. Modify the event handler as shown in Code-2.45 and Figure-2.46
+below. The code fragment that
+needs be added is high-lighted in bold-font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">private void
+jButton2ActionPerformed(java.awt.event.ActionEvent evt){<br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;
+jTextField1.setText("");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+jTextField2.setText("");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+jTextField3.setText("");</span><br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.45: Modified event handler<br>
+<br>
+<img alt="" src="index_files/2_number11.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.46: Modified event handler for button 2<br>
+<br>
+5. Right click <span style="font-weight: bold;">Add </span>button and
+select <span style="font-weight: bold;">Events-&gt;Action-&gt;actionPerformed</span>.
+(Figure-2.47 below)<br>
+<br>
+<img alt="" src="index_files/2_number12.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.47: Add event handler<br>
+<br>
+6. Modify the event handler as shown in Code-2.48 and Figure-2.49. The
+code fragment that
+needs be added is high-lighted in bold-font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">private void
+jButton2ActionPerformed(java.awt.event.ActionEvent evt){<br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // First we
+define float variables.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; float num1,
+num2, result;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // We have to
+parse the text to a type float.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; num1 =
+Float.parseFloat(jTextField1.getText());</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; num2 =
+Float.parseFloat(jTextField2.getText());</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // Now we can
+perform the addition.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; result =
+num1+num2;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // We will
+now pass the value of result to jTextField3.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // At the
+same time, we are going to</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // change the
+value of result from a float to a string.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+jTextField3.setText(String.valueOf(result));</span><br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.48: Modified event handler<br>
+<br>
+<img alt="" src="index_files/2_number13.png"
+ style="width: 805px; height: 689px;"><br>
+Figure-2.49 Modified event handler<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_2">return
+to top of this exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.5"></a>(2.5)
+Build and run the application<br>
+</h3>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+1. Right click <span style="font-weight: bold;"></span>the <span
+ style="font-weight: bold;">NumberAddition</span> project and select <span
+ style="font-weight: bold;">Run</span>. (Figure-2.51 below)<br>
+<br>
+<img alt="" src="index_files/2_number14.png"
+ style="width: 810px; height: 625px;"><br>
+Figure-2.51: Run the application<br>
+<br>
+2. Perform Add operation.<br>
+<ul>
+  <li>Enter numbers into the <span style="font-weight: bold;">First
+Number</span> and <span style="font-weight: bold;">Second Number</span>
+fields.</li>
+  <li>Click <span style="font-weight: bold;">Add </span>button.
+(Figure-2.52 below)</li>
+</ul>
+<img alt="" src="index_files/2_number15.png"
+ style="width: 342px; height: 332px;"><br>
+Figure-2.52: Perform Add operation<br>
+<ul>
+  <li>Observe that the result is displayed in the Result field.
+(Figure-2.53 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_number16.png"
+ style="width: 342px; height: 332px;"><br>
+Figure-2.53: The result is displayed<br>
+<br>
+3. Perform Clear operation.<br>
+<ul>
+  <li>Click Clear button.</li>
+  <li>Observe that the fields are cleared. (Figure-2.54 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_number17.png"
+ style="width: 342px; height: 332px;"><br>
+Figure-2.54: Perform Clear operation<br>
+<br>
+4. Perform Exit operation.<br>
+<ul>
+  <li>Click Exit button.</li>
+  <li>Observe the application closes. (Figure-2.55 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_number18.png"
+ style="width: 342px; height: 332px;"><br>
+Figure-2.55: Perform Exit operation<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Exercise_2">return
+to top of this exercise</a><br>
+<br>
+</div>
+<br>
+<h2><a name="Homework_Exercise"></a>Homework Exercise (for people
+who
+are taking Sang Shin's "Java Programming online course") <br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify the
+<span style="font-weight: bold;">NumberAddition </span>project to add <span
+ style="font-weight: bold;">Subtract
+</span>button.&nbsp; The <span style="font-weight: bold;">Subtract </span>button
+subtracts the value of the
+Second Number field from the value of the First Number field and
+displays the result in the Result field.&nbsp; (You might want to
+create a new project by copying
+the <span style="font-weight: bold;">MyNumberComputer</span>
+project.&nbsp; You can name the homework project in any way you want
+but here I am going to call it <span style="font-weight: bold;">MyNumberComputer</span>.)<span
+ style="color: rgb(0, 0, 0);"></span><span style="color: rgb(0, 0, 0);"><br>
+<br>
+Note: If you are taking the <a href="http://www.sunstudentcourses.com/">"</a></span><span
+ style="color: rgb(0, 0, 0);"><a
+ href="http://www.sunstudentcourses.com/">Real World Technologies:
+NetBeans GUI
+Builder, JRuby, JavaFX, and Java ME" course</a>, </span><span
+ style="color: rgb(0, 0, 0);">please submit the homework as described <a
+ href="http://www.sunstudentcourses.com/mod/assignment/view.php?id=104">here</a>.</span><br>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@sun.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-nbguibuilder.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyNumberComputer</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyNumberComputer</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyNumberComputer</span>)<br>
+    </li>
+    <li>jar cvf MyNumberComputer.zip MyNumberComputer
+(<span style="font-weight: bold;">MyNumberComputer </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-nbguibuilder.gif</span>
+or<span style="font-weight: bold;">JavaIntro-nbguibuilder</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-nbguibuilder.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="#Tutorial_Exercises">return
+to the top</a></div>
+<div class="indent"><br>
+<br>
+<br>
+</div>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

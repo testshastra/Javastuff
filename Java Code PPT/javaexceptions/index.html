@@ -1,0 +1,2737 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1007: Java Exceptions and Assertions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<h1 style="text-align: center;">Java Exceptions and Assertions<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sangshinpassion@gmail.com"></a><a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><br>
+<br>
+<img alt="" src="index_files/sangshin2009.jpg"
+ style="width: 88px; height: 101px;"><br>
+<a href="mailto:sangshinpassion@gmail.com"><i></i></a></div>
+<p style="margin-left: 40px;">This hands-on lab
+takes you through the basics of using Exceptions and&nbsp;
+Assertions.&nbsp; Java programming language has a well-designed
+Exception handling framework, which helps developers separate their
+exception handlng logic from the business logic.<br>
+</p>
+<br>
+<p></p>
+<p align="center"><b>Expected duration: 75 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a>Software Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>. <br>
+<ul>
+  <li>1007_javaexceptions.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1007_javaexceptions.zip">download</a>)</li>
+  <ul>
+    <li>It contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb. 9th, 2007: Created</li>
+  <li>March 19th, 2007: Homework is added</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+</ul>
+<span style="font-weight: bold;"><br>
+<br>
+</span>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Exception handling (30 minutes)</a></li>
+  <li><a href="#Exercise_2">Exercise 2: Custom exceptions (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_3">Exercise 3: Assertions (15 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+<br>
+</div>
+<h2><a name="Exercise_1"></a>Exercise 1: Exception Handling<br>
+</h2>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+</ol>
+<div style="margin-left: 40px;">In this exercise, you are going to
+trigger and catch built-in exceptions through try-catch-finally block.<br>
+</div>
+<ol style="margin-left: 40px;">
+  <li><a href="#1.1">Catch a runtime exception - divide a number by zero<br>
+    </a></li>
+  <li><a href="#1.2">Catch multiple runtime exceptions</a></li>
+  <li><a href="#1.3">Experience various exceptions</a></li>
+  <li><a href="#1.4">ArrayIndexOutOfBoundsException</a></li>
+  <li><a href="#1.5">Call built-in methods of Exception class</a><br>
+  </li>
+</ol>
+<ul style="margin-left: 40px;">
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Catch a runtime exception<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to trigger a
+runtime exception by dividing a number by 0.&nbsp; First, you will see
+how the default handler that is provided by the Java runtime system
+catches the exception.&nbsp; You will then catch the exception yourself
+through try-catch.<br>
+</p>
+<p style="margin-left: 40px;">0. Start the NetBeans IDE if you have
+not done so.<br>
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">DivideByZero</span>.&nbsp;
+(Figure-1.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_divideerror2.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create DivideByZero project<br>
+<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">DivideByZero </span>project
+node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.<br>
+  </li>
+</ul>
+2. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-1.11 below.&nbsp; The change is to generate an exception.<br>
+</div>
+<div style="margin-left: 40px;">
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package dividebyzero;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Main */<br>
+&nbsp;&nbsp;&nbsp; public Main() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">System.out.println(3/0);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.10: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">DivideByZero </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-1.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Exception in thread "main"
+java.lang.ArithmeticException: / by zero<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+dividebyzero.Main.main(Main.java:14)<br>
+Java Result: 1<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.12: Result of running the application<br>
+<br>
+4. Modify the <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.13 below. The change is to catch an exception
+through try-catch block. The code fragments that need to be
+added are highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and blue
+colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package dividebyzero;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Main */<br>
+&nbsp;&nbsp;&nbsp; public Main() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+try{</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/0);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch(Exception e){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.printf("Caught runtime exception = %s", e);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: Catch Exception exception type<br>
+<br>
+5. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">DivideByZero </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-1.14 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Caught runtime exception =
+java.lang.ArithmeticException: / by zero<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.14: Catching the exception<br>
+<br>
+6. Modify the <span style="font-weight: bold;">Main.java
+</span>as shown in Code-1.16 below. The change is to use more specific
+Exception class, ArithmeticException in this case.&nbsp; The code
+fragments that need to be
+added are highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and blue
+colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package dividebyzero;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Main */<br>
+&nbsp;&nbsp;&nbsp; public Main() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+ style="color: rgb(0, 0, 0);"> try{</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/0);</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch<span style="font-weight: bold; color: rgb(51, 51, 255);">(ArithmeticException
+      </span>e){</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.printf("Caught runtime exception = %s", e);</span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.16: Catch ArithmetricException exception type<br>
+<br>
+7. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">DivideByZero </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-1.17 below)&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Caught runtime exception =
+java.lang.ArithmeticException: / by zero<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.17: Catching the exception<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">DivideByZero</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+8. For your own exercise, please do the following tasks:<br>
+<ul>
+  <li>Add a code fragement that divides a number by 0 inside the catch
+block and see what happens.<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="#Exercise_1">return to top of the
+exercise</a><br>
+</div>
+<br>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Catch multiple exceptions<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to use
+multiple catch statements to catch an exception.&nbsp; If the first
+catch statement does not catch an exception, the next one will be
+tried.&nbsp; <br>
+</p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MultipleCatch</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MultipleCatch </span>project
+node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-1.21. Study the code by special attention to the<span
+ style="font-weight: bold;"> bold-fonted parts.</span><br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package multiplecatch;<br>
+      <br>
+import javax.swing.JOptionPane;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Enter the following values and see what
+exception is caught.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp;&nbsp; 0, 4, character, &lt;no value&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String value = JOptionPane.showInputDialog(null, "Enter value:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Non-numerica value will result an
+NumberFormatException</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+divisor = Integer.parseInt(value);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // If the divisor is 0, it will result in
+ArithmetricException</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/divisor);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">} catch
+(NumberFormatException nfe){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Exception caught by this program: Enter numeric
+value.");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (ArithmeticException
+exc) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Exception caught by this program: Divisor was 0.");</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("After
+exception.");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MultipleCatch </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe Input dialog box appears.</li>
+  <li>Enter <span style="font-weight: bold;">0</span> in the field.
+(Figure-1.22 below)<br>
+  </li>
+  <li>Click OK.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_divideerror3.png"
+ style="width: 297px; height: 126px;"><br>
+Figure -1.22: Enter 0<br>
+<ul>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.23 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Exception caught by this
+program: Divisor was 0.<br>
+After exception.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.23: Catching an exception<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MultipleCatch </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe Input dialog box appears.</li>
+  <li>Enter <span style="font-weight: bold;">4</span> in the field. <br>
+  </li>
+  <li>Click OK.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.24 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">0<br>
+After exception.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.24: Catching an exception<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MultipleCatch </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe Input dialog box appears.</li>
+  <li>Enter <span style="font-weight: bold;">somecharacter&nbsp;</span>
+in the field. (Figure-2.15 below)<br>
+  </li>
+  <li>Click OK.</li>
+</ul>
+<img alt="" src="index_files/1_divideerror4.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-1.25: Enter characters<br>
+<ul>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.26 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Exception caught by this
+program: Enter numeric value.<br>
+After exception.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.26: Catching an exception<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MultipleCatch </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe Input dialog box appears.</li>
+  <li>Do not type anything <span style="font-weight: bold;"></span>in
+the field. <br>
+  </li>
+  <li>Click OK.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.27 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Exception caught by this
+program: Enter numeric value.<br>
+After exception.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.27: Catching an exception<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">MultipleCatch</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Experience
+various exceptions<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to generate
+various exceptions and see how they get caught by the catch statements.<br>
+</p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">ExperienceExceptions</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">ExperienceExceptions
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-1.31. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.awt.Frame;<br>
+import java.awt.GridLayout;<br>
+import java.awt.event.ActionEvent;<br>
+import java.awt.event.ActionListener;<br>
+import java.awt.event.WindowAdapter;<br>
+import java.awt.event.WindowEvent;<br>
+import java.io.FileInputStream;<br>
+      <br>
+import javax.swing.ButtonGroup;<br>
+import javax.swing.JFrame;<br>
+import javax.swing.JPanel;<br>
+import javax.swing.JRadioButton;<br>
+      <br>
+public class Main extends JFrame implements ActionListener {<br>
+&nbsp;&nbsp;&nbsp; private double[] a;<br>
+&nbsp;&nbsp;&nbsp; private JRadioButton divideByZeroButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton badCastButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton arrayBoundsButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton nullPointerButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton negSqrtButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton overflowButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton noSuchFileButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton throwUnknownButton;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create a JPanel and
+GridLayout<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JPanel p = new JPanel();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.setLayout(new
+GridLayout(8, 1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create buttons and add
+them to the panel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ButtonGroup g = new
+ButtonGroup();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; divideByZeroButton =
+addRadioButton("Divide by zero", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; badCastButton =
+addRadioButton("Bad cast", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arrayBoundsButton =
+addRadioButton("Array bounds", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nullPointerButton =
+addRadioButton("Null pointer", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; negSqrtButton =
+addRadioButton("sqrt(-1)", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overflowButton =
+addRadioButton("Overflow", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; noSuchFileButton =
+addRadioButton("No such file", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throwUnknownButton =
+addRadioButton("Throw unknown", g, p);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getContentPane().add(p);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private JRadioButton addRadioButton(String s,
+ButtonGroup g, JPanel p) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JRadioButton button = new
+JRadioButton(s, false);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.addActionListener(this);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g.add(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.add(button);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return button;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Trigger and
+catch various exceptions</span><br>
+&nbsp;&nbsp;&nbsp; public void actionPerformed(ActionEvent evt) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Object source = evt.getSource();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(source == divideByZeroButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[1] = a[1] / a[1] - a[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == badCastButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Frame f = (Frame) evt.getSource();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == arrayBoundsButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[1] = a[10];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == nullPointerButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Frame f = null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+f.setSize(200, 200);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == negSqrtButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[1] = Math.sqrt(-1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == overflowButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a[1] = 1000 * 1000 * 1000 * 1000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int n = (int) a[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == noSuchFileButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FileInputStream is = new FileInputStream("Java Source and Support");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (source == throwUnknownButton) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new UnknownError();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (RuntimeException e)
+{</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Caught RuntimeException: " + e);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (Exception e) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Caught Exception: " + e);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame frame = new Main();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setSize(150, 200);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.addWindowListener(new
+WindowAdapter() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public void windowClosing(WindowEvent e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.exit(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setVisible(true);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.31: Main.java<br>
+<br>
+3. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">ExperienceExceptions
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe dialog box appears. <br>
+  </li>
+  <li>Click any of the radio buttons. (Figure-1.32 below)&nbsp;
+Clicking a button will execute code fragement that generates an
+exception.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_divideerror5.png"
+ style="width: 150px; height: 200px;"><br>
+Figure-1.32 below<br>
+<ul>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.33 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Caught RuntimeException:
+java.lang.NullPointerException<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.33: Catching an exception<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">ExperienceExceptions</span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+4. For your own exercise, please do the following tasks.<br>
+<ul>
+  <li>Try other buttons and observe the exceptions that are caught</li>
+  <li>Try to catch exceptions using more specific exception classes
+(over RuntimeException and Exception classes).<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.4"></a>(1.4)
+ArrayIndexOutOfBoundsException<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">ListOfNumbers-ArrayIndexOutOfBoundsException</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the&nbsp;<span
+ style="font-weight: bold; color: rgb(0, 0, 0);">ListOfNumbers-ArrayIndexOutOfBoundsException</span><span
+ style="font-weight: bold;"> </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-1.41. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+listofnumbersarrayindexoutofboundsexception;<br>
+      <br>
+public class ListOfNumbersTest {<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ListOfNumbers list = new
+ListOfNumbers();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list.writeList();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.41: Main.java<br>
+<br>
+3. Write <span style="font-weight: bold;">ListOfNumbers.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+listofnumbersarrayindexoutofboundsexception;<br>
+      <br>
+import java.io.*;<br>
+import java.util.Vector;<br>
+      <br>
+public class ListOfNumbers {<br>
+&nbsp;&nbsp;&nbsp; private Vector victor;<br>
+&nbsp;&nbsp;&nbsp; private static final int SIZE = 10;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public ListOfNumbers() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; victor = new Vector(SIZE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; SIZE;
+i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+victor.addElement(new Integer(i));<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; public void writeList() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out = null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Entering try statement");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out
+= new PrintWriter(new FileWriter("OutFile.txt"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int i = 0; i &lt; (SIZE + 1) ; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Value at: " + i + " = " + victor.elementAt(i));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch
+(ArrayIndexOutOfBoundsException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Caught ArrayIndexOutOfBoundsException: " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.getMessage());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Caught IOException: " + e.getMessage());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(out != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Finally: Closing PrintWriter");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.close();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Finally: PrintWriter not open");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.42: ListOfNumbers.java<br>
+<br>
+4. Build and run the program.<br>
+<ul>
+  <li>Right click&nbsp;<span
+ style="font-weight: bold; color: rgb(0, 0, 0);">ListOfNumbers-ArrayIndexOutOfBoundsException</span><span
+ style="font-weight: bold;"> </span>and select <span
+ style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.43 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Entering try statement<br>
+Value at: 0 = 0<br>
+Value at: 1 = 1<br>
+Value at: 2 = 2<br>
+Value at: 3 = 3<br>
+Value at: 4 = 4<br>
+Value at: 5 = 5<br>
+Value at: 6 = 6<br>
+Value at: 7 = 7<br>
+Value at: 8 = 8<br>
+Value at: 9 = 9<br>
+Caught ArrayIndexOutOfBoundsException: 10 &gt;= 10<br>
+Finally: Closing PrintWriter<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.42: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold; color: rgb(0, 0, 0);">ListOfNumbers-ArrayIndexOutOfBoundsException</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.5"></a>(1.5)
+Call built-in methods of Exception class<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">CallExceptionMethods</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">CallExceptionMethods
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-1.51. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package callexceptionmethods;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new Exception("My Exception");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught Exception");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("getMessage():" + <span style="font-weight: bold;">e.getMessage()</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("getLocalizedMessage():"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ <span style="font-weight: bold;">e.getLocalizedMessage()</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("toString():" + e);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("printStackTrace():");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">e.printStackTrace()</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.51: Main.java<br>
+<br>
+3. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">CallExceptionMethods
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.33 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Caught Exception<br>
+getMessage():My Exception<br>
+getLocalizedMessage():My Exception<br>
+toString():java.lang.Exception: My Exception<br>
+printStackTrace():<br>
+java.lang.Exception: My Exception<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+callexceptionmethods.Main.main(Main.java:7)<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.52: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">CallExceptionMethods</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of the
+exercise</a><br>
+</div>
+<br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned how
+to capture built-in exceptions.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_2"></a>Exercise 2: Custom exception<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to create
+and throw your own exception classes.<br>
+</p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+    <li><a href="#2.1">Create your own exception 1</a><br>
+    </li>
+    <li><a href="#2.2">Create your own exception 2</a></li>
+    <li><a href="#2.3">Create your own exception class hierarchy</a></li>
+    <li><a href="#2.4">Create your own exception class hierarchy
+compile error</a></li>
+    <li><a href="#2.5">finally construct</a></li>
+    <li><a href="#2.6">Ignore Runtime exception</a></li>
+    <li><a href="#2.7">Ignore Runtime exception 2</a></li>
+    <li><a href="#2.8">Rethrow different exception<br>
+      </a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Create your own
+exception 1<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are creating your own
+exception class called MyException.<br>
+</p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">YourOwnException</span>.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, accept the default value, <span style="font-weight: bold;">yourownexception.Main</span>
+that is
+provided by the IDE.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that the <span style="font-weight: bold;">YourOwnException
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+<div style="margin-left: 40px;">
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.11.&nbsp; Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">package
+yourownexception;<br>
+      <br>
+class MyException extends
+Exception {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+MyException() {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+MyException(String msg) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super(msg);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">}</span><br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void f() throws MyException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Throwing
+MyException from f()");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new MyException();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void g() throws MyException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Throwing
+MyException from g()");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new
+MyException("Originated in g()");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (MyException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (MyException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+} ///:~<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: Main.java<br>
+<br>
+</div>
+<div style="margin-left: 40px;">3. Build and run the program<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">YourOwnException </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE. (Figure-2.12
+below)<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Throwing MyException from f()<br>
+MyException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at Main.f(Main.java:18)<br>
+Throwing MyException from g()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at Main.main(Main.java:28)<br>
+MyException: Originated in g()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at Main.g(Main.java:23)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at Main.main(Main.java:33)<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.12: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">YourOwnException</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="#Exercise_2">return to top of the
+exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Create your own
+exception 2<br>
+</h3>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">YourOwnException2</span>.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">HexToDec</span>.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_custom1.png" style="width: 729px; height: 505px;"><br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Observe that the <span style="font-weight: bold;">YourOwnException2
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">HexToDec.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">HexToDec.java</span> as
+shown in Code-2.21. <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import javax.swing.*;<br>
+      <br>
+// This is my custom exception<br>
+class InvalidHexException extends RuntimeException {<br>
+}<br>
+      <br>
+class HexToDec {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // This method throws a custom exception called
+InvalidException<br>
+&nbsp;&nbsp;&nbsp; static int [] convertToInt(String hex) throws
+InvalidHexException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char currChar;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int intEq[] = new
+int[hex.length()];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt;
+hex.length(); i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+currChar = hex.charAt(i);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(currChar &gt;= '0' &amp;&amp; currChar &lt;='9') {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+intEq[i] = currChar - '0';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (currChar &gt;= 'a' &amp;&amp; currChar &lt;='f') {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+intEq[i] = currChar - 'a' + 10;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else if (currChar &gt;= 'A' &amp;&amp; currChar &lt;='F' ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+intEq[i] = currChar - 'A' + 10;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new InvalidHexException();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return intEq;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; static int convertToDec(int intEq[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int result = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mult =
+1;&nbsp;&nbsp;&nbsp; //multiplier<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = intEq.length -
+1; j &gt;= 0; j--) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+result += intEq[j]*mult;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mult
+*= 16;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return result;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String hex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int intEq[];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Receive hex value from a
+user<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hex =
+JOptionPane.showInputDialog(null, "Input hex: ");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+convertToInt() method will throw InvalidHexExceptions if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+the value is not in a valid format<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+intEq = convertToInt(hex);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Integer dec = new Integer(convertToDec(intEq));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Display the result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, dec);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.exit(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (InvalidHexException
+e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, "InvalidHexException is caught:
+Enter valid hex value");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.exit(0);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: HexToDec.java<br>
+<br>
+</div>
+<div style="margin-left: 40px;">3. Build and run the program<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">YourOwnException2 </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that a dialog box appears. <br>
+  </li>
+  <li>Enter 0 in the input form field and click OK.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_custom3.png" style="width: 297px; height: 126px;"><br>
+<ul>
+  <li>Observe that the value is OK. <br>
+  </li>
+  <li>Click OK to close the message box.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_custom4.png"
+ style="width: 268px; height: 120px;"><br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">YourOwnException2 </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that a dialog box appears. <br>
+  </li>
+  <li>Enter some characters, <span style="font-weight: bold;">Shin </span>in
+this example,&nbsp; in the input form field and click OK. This will
+trigger an exception.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_custom5.png" style="width: 297px; height: 126px;"><br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Observe an exception.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_custom6.png" style="width: 364px; height: 120px;"><br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">YourOwnException2 </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that a dialog box appears. <br>
+  </li>
+  <li>Enter some characters, <span style="font-weight: bold;">-100 </span>in
+this example,&nbsp; in the input form field and click OK. This will
+trigger an exception.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/2_custom7.png" style="width: 297px; height: 126px;"><br>
+<ul>
+  <li>Observe an exception.</li>
+</ul>
+<img alt="" src="index_files/2_custom6.png"
+ style="width: 364px; height: 120px;"><br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 40px;"><br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise uo to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">YourOwnException2</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+4. For your own exercise, please do the following tasks:<br>
+<ul>
+  <li>Modify <span style="font-weight: bold;">HexToDec.java</span> so
+that when a negative value such as -100 is entered, trigger a different
+exception called <span style="font-weight: bold;">NegativeValueEnteredException</span></li>
+</ul>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a>
+<ul>
+  <ul>
+  </ul>
+</ul>
+<ul>
+</ul>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Create your own exception class hierarchy<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you have two exception
+classes which are related as parent and child exception class.<br>
+</p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">CatchingExceptionHierarchy</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">CatchingExceptionHierarchy
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.31. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">class
+MyParentException extends
+Exception {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">}</span><br
+ style="font-weight: bold;">
+      <br style="font-weight: bold;">
+      <span style="font-weight: bold;">class MyChildException extends
+MyParentException {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">}</span><br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new MyChildException();<br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (MyChildException s)
+{</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught MyChildException");</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (MyParentException
+a) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught MyParentException");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.31: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">CatchingExceptionHierarchy
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-2.32 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Caught MyChildException<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.32: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">CatchingExceptionHierarchy</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+4. For your own exercise, please do the following tasks:<br>
+<ul>
+  <li><span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span>Modify Main.java in which a subclass
+of the MyChildException class is created and throw an exception of the
+newly created exception class in the try block and capture it.<br>
+  </li>
+</ul>
+<br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.4"></a>(2.4)
+Create your own exception hierarchy compile error<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to see a
+compile error when parent exception class is used before child
+exception class in the multiple catch statements structure.<br>
+</p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">CatchingExceptionHierarchy-CompileError</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">CatchingExceptionHierarchy-CompileError
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.41.&nbsp; Observe the compile error. (Figure-2.42 below)<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+catchingexceptionhierarchycompileerror;<br>
+      <br>
+class MyParentException extends Exception {<br>
+}<br>
+      <br>
+class MyChildException extends MyParentException {<br>
+}<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new MyChildException();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (MyParentException
+s) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught MyParentException");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">catch
+(MyChildException a) {&nbsp;&nbsp; // Compile error expected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught MyChildtException");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.41: Main.java<br>
+<br>
+<img alt="" src="index_files/2_custom2.png"
+ style="width: 838px; height: 674px;"><br>
+Figure-2.42: Compile error<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">CatchingExceptionHierarchy-CompileError</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.<br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a>&nbsp; <br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.5"></a>(2.5)&nbsp;
+Finally<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">FinallyWorks</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">CatchingExceptionHierarchy
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.51. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package finallyworks;<br>
+      <br>
+class MyException extends Exception {<br>
+}<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; static int count = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (true) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Post-increment is zero first time:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (count++ == 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new MyException();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("No exception");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+catch (MyException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("MyException");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">}
+finally {&nbsp;&nbsp; // finally is
+always called</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+System.out.println("In finally clause");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (count == 2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break; // out of "while"<br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.51: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">FinallyWorks </span>project
+node and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-1.42 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">MyException<br>
+In finally clause<br>
+No Exception<br>
+In finally clause<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.52: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">FinallyWorks</span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.6"></a>(2.6)
+Ignore Runtime exception<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+IgnoringRuntimeException</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">IgnoringRuntimeException
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.61. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package ignoringruntimexception;<br>
+      <br>
+public class Main {<br>
+      <br>
+&nbsp; static void someMethod2() {<br>
+&nbsp;&nbsp;&nbsp; throw new RuntimeException("From someMethod2()");<br>
+&nbsp; }<br>
+      <br>
+      <span style="font-weight: bold;">&nbsp; // Note that this method
+does not need to</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; // catch the
+RunTimeException.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; static void someMethod() {</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; someMethod2();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; }</span><br>
+      <br>
+&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp; someMethod();<br>
+&nbsp; }<br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.61: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">IgnoringRuntimeException
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-2.63 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Exception in thread "main"
+java.lang.RuntimeException: From someMethod2()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+ignoringruntimexception.Main.someMethod2(Main.java:7)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+ignoringruntimexception.Main.someMethod(Main.java:13)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+ignoringruntimexception.Main.main(Main.java:17)<br>
+Java Result: 1<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.63: Catching an exception<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">IgnoringRuntimeException</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.7"></a>(2.7)
+Ignore Runtime exception 2<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+IgnoringRuntimeException2</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">IgnoringRuntimeException2
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.71. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+ignoringruntimeexception2;<br>
+      <br>
+      <span style="font-weight: bold;">class MyException extends
+RuntimeException {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+MyException(String x){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+super(x);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">}</span><br>
+      <br>
+public class Main {<br>
+      <br>
+&nbsp; static void someMethod2() {<br>
+&nbsp;&nbsp;&nbsp; throw new MyException("From someMethod2()");<br>
+&nbsp; }<br>
+      <br>
+      <span style="font-weight: bold;">&nbsp; // Note that this method
+does not need to</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; // catch the
+RunTimeException.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; static void someMethod() {</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; someMethod2();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; }</span><br>
+      <br>
+&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp; someMethod();<br>
+&nbsp; }<br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.71: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">IgnoringRuntimeException2
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-2.72 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Exception in thread "main"
+ignoringruntimexception.MyException: From someMethod2()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+ignoringruntimexception.Main.someMethod2(Main.java:13)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+ignoringruntimexception.Main.someMethod(Main.java:19)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+ignoringruntimexception.Main.main(Main.java:23)<br>
+Java Result: 1<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.72: Catching an exception<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">IgnoringRuntimeException2</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.8"></a>(2.8)
+Rethrow different exception<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+RethrowDifferentException</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">RethrowDifferentException
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Main.java</span>
+as
+shown in Code-2.81. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+rethrowdifferentexception;<br>
+      <br>
+class OneException extends Exception {<br>
+&nbsp;&nbsp;&nbsp; public OneException(String s) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(s);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+class TwoException extends Exception {<br>
+&nbsp;&nbsp;&nbsp; public TwoException(String s) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(s);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void someMethod() throws OneException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("originating the exception in someMethod()");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new
+OneException("thrown from f()");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) throws
+TwoException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+someMethod();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (OneException e) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught in main, e.printStackTrace()");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+The TwoException will be handled by default exception</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+handler.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new TwoException("from main()");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+} <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.81: Main.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">RethrowDifferentException
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the display message in the output window of the IDE.
+(Figure-2.82 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">originating the exception in
+someMethod()<br>
+Caught in main, e.printStackTrace()<br>
+rethrowdifferentexception.OneException: thrown from f()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+rethrowdifferentexception.Main.someMethod(Main.java:19)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+rethrowdifferentexception.Main.main(Main.java:24)<br>
+Exception in thread "main" rethrowdifferentexception.TwoException: from
+main()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+rethrowdifferentexception.Main.main(Main.java:31)<br>
+Java Result: 1<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.82: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">RethrowDifferentException</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of the
+exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have learned how to
+create, throw, and catch your own custom exceptions.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+</p>
+<div class="indent"></div>
+<p></p>
+<div class="indent">
+<div class="indent">
+<p><br>
+</p>
+</div>
+<p> </p>
+</div>
+<!-- ======================================================================================= -->
+<h2><a name="Exercise_3"></a>Exercise 3: Assert<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to
+exercise Assert feature of Java programming language.&nbsp; <br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#3.1">Build and run AssertExample program with Assert
+disabled first and then enabled</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Build and run AssertExample program<br>
+</h3>
+<br>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter<span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> AssertExample</span>.</li>
+  <li>For Class Main Class field, enter <span
+ style="font-weight: bold;">assertexample.Diamond</span>.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/3_one1.png"
+ style="width: 735px; height: 505px;"><br>
+Figure-3.10: Create a new project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">AssertExample </span>project
+node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Diamond.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">Diamond.java</span>
+as
+shown in Code-3.11. Study the code by special attention to the
+bold-fonted parts.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package assertexample;<br>
+      <br>
+import javax.swing.*;<br>
+      <br>
+class Diamond {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; static void printDiamond(int size) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String diamond = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* print upper triangle */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int r = 1, a = 1; r
+&lt;= size; r++, a+=2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*
+print spaces */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int i = size - r; i &gt;= 1; i--) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+diamond += " ";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*
+print *'s */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int j = 1; j &lt;= a; j++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+diamond += "*";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+diamond += "\n";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* print lower triangle */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int r = size - 1, a =
+2*(size-1)-1; r &gt;= 1; r--, a-=2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*
+print spaces */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int i = size - r; i &gt;= 1; i--) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+diamond += " ";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*
+print *'s */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+(int j = 1; j &lt;= a; j++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+diamond += "*";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+diamond += "\n";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, diamond);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(diamond);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String args[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String strSize;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get the size of the
+diamond to draw<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; strSize =
+JOptionPane.showInputDialog(null, "Enter diamond size:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size =
+Integer.parseInt(strSize);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Assert that the value entered is greater than 0, otherwise,</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// it will generate AssertionError exception.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+try {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+assert(size &gt; 0);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+printDiamond(size);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (AssertionError e) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, "AssertionError is captured: Size
+should be &gt; 0.");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.exit(0);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11: Diamond.java<br>
+<br>
+3. Build and run the program without Assert enabled (which is the
+default)<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">AssertExample </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that an input dialog box appears.
+(Figure-3.12 below)</li>
+  <li>Enter a positive number, like <span style="font-weight: bold;">5</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/3_one2.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-3.12: Enter diamond size<br>
+<ul>
+  <li>Observe that a diamond gets displayed.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/3_one3.png"
+ style="width: 268px; height: 255px;"><br>
+Figure-3.13: Display of the diamond<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">AssertExample </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that an input dialog box appears. <br>
+  </li>
+  <li>Enter a negative number, like <span style="font-weight: bold;">-8</span>.</li>
+  <li>Observe that a display with nothing gets displayed.&nbsp;
+(Figure-3.14 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/3_one5.png"
+ style="width: 268px; height: 120px;"><br>
+Figure-3.14: No diamond gets displayed <br>
+<br>
+</div>
+<div style="margin-left: 40px;">4. Run the program with Assert Feature
+enabled.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">AssertExample</span>
+project and select <span style="font-weight: bold;">Properties</span>.&nbsp;
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">Project
+Properties</span> dialog box
+appears.</li>
+  <li>Select<span style="font-weight: bold;"> Run</span> on the left
+and for the VM Options field, enter <span style="font-weight: bold;">-ea</span>.
+&nbsp; The -ea option indicates your intention of running the
+application with Assert feature enabled. (Figure-3.15 below)<br>
+  </li>
+  <li>Click OK.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/eaoption.png"
+ style="width: 758px; height: 533px;"><br>
+Figure-3.15: Enable Assert <br>
+<br>
+5. Build and run the program again<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">AssertExample </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that an input dialog box appears. <br>
+  </li>
+  <li>Enter a negative number, like <span style="font-weight: bold;">-5</span>.</li>
+  <li>Observe that the Assert feature is now working. (Figure-3.16
+below)</li>
+</ul>
+<img alt="" src="index_files/3_one4.png"
+ style="width: 335px; height: 120px;"><br>
+Figure-3.16: Assert is now enabled.<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javaexceptions/samples/</span><span
+ style="font-weight: bold;">AssertExample</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+</div>
+<p style="margin-left: 40px;">6. For your own exercise, modify <span
+ style="font-weight: bold;">Diamond.java</span> so that
+the a number that is greater than 20 generates <span
+ style="font-weight: bold;">AssertionError</span><br>
+</p>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you have learned how to use assert feature of Java
+programming language.<br>
+</div>
+<div class="indent"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <a href="#Tutorial_Exercises">return to the top</a><br>
+<br>
+</div>
+<br>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify <span
+ style="font-weight: bold;">AssertExample </span>project above as
+following.&nbsp; (You might want to create a new project by copying
+the <span style="font-weight: bold;">AssertExample</span>
+project.&nbsp; You can name the homework project in any way you want
+but here I am going to call it <span style="font-weight: bold;">MyExceptionProject</span>.)
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Run
+the program without assertion so that you can catch user errors through
+exceptions.</li>
+  <li>If a user enters a negative value, throw a
+MyOwnNegativeValueEnteredException, which is an extension of
+ArithmeticException. The display of the error information should
+display the negative number that was entered.<br>
+  </li>
+  <li>If a user enters zero, throw a <span style="font-weight: bold;">MyOwnZeroValueEnteredException</span>,
+which is an extension of <span style="font-weight: bold;">ArithmeticException</span>.&nbsp;</li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javaexceptions.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyExceptionProject</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyExceptionProject</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyExceptionProject</span>)<br>
+    </li>
+    <li>jar cvf MyExceptionProject.zip MyExceptionProject
+(<span style="font-weight: bold;">MyExceptionProject </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javaexceptions.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javaexceptions</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javaexceptions.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture (just one of them) that shows that your
+program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

@@ -1,0 +1,977 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1019: Java Logging</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="Free Java Programming Online Training Course"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite"
+ style="background-image: url(index_files/beige.jpg);">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Logging<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sangshinpassion@gmail.com"></a><a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">Logging is easy-to-use debugging tool
+for many Java developers.&nbsp; The goal of this hands-on lab is to get
+you exposed to the basics of
+Java logging.<br>
+</div>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 60 minutes</b></p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp;
+<ul>
+  <li>1019_javalogging.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1019_javalogging.zip">download</a>)</li>
+  <ul>
+    <li>The zip file contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb. 16th, 2007: Created</li>
+  <li>March 20th, 2007: Homework is added</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+  <li>Aug. 22nd, 2009: Tested with NetBeans 6.7.1<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial">Things to do (by Sang Shin)<br>
+</h3>
+<ul>
+  <li>Add an exercises on Filter</li>
+  <li>Add an exercise on Formatter<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Simple logging (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Log to file and multiple
+handlers (30 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Simple logging<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to learn
+how to use Java logging APIs for doing simple logging.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#1.1">Build and run an application that uses simple
+logging</a></li>
+    <li><a href="#1.2">Set logging level</a><br>
+    </li>
+  </ol>
+</ul>
+<div style="margin-left: 40px;">
+<br>
+</div>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run an
+application that uses simple logging<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+0. Start NetBeans IDE if you have not done so yet.<br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SimpleLoggingExample</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SimpleLoggingExample</span></span>.&nbsp;
+(Figure-1.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_simple1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create a new project<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">SimpleLoggingExample
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">SimpleLoggingExample.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">SimpleLoggingExample.java
+</span>as shown in Code-1.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.logging.Level;<br>
+import java.util.logging.Logger;<br>
+      <br>
+public class SimpleLoggingExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A Logger object is used to log messages for a
+specific system<br>
+&nbsp;&nbsp;&nbsp; // or application component. Loggers are normally
+named, using a<br>
+&nbsp;&nbsp;&nbsp; // hierarchical dot-separated namespace. Logger
+names can be arbitrary<br>
+&nbsp;&nbsp;&nbsp; // strings, but they should normally be based on the
+package name or<br>
+&nbsp;&nbsp;&nbsp; // class name of the logged component. In addition
+it is possible<br>
+&nbsp;&nbsp;&nbsp; // to create "anonymous" Loggers that are not stored
+in the Logger<br>
+&nbsp;&nbsp;&nbsp; // namespace.<br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> private static
+Logger logger = Logger.getLogger("loggerdemo");</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Log a INFO tracing message</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.info("doing stuff");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch(Exception e){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> logger.log(Level.SEVERE,"dividing by 0");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+logger.info("done");</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.11: SimpleLoggingExample.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">SimpleLoggingExample
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.13 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Feb 18, 2007 7:24:42 AM
+SimpleLoggingExample main<br>
+INFO: doing stuff<br>
+Feb 18, 2007 7:24:42 AM SimpleLoggingExample main<br>
+SEVERE: dividing by 0<br>
+Feb 18, 2007 7:24:42 AM SimpleLoggingExample main<br>
+INFO: done<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.13: Result of running SimpleLoggingExample application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalogging/samples/</span><span
+ style="font-weight: bold;">SimpleLoggingExample</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+4. For your own exercise, modify <span style="font-weight: bold;">SimpleLoggingExample.java</span>
+as following. Build and run the application.<br>
+<ul>
+  <li>Create another logger called myownlogger as following</li>
+  <ul>
+    <li>private static Logger myownlogger =
+Logger.getLogger("myownlogger");<br>
+    </li>
+  </ul>
+  <li>Display info level message somewhere in the code using
+myownlogger object<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Set logging level<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SimpleLoggingExample2</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">SimpleLoggingExample2</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">SimpleLoggingExample2
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">SimpleLoggingExample2.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">SimpleLoggingExample2.java
+</span>as shown in Code-1.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; The change from the
+code of step 1.1 above is to add a logging level.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.logging.Level;<br>
+import java.util.logging.Logger;<br>
+      <br>
+public class SimpleLoggginExample2 {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A Logger object is used to log messages for a
+specific system<br>
+&nbsp;&nbsp;&nbsp; // or application component. Loggers are normally
+named, using a<br>
+&nbsp;&nbsp;&nbsp; // hierarchical dot-separated namespace. Logger
+names can be arbitrary<br>
+&nbsp;&nbsp;&nbsp; // strings, but they should normally be based on the
+package name or<br>
+&nbsp;&nbsp;&nbsp; // class name of the logged component. In addition
+it is possible<br>
+&nbsp;&nbsp;&nbsp; // to create "anonymous" Loggers that are not stored
+in the Logger<br>
+&nbsp;&nbsp;&nbsp; // namespace.<br>
+&nbsp;&nbsp;&nbsp; private static Logger logger =
+Logger.getLogger("loggerdemo");<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Set logging level</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.setLevel(Level.SEVERE);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Log a INFO tracing message<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.info("doing stuff");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch(Exception e){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.log(Level.SEVERE,"dividing by 0");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.info("done");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: SimpleLoggingExample2.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">SimpleLoggingExample2
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-1.23 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Feb 18, 2007 7:37:25 AM
+SimpleLoggginExample2 main<br>
+SEVERE: dividing by 0<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.23: Result of running SimpleLoggingExample2 application<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalogging/samples/</span><span
+ style="font-weight: bold;">SimpleLoggingExample2</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+4. For your own exercise, modify <span style="font-weight: bold;">SimpleLoggingExample2.java</span>
+as following. Build and run the application.<br>
+<ul>
+  <li>Use context sensitive Javadoc on<span style="font-weight: bold;">
+Level.SEVERE</span> and find out all the logging levels.<br>
+  </li>
+  <li>Change the logging level to something else such as FINE.<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have learned how to
+do simple logging.&nbsp; You also learned how to set logging level.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Log to file and multiple
+handlers<br>
+</h2>
+<div style="margin-left: 40px;"><br>
+In this exercise, you are going to learn how to log messages to a file.
+You are also going to learn how to use multiple handlers.<br>
+</div>
+<ol style="margin-left: 40px;">
+  <li><a href="#2.1">Log to a file<br>
+    </a></li>
+  <li><a href="#2.2">Use multiple handlers</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Log to a file<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">LogToFileUsingFileHandler</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">LogToFileUsingFileHandler</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">LogToFileUsingFileHandler
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">LogToFileUsingFileHandler.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">LogToFileUsingFileHandler.java
+</span>as shown in Code-2.11 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">import
+java.util.logging.FileHandler;</span><br>
+import java.util.logging.Level;<br>
+import java.util.logging.Logger;<br>
+      <br>
+public class LogToFileUsingFileHandler {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A Logger object is used to log messages for a
+specific system<br>
+&nbsp;&nbsp;&nbsp; // or application component. Loggers are normally
+named, using a<br>
+&nbsp;&nbsp;&nbsp; // hierarchical dot-separated namespace. Logger
+names can be arbitrary<br>
+&nbsp;&nbsp;&nbsp; // strings, but they should normally be based on the
+package name or<br>
+&nbsp;&nbsp;&nbsp; // class name of the logged component. In addition
+it is possible<br>
+&nbsp;&nbsp;&nbsp; // to create "anonymous" Loggers that are not stored
+in the Logger<br>
+&nbsp;&nbsp;&nbsp; // namespace.<br>
+&nbsp;&nbsp;&nbsp; private static Logger logger =
+Logger.getLogger("loggerdemo");<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) throws
+Exception {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+// Log to a file </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.addHandler(new FileHandler("MyOwnLog.xml"));</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Log a INFO tracing message<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.info("doing stuff");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch(Exception e){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.log(Level.SEVERE,"dividing by 0");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.info("done");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: LogToFileUsingFileHandler.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">LogToFileUsingFileHandler
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.13 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Feb 18, 2007 7:49:29 AM
+LogToFileUsingFileHandler main<br>
+INFO: doing stuff<br>
+Feb 18, 2007 7:49:29 AM LogToFileUsingFileHandler main<br>
+SEVERE: dividing by 0<br>
+Feb 18, 2007 7:49:29 AM LogToFileUsingFileHandler main<br>
+INFO: done<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.13: Result of running LogToFileUsingFileHandler application<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">MyOwnLog.xml</span>
+file contains the logging messages. (Figure-2.14 below)&nbsp; If you
+are using NetBeans, this file is located in the same directory you have
+created your NetBeans project.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;?xml version="1.0"
+encoding="windows-1252" standalone="no"?&gt;<br>
+&lt;!DOCTYPE log SYSTEM "logger.dtd"&gt;<br>
+&lt;log&gt;<br>
+&lt;record&gt;<br>
+&nbsp; &lt;date&gt;2007-02-18T07:49:29&lt;/date&gt;<br>
+&nbsp; &lt;millis&gt;1171802969296&lt;/millis&gt;<br>
+&nbsp; &lt;sequence&gt;0&lt;/sequence&gt;<br>
+&nbsp; &lt;logger&gt;loggerdemo&lt;/logger&gt;<br>
+&nbsp; &lt;level&gt;INFO&lt;/level&gt;<br>
+&nbsp; &lt;class&gt;LogToFileUsingFileHandler&lt;/class&gt;<br>
+&nbsp; &lt;method&gt;main&lt;/method&gt;<br>
+&nbsp; &lt;thread&gt;10&lt;/thread&gt;<br>
+&nbsp; &lt;message&gt;doing stuff&lt;/message&gt;<br>
+&lt;/record&gt;<br>
+&lt;record&gt;<br>
+&nbsp; &lt;date&gt;2007-02-18T07:49:29&lt;/date&gt;<br>
+&nbsp; &lt;millis&gt;1171802969328&lt;/millis&gt;<br>
+&nbsp; &lt;sequence&gt;1&lt;/sequence&gt;<br>
+&nbsp; &lt;logger&gt;loggerdemo&lt;/logger&gt;<br>
+&nbsp; &lt;level&gt;SEVERE&lt;/level&gt;<br>
+&nbsp; &lt;class&gt;LogToFileUsingFileHandler&lt;/class&gt;<br>
+&nbsp; &lt;method&gt;main&lt;/method&gt;<br>
+&nbsp; &lt;thread&gt;10&lt;/thread&gt;<br>
+&nbsp; &lt;message&gt;dividing by 0&lt;/message&gt;<br>
+&lt;/record&gt;<br>
+&lt;record&gt;<br>
+&nbsp; &lt;date&gt;2007-02-18T07:49:29&lt;/date&gt;<br>
+&nbsp; &lt;millis&gt;1171802969328&lt;/millis&gt;<br>
+&nbsp; &lt;sequence&gt;2&lt;/sequence&gt;<br>
+&nbsp; &lt;logger&gt;loggerdemo&lt;/logger&gt;<br>
+&nbsp; &lt;level&gt;INFO&lt;/level&gt;<br>
+&nbsp; &lt;class&gt;LogToFileUsingFileHandler&lt;/class&gt;<br>
+&nbsp; &lt;method&gt;main&lt;/method&gt;<br>
+&nbsp; &lt;thread&gt;10&lt;/thread&gt;<br>
+&nbsp; &lt;message&gt;done&lt;/message&gt;<br>
+&lt;/record&gt;<br>
+&lt;/log&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.14: MyOwnLog.xml<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalogging/samples/</span><span
+ style="font-weight: bold;">LogToFileUsingFileHandler</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+4. For your own exercise, modify <span style="font-weight: bold;">LogToFileUsingFileHandler.java</span>
+as following. Build and run the application.<br>
+<ul>
+  <li>Use your own file called MyReallyOwnLog.xml to do the logging<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+<br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Use multiple handlers<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to log using multiple handlers, FileHandler
+and ConsoleHandler.<br>
+<br>
+1. Create a new NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>. The <span
+ style="font-weight: bold;">New Project</span> dialog box appears.</li>
+  <li>Under <span style="font-weight: bold;">Choose Project</span>
+pane,
+select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects</span>. Click <span
+ style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name and Location</span>
+pane, for the <span style="font-weight: bold;">Project Name</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UseMultipleHandlers</span> </span>as
+project name.</li>
+  <li>For <span style="font-weight: bold;">Create Main Class</span>
+field, type in <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">UseMultipleHandlers</span></span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">UseMultipleHandlers
+    </span>project
+appears and IDE generated <span style="font-weight: bold;">UseMultipleHandlers.java</span>
+is displayed in the source editor window of NetBeans IDE.</li>
+</ul>
+2. Modify the IDE generated <span style="font-weight: bold;">UseMultipleHandlers.java
+</span>as shown in Code-2.21 below.&nbsp; Study the code by paying
+special attention to the bold fonted parts.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import
+java.util.logging.ConsoleHandler;<br>
+import java.util.logging.FileHandler;<br>
+import java.util.logging.Level;<br>
+import java.util.logging.Logger;<br>
+      <br>
+public class UseMultipleHandlers {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // A Logger object is used to log messages for a
+specific system<br>
+&nbsp;&nbsp;&nbsp; // or application component. Loggers are normally
+named, using a<br>
+&nbsp;&nbsp;&nbsp; // hierarchical dot-separated namespace. Logger
+names can be arbitrary<br>
+&nbsp;&nbsp;&nbsp; // strings, but they should normally be based on the
+package name or<br>
+&nbsp;&nbsp;&nbsp; // class name of the logged component. In addition
+it is possible<br>
+&nbsp;&nbsp;&nbsp; // to create "anonymous" Loggers that are not stored
+in the Logger<br>
+&nbsp;&nbsp;&nbsp; // namespace.<br>
+&nbsp;&nbsp;&nbsp; private static Logger logger =
+Logger.getLogger("loggerdemo");<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) throws
+Exception {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Add File handler and Console handler</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.addHandler(new FileHandler("MultipleHandlers.xml"));</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.addHandler(new ConsoleHandler());</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Log a INFO tracing message<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.info("doing stuff");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(3/0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch(Exception e){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logger.log(Level.SEVERE,"dividing by 0");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logger.info("done");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: UseMultipleHandlers.java<br>
+<br>
+3. Build and run the project<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">UseMultipleHandlers
+    </span>project
+and select <span style="font-weight: bold;">Run</span>. </li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window.
+(Figure-2.23 below)&nbsp; Note that since the ConsoleHandler is
+configured as a default, adding ConsoleHandler results in two
+ConsoleHandlers performing logging operation.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Feb 18, 2007 8:00:05 AM
+UseMultipleHandlers main<br>
+INFO: doing stuff<br>
+Feb 18, 2007 8:00:05 AM UseMultipleHandlers main<br>
+INFO: doing stuff<br>
+Feb 18, 2007 8:00:05 AM UseMultipleHandlers main<br>
+SEVERE: dividing by 0<br>
+Feb 18, 2007 8:00:05 AM UseMultipleHandlers main<br>
+SEVERE: dividing by 0<br>
+Feb 18, 2007 8:00:05 AM UseMultipleHandlers main<br>
+INFO: done<br>
+Feb 18, 2007 8:00:05 AM UseMultipleHandlers main<br>
+INFO: done<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.23: Result of running UseMultipleHandlers application<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">MultipleHandlers.xml</span>
+file contains the logging messages. (Figure-2.24 below) If you are
+using NetBeans, this file is located in the same directory you have
+created your NetBeans project.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;?xml version="1.0"
+encoding="windows-1252" standalone="no"?&gt;<br>
+&lt;!DOCTYPE log SYSTEM "logger.dtd"&gt;<br>
+&lt;log&gt;<br>
+&lt;record&gt;<br>
+&nbsp; &lt;date&gt;2007-02-18T07:49:29&lt;/date&gt;<br>
+&nbsp; &lt;millis&gt;1171802969296&lt;/millis&gt;<br>
+&nbsp; &lt;sequence&gt;0&lt;/sequence&gt;<br>
+&nbsp; &lt;logger&gt;loggerdemo&lt;/logger&gt;<br>
+&nbsp; &lt;level&gt;INFO&lt;/level&gt;<br>
+&nbsp; &lt;class&gt;LogToFileUsingFileHandler&lt;/class&gt;<br>
+&nbsp; &lt;method&gt;main&lt;/method&gt;<br>
+&nbsp; &lt;thread&gt;10&lt;/thread&gt;<br>
+&nbsp; &lt;message&gt;doing stuff&lt;/message&gt;<br>
+&lt;/record&gt;<br>
+&lt;record&gt;<br>
+&nbsp; &lt;date&gt;2007-02-18T07:49:29&lt;/date&gt;<br>
+&nbsp; &lt;millis&gt;1171802969328&lt;/millis&gt;<br>
+&nbsp; &lt;sequence&gt;1&lt;/sequence&gt;<br>
+&nbsp; &lt;logger&gt;loggerdemo&lt;/logger&gt;<br>
+&nbsp; &lt;level&gt;SEVERE&lt;/level&gt;<br>
+&nbsp; &lt;class&gt;LogToFileUsingFileHandler&lt;/class&gt;<br>
+&nbsp; &lt;method&gt;main&lt;/method&gt;<br>
+&nbsp; &lt;thread&gt;10&lt;/thread&gt;<br>
+&nbsp; &lt;message&gt;dividing by 0&lt;/message&gt;<br>
+&lt;/record&gt;<br>
+&lt;record&gt;<br>
+&nbsp; &lt;date&gt;2007-02-18T07:49:29&lt;/date&gt;<br>
+&nbsp; &lt;millis&gt;1171802969328&lt;/millis&gt;<br>
+&nbsp; &lt;sequence&gt;2&lt;/sequence&gt;<br>
+&nbsp; &lt;logger&gt;loggerdemo&lt;/logger&gt;<br>
+&nbsp; &lt;level&gt;INFO&lt;/level&gt;<br>
+&nbsp; &lt;class&gt;LogToFileUsingFileHandler&lt;/class&gt;<br>
+&nbsp; &lt;method&gt;main&lt;/method&gt;<br>
+&nbsp; &lt;thread&gt;10&lt;/thread&gt;<br>
+&nbsp; &lt;message&gt;done&lt;/message&gt;<br>
+&lt;/record&gt;<br>
+&lt;/log&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.24: MultipleHandlers.xml<br>
+<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javalogging/samples/</span><span
+ style="font-weight: bold;">UseMultipleHandlers</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+4. For your own exercise, modify <span style="font-weight: bold;">UseMultipleHandlers.java</span>
+as following. Build and run the application.<br>
+<ul>
+  <li>Add another FileHandler instance using<span
+ style="font-weight: bold;"> myown.xml </span>as a file.</li>
+  <li>After running the application, check if the myown.xml file
+contains logging information.<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have learned
+how to log to a file.&nbsp; You also learned how to use multiple
+handlers.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<br>
+<br>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify <span
+ style="font-weight: bold;">LogToFileUsingFileHandler </span>project
+above as following.&nbsp; (You might want to create a new project by
+copying
+the <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">LogToFileUsingFileHandler</span>
+project.&nbsp; You can name the homework project in any way you want
+but here I am going to call it <span style="font-weight: bold;">MyLogToFileUsingFileHandler</span>.)
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Add
+another file handler with a&nbsp; file of your own.</li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javalogging.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyLogToFileUsingFileHandler</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyLogToFileUsingFileHandler</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyLogToFileUsingFileHandler</span>)<br>
+    </li>
+    <li>jar cvf MyLogToFileUsingFileHandler.zip
+MyLogToFileUsingFileHandler
+(<span style="font-weight: bold;">MyLogToFileUsingFileHandler </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javalogging.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javalogging</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javalogging.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture (just one of them) that shows that your
+program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

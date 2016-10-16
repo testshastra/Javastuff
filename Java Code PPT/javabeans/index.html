@@ -1,0 +1,2027 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1029: Java Beans</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="Free Java Programming Online Training Course"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Beans<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangSchedule.html#Bio">Sang Shin</a>,&nbsp;
+<a href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+The JavaBeans™ architecture is based on a component model which enables
+developers to create software units called <em class="Emphasis">components</em>.
+Components are self-contained, reusable software units that can be
+visually assembled into composite components, applets, applications,
+and servlets using visual application builder tools. JavaBean
+components are known as <em class="Emphasis">beans</em>.
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 60 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/javaintro"><img
+ alt="" src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.
+<ul>
+  <li>1029_javabeans.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1029_javabeans.zip">download</a>)</li>
+  <ul>
+    <li>The zip file contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>March. 5th, 2007: Created</li>
+  <li>Sep. 10th, 2009: Updated with NetBeans 6.7.1, Homework is added</li>
+  <li>March 25th, 2010: Updated and tested with NetBeans 6.8 (Sang Shin)<br>
+  </li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Manipulate a JavaBean from a
+builder tool (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Create JavaBeans with different
+types of properties (30
+minutes)</a></li>
+  <li><a href="#Exercise_3">Exercise 3: Introspection (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_4">Exercise 4: Event handling (20
+minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Manipulate a JavaBean from a
+builder tool<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to create
+a simple visual JavaBean called <span style="font-weight: bold;">SimpleBeanJLabel
+</span>and build a jar file
+that contains it.&nbsp; You are going to then add the bean to the a
+builder tool, in this case NetBeans IDE.&nbsp; Finally you are going to
+manipulate the properties of the bean through the builder tool.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#1.1">Create a SimpleBeanJLabel bean and a jar file
+that contains it</a><br>
+    </li>
+    <li><a href="#1.2">Add the bean to the builder tool</a></li>
+    <li><a href="#1.3">Change the properties of the bean through the
+builder tool</a></li>
+  </ol>
+</ul>
+<br>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Create a
+SimpleBeanJLabel JavaBean and jar file that contains it<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<img alt="" src="index_files/1_label16.png"
+ style="width: 737px; height: 505px;"><br>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">BeansExample</span>.
+(Figure-1.11 below)<br>
+  </li>
+  <li>Uncheck the <span style="font-weight: bold;">Create Main Class</span>
+field<span style="font-weight: bold; color: rgb(51, 51, 255);"></span>.&nbsp;
+This is to indicate that you are not going to create Main class.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_label1.png"
+ style="width: 737px; height: 505px;"><br>
+Figure-1.11: Create BeansEample project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">BeansExample </span>project
+node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Write <span
+ style="font-weight: bold;">SimpleBeanJLabel.java</span>.&nbsp;
+<span style="font-weight: bold;">SimpleBeanJLabel </span>class is an
+example
+of a visual JavaBean.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">BeansExample </span>and
+select <span style="font-weight: bold;">New-&gt;Java
+Class</span>.</li>
+</ul>
+<img alt="" src="index_files/1_label33.png"
+ style="width: 739px; height: 713px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the <span style="font-weight: bold;">New Java
+Class</span> dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">SimpleBeanJLabel</span>.&nbsp;
+(Figure-1.12 below)</li>
+  <li>For the Package field, enter a package name of your choice.&nbsp;
+In this example below, for the sake of simplicity, we are not creating
+a package.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label2.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.12: Create SimpleBeanJLabel.java<br>
+<ul>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">SimpleBeanJLabel.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">SimpleBeanJLabel.java</span>
+as shown in Code-1.13 below.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.awt.Color;<br>
+import javax.swing.JLabel;<br>
+import java.io.Serializable;<br>
+      <br>
+public class SimpleBeanJLabel extends JLabel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public SimpleBeanJLabel() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setText( "Hello world!" );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setOpaque( true );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setBackground( Color.RED );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setForeground( Color.YELLOW
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setVerticalAlignment( CENTER
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setHorizontalAlignment(
+CENTER );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: SimpleBeanJLabel.java<br>
+<br>
+<img alt="" src="index_files/1_label17.png"
+ style="width: 833px; height: 683px;"><br>
+<br>
+3. Write <span style="font-weight: bold;">SimpleBeanJLabel2.java</span>
+(following similar steps you took above for creating SImpleBeanJLabel
+class).&nbsp;
+SimpleBeanJLabel2 is an extension of the <span
+ style="font-weight: bold;">SimpleBeanJLabel </span>with its own
+property called <span style="font-weight: bold;">labelType</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">public
+class SimpleBeanJLabel2 extends SimpleBeanJLabel </span>{<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String labelType;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getLabelType() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return labelType;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setLabelType(String labelType) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.labelType = labelType;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.14: SimpleBeanJLabel2.java<br>
+<br>
+<img alt="" src="index_files/1_label18.png"
+ style="width: 833px; height: 683px;"><br>
+<br>
+4. Build the project.&nbsp; Building a project will create a jar file.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">BeansExample </span>project
+node and select <span style="font-weight: bold;">Build</span>
+(or Run).&nbsp; <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label19.png"
+ style="width: 833px; height: 683px;"><br>
+<ul>
+  <li>This will build a jar file called <span
+ style="font-weight: bold;">BeanExample.jar</span> that contains the <span
+ style="font-weight: bold;">SimpleBeanJLabel</span> and <span
+ style="font-weight: bold;">SimpleBeanJLabel2 </span>JavaBean's.</li>
+</ul>
+<img alt="" src="index_files/1_label20.png"
+ style="width: 833px; height: 683px;"><br>
+<br>
+5. Observe that a jar file is created.<br>
+<ul>
+  <li>Click <span style="font-weight: bold;">Files</span> view of the
+project.&nbsp; The Files view displays the physical directory structure
+and files of the project.</li>
+  <li>Expand <span style="font-weight: bold;">BeansExample-&gt;dist</span>.</li>
+  <li>Observe that <span style="font-weight: bold;">BeansExample.jar</span>
+file is created.</li>
+</ul>
+<ul>
+  <li>Expand the <span style="font-weight: bold;">BeansExample.jar</span>
+file.</li>
+  <li>Observe that <span style="font-weight: bold;">SimpleBeanJLabel.class</span>
+and<span style="font-weight: bold;"> SimpleBeanJLabel2.class</span> are
+inside the <span style="font-weight: bold;">BeansExample.jar</span>
+file. (Figure-1.16 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label23.png"
+ style="width: 832px; height: 713px;"><br>
+Figure-1.16: BeansExample.jar<br>
+<ul>
+  <li>Click <span style="font-weight: bold;">Projects </span>tab&nbsp;
+to return to the <span style="font-weight: bold;">Projects </span>view.<br>
+  </li>
+</ul>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javabeans/samples/BeansExample</span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Add the bean to the builder tool<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">BeansUserExample</span>.
+    <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">BeansUserExample</span>.&nbsp;
+This is to create Main class named as <span style="font-weight: bold;">BeansUserExample</span>.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_label21.png"
+ style="width: 737px; height: 505px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">BeansUserExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">BeansUserExample.java</span>
+is displayed in the
+editor window of the IDE.<br>
+  </li>
+</ul>
+2. Create a new <span style="font-weight: bold;">JFrame </span>Form.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">BeansUserExample </span>and
+select <span style="font-weight: bold;">New-&gt;JFrame Form</span>.&nbsp;
+(Figure-1.21 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label4.png"
+ style="width: 833px; height: 683px;"><br>
+Figure-1.21: Create JFrame Form<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the <span style="font-weight: bold;">New
+JFrame Form</span> dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">MyForm</span>.&nbsp;
+(Figure-1.22 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_label24.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.22: Give a name to the JFrame class<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Design </span>view
+of the <span style="font-weight: bold;">MyForm.java</span> is
+displayed in the
+middle of the IDE and <span style="font-weight: bold;">Palette </span>is
+displayed in the right side of the IDE. (Figure-1.23 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label25.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.23: MyForm.java<br>
+<br>
+3.&nbsp; Add <span style="font-weight: bold;">SimpleBeanJLabel </span>visual
+bean to the <span style="font-weight: bold;">Palette</span>.<br>
+<ul>
+  <li>Right click in any point in the <span style="font-weight: bold;">Palette
+    </span>pane.</li>
+  <li>Select <span style="font-weight: bold;">Palette Manager</span>
+from the pop-up menu.&nbsp; (Figure-1.24 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label26.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.24: Open Palette Manager<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Palette Manager</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold;">Add From JAR</span>.
+(Figure-1.25 below)&nbsp; You are about to add a jar file that contains
+beans.&nbsp; You can also select Add from Project, which will let you
+see the beans from Project standpoint.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label8.png"
+ style="width: 461px; height: 471px;"><br>
+Figure-1.25: Palette Manager<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Install
+Components</span> to Palette dialog box appears.</li>
+  <li>Browse down to the <span style="font-weight: bold;">dist </span>directory
+of the <span style="font-weight: bold;">BeansExample </span>project
+that contains <span style="font-weight: bold;">BeansExample.jar</span>
+file you created in the previous step.&nbsp; <br>
+  </li>
+  <li>Select<span style="font-weight: bold;"> BeansExample.jar</span>
+and click Next. (Figure-1.26 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label27.png"
+ style="width: 774px; height: 550px;"><br>
+Figure-1.26: Select JAR file<br>
+<ul>
+  <li>Observe that all the beans in the <span
+ style="font-weight: bold;">BeansExample.jar</span> file are displayed
+for selection.</li>
+  <li>Select both <span style="font-weight: bold;">SimpleBeanJLabel </span>and
+    <span style="font-weight: bold;">SimpleBeanJLabel2 </span>beans
+and click <span style="font-weight: bold;">Next</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label28.png"
+ style="width: 739px; height: 465px;"><br>
+Figure-1.27: Select beans<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">Beans </span>(or
+whatever category you want to add the bean) as a Palette category.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.
+(Figure-1.28 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label11.png"
+ style="width: 774px; height: 550px;"><br>
+Figure-1.28: Select palette category<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Palette Manager</span>
+is now the front window.</li>
+  <li>Expand the <span style="font-weight: bold;">Beans </span>and
+observe that <span style="font-weight: bold;">SimpleBeanJLabel </span>and
+    <span style="font-weight: bold;">SimpleBeanJLabel2 </span>beans
+are now
+present. (Figure-1.29 below)</li>
+  <li>Click <span style="font-weight: bold;">Close </span>button of<span
+ style="font-weight: bold;"> </span>the <span
+ style="font-weight: bold;">Palette Manager</span> window.<br>
+  </li>
+</ul>
+<br>
+<img alt="" src="index_files/1_label12.png"
+ style="width: 471px; height: 473px;"><br>
+Figure-1.29: SimpleBeanJLabel is added<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javabeans/samples/</span><span
+ style="font-weight: bold;">BeansUserExample</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Change the properties of the beans through the builder tool</h3>
+<div style="margin-left: 40px;"><br>
+1. Add the <span style="font-weight: bold;">SimpleBeanJLabel </span>bean
+to the design window.<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">SimpleBeansJLabel
+    </span>bean is under <span style="font-weight: bold;">Beans </span>category
+in the
+Palette.</li>
+  <li>Drag and drop the <span style="font-weight: bold;">SimpleBeanJLabel
+    </span>to the design window.</li>
+  <li>Observe that the red-colored <span style="font-weight: bold;">Hello
+world!</span> label is displayed.
+(Figure-1.30 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label29.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.30: SimpleBeanJLabel is added to the form<br>
+<br>
+2. Manipulate the properties of the <span style="font-weight: bold;">SimpleBeansJLabel
+</span>bean.
+<ul>
+  <li>Click <span style="font-weight: bold;">...</span>
+box of the <span style="font-weight: bold;">background </span>property
+to select a color of your
+choice.</li>
+</ul>
+<img alt="" src="index_files/1_label30.png"
+ style="width: 892px; height: 747px;"><br>
+<br>
+<ul>
+  <li>Observe that the backgound color chooser dialog box appears.</li>
+  <li>Choose whatever color of your choice - in the example below, [0,
+51, 204] is selected.</li>
+  <li>Click OK.</li>
+</ul>
+<img alt="" src="index_files/1_label31.png"
+ style="width: 616px; height: 510px;"><br>
+<ul>
+  <li>Change the text property of the bean to your name, for example, <span
+ style="font-weight: bold;">Sang Shin</span> in the example below.</li>
+  <li>Observe that the background color and text of the bean is changed
+in the design window. (Figure-1.31 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_label32.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.31: Properties of the SimpleBeansJLabel bean are changed<br>
+<br>
+3. Manipulate the properties of the <span style="font-weight: bold;">SimpleBeansJLabel2
+</span>bean.
+<ul>
+  <li>Drag and drop the <span style="font-weight: bold;">SimpleBeanJLabel2
+    </span>bean to the design window.</li>
+  <li>Observe that the red-colored Hello world! label is displayed</li>
+  <li>Change the <span style="font-weight: bold;">labelType </span>property
+of the bean to <span style="font-weight: bold;">simple </span>from
+null or
+whatever color you want. (Figure-1.33 below)</li>
+</ul>
+<img alt="" src="index_files/1_label15.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.33: Change the labelType property of the bean<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you first created a
+simple visual JavaBean
+called SimpleBeanJLabel and built a jar file that contains it.&nbsp;
+You&nbsp; then added the beans to the a builder tool, in this case
+NetBeans.&nbsp; Finally changed the properties of the
+bean through the builder tool.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="file:///C:/handson2/development/ajaxjmakiintro/index.html#Tutorial_Exercises">Return
+to the top</a><br>
+<br>
+</p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Create JavaBean's with various
+property types<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">In this exercise, you are going to build
+various beans which have different types of properties.<br>
+</p>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#2.1">Add two overloaded methods to the StudentRecord
+class</a></li>
+</ol>
+<br>
+<ol>
+</ol>
+<ol>
+</ol>
+</div>
+<p style="margin-left: 40px;"></p>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Use two overloaded methods to the StudentRecord class<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">BeansExample2</span>.
+(Figure-1.11 below)<br>
+  </li>
+  <li>De-select <span style="font-weight: bold;">Create Main Class</span>
+field.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+2.&nbsp; Write <span style="font-weight: bold;">MyBean.java</span>.&nbsp;
+This is a very simple non visual bean.<span style="font-weight: bold;"></span><br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.Serializable;<br>
+      <br>
+public class MyBean&nbsp; implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of MyBean */<br>
+&nbsp;&nbsp;&nbsp; public MyBean() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Holds value of property title.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; private String title;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Getter for property title.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @return Value of property title.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public String getTitle() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Setter for property title.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param title New value of property title.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void setTitle(String title) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.title = title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: MyBean.java<br>
+<br>
+3. Write <span style="font-weight: bold;">MyBeanIndexedProperties.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.awt.Graphics;<br>
+import java.io.Serializable;<br>
+import javax.swing.JComponent;<br>
+      <br>
+/**<br>
+&nbsp;* Bean with a simple property "title"<br>
+&nbsp;* and an indexed property "lines".<br>
+&nbsp;*/<br>
+public class MyBeanIndexedProperties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extends JComponent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String title;<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">private String[]
+lines = new String[10];</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getTitle() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setTitle( String title ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.title = title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public String[]
+getLines() {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return this.lines.clone();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public String
+getLines( int index ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return this.lines[index];</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+setLines( String[] lines ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.lines = lines;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+setLines( int index, String line ) {</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.lines[index] = line;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; protected void paintComponent( Graphics g ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g.setColor( getForeground()
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int height =
+g.getFontMetrics().getHeight();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paintString( g, this.title,
+height );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( this.lines != null ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+step = height;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+( String line : this.lines )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+paintString( g, line, height += step );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private void paintString( Graphics g, String str,
+int height ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( str != null )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+g.drawString( str, 0, height );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.12: MyBeanIndexedProperties.java<br>
+<br>
+4. Write <span style="font-weight: bold;">MyBeanBoundProperties.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.awt.Graphics;<br>
+import java.beans.PropertyChangeListener;<br>
+import java.beans.PropertyChangeSupport;<br>
+import java.io.Serializable;<br>
+import javax.swing.JComponent;<br>
+      <br>
+/**<br>
+&nbsp;* Bean with bound properties.<br>
+&nbsp;*/<br>
+public class MyBeanBoundProperties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extends JComponent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String title;<br>
+&nbsp;&nbsp;&nbsp; private String[] lines = new String[10];<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> private final
+PropertyChangeSupport pcs </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= new PropertyChangeSupport( this );</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getTitle() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setTitle( String title ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String old = this.title;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.title = title;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.pcs.firePropertyChange(
+"title", old, title );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String[] getLines() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.lines.clone();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getLines( int index ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.lines[index];<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setLines( String[] lines ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] old = this.lines;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lines = lines;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.pcs.firePropertyChange(
+"lines", old, lines );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setLines( int index, String line ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String old =
+this.lines[index];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lines[index] = line;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.fireIndexedPropertyChange( "lines", index, old, lines );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> public void
+addPropertyChangeListener(
+PropertyChangeListener listener ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.addPropertyChangeListener( listener );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+removePropertyChangeListener(
+PropertyChangeListener listener ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.removePropertyChangeListener( listener );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; protected void paintComponent( Graphics g ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g.setColor( getForeground()
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int height =
+g.getFontMetrics().getHeight();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paintString( g, this.title,
+height );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( this.lines != null ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+step = height;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+( String line : this.lines )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+paintString( g, line, height += step );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private void paintString( Graphics g, String str,
+int height ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( str != null )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+g.drawString( str, 0, height );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.13: MyBeanBoundProperties.java<br>
+<br>
+5. Write <span style="font-weight: bold;">MyBeanConstrainedProperties.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.Serializable;<br>
+import java.beans.PropertyChangeListener;<br>
+import java.beans.PropertyChangeSupport;<br>
+import java.beans.PropertyVetoException;<br>
+import java.beans.VetoableChangeListener;<br>
+import java.beans.VetoableChangeSupport;<br>
+import java.awt.Graphics;<br>
+import javax.swing.JComponent;<br>
+      <br>
+/**<br>
+&nbsp;* Bean with constrained properties.<br>
+&nbsp;*/<br>
+public class MyBeanConstrainedProperties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extends JComponent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; private String title;<br>
+&nbsp;&nbsp;&nbsp; private String[] lines = new String[10];<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">private final
+PropertyChangeSupport pcs = new
+PropertyChangeSupport( this );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; private final
+VetoableChangeSupport vcs = new
+VetoableChangeSupport( this );</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getTitle() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> /**</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; * This
+method was modified to throw the
+PropertyVetoException</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; * if
+some vetoable listeners reject the new
+title value</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; */</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+setTitle( String title )</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; throws
+PropertyVetoException {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String old = this.title;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.vcs.fireVetoableChange(
+"title", old, title );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.title = title;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.firePropertyChange(
+"title", old, title );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String[] getLines() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.lines.clone();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getLines( int index ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.lines[index];<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * This method throws the PropertyVetoException<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * if some vetoable listeners reject the new
+lines value<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void setLines( String[] lines )<br>
+&nbsp;&nbsp;&nbsp; throws PropertyVetoException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] old = this.lines;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.vcs.fireVetoableChange(
+"lines", old, lines );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lines = lines;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.pcs.firePropertyChange(
+"lines", old, lines );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setLines( int index, String line )<br>
+&nbsp;&nbsp;&nbsp; throws PropertyVetoException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String old =
+this.lines[index];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.vcs.fireVetoableChange(
+"lines", old, line );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lines[index] = line;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.fireIndexedPropertyChange( "lines", index, old, line );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void addPropertyChangeListener(
+PropertyChangeListener listener ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.addPropertyChangeListener( listener );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void removePropertyChangeListener(
+PropertyChangeListener listener ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.pcs.removePropertyChangeListener( listener );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Registration of the VetoableChangeListener<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void addVetoableChangeListener(
+VetoableChangeListener listener ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.vcs.addVetoableChangeListener( listener );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void removeVetoableChangeListener(
+VetoableChangeListener listener ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.vcs.addVetoableChangeListener( listener );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; protected void paintComponent( Graphics g ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g.setColor( getForeground()
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int height =
+g.getFontMetrics().getHeight();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paintString( g, this.title,
+height );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( this.lines != null ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+step = height;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+( String line : this.lines )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+paintString( g, line, height += step );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private void paintString( Graphics g, String str,
+int height ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( str != null )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+g.drawString( str, 0, height );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.14: MyBeanConstrainedProperties.java<br>
+<br>
+6. Write <span style="font-weight: bold;">MyBeanJComponent.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.awt.Graphics;<br>
+import java.io.Serializable;<br>
+import javax.swing.JComponent;<br>
+      <br>
+/**<br>
+&nbsp;* Bean with a simple property "title".<br>
+&nbsp;*/<br>
+public class MyBeanJComponent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extends JComponent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; private String title;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getTitle() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setTitle( String title ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.title = title;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; protected void paintComponent( Graphics g ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g.setColor( getForeground()
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int height =
+g.getFontMetrics().getHeight();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( this.title != null )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+g.drawString(this.title, 0, height );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.15: MyBeanJComponent.java<br>
+<br>
+3. Build the jar file.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">BeansExample2 </span>and
+select <span style="font-weight: bold;">Build</span>.</li>
+</ul>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javabeans/samples/</span><span
+ style="font-weight: bold;">BeansExample2</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have built
+jar file that contains various beans with different types of properties.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Introspection<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will&nbsp; learn
+how to use Introspection API to introspect a bean.<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="index.html#2.1">Introspect a bean</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Instrospect a bean<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">IntrospectionExample</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">IntrospectionExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">IntrospectionExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+2. Modify the IDE generated <span style="font-weight: bold;">IntrospectionExample.java</span>.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Modify the <span style="font-weight: bold;">IntrospectionExample.java</span>
+as
+shown in Code-3.11 below. <br>
+  </li>
+  <li>Study the code by special attention to the bold-fonted code.</li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.beans.BeanInfo;<br>
+import java.beans.IntrospectionException;<br>
+import java.beans.Introspector;<br>
+import java.beans.MethodDescriptor;<br>
+import java.beans.PropertyDescriptor;<br>
+      <br>
+public class IntrospectionExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args )<br>
+&nbsp;&nbsp;&nbsp; throws IntrospectionException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Get bean information via Introspection</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BeanInfo info = Introspector.getBeanInfo( SimpleBean.class );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Display properties of a bean</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for ( PropertyDescriptor pd : info.getPropertyDescriptors() ){</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Field of SimpleBean = " + pd.getName() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Display methods of a bean</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for ( MethodDescriptor md : info.getMethodDescriptors() ){</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println( "Methods of SimpleBean = " + md.getName() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11: Modified IntrospectionExample.java<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">
+3. Write SimpleBean.java.<br>
+</p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.Serializable;<br>
+      <br>
+public class SimpleBean implements Serializable{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private final String name = "SimpleBean";<br>
+&nbsp;&nbsp;&nbsp; private int size;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public int getSize() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.size;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setSize( int size ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.size = size;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.12: SimpleBean.java<br>
+<br>
+4.&nbsp; Build and run the program.<br>
+<ul>
+  <li>Right click IntrospectionExample project node and select Run.</li>
+  <li>Observe the result in the Output window. (Figure-3.13 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Field of SimpleBean = class<br>
+Field of SimpleBean = name<br>
+Field of SimpleBean = size<br>
+Methods of SimpleBean = setSize<br>
+Methods of SimpleBean = hashCode<br>
+Methods of SimpleBean = getSize<br>
+Methods of SimpleBean = equals<br>
+Methods of SimpleBean = wait<br>
+Methods of SimpleBean = wait<br>
+Methods of SimpleBean = notify<br>
+Methods of SimpleBean = getClass<br>
+Methods of SimpleBean = toString<br>
+Methods of SimpleBean = notifyAll<br>
+Methods of SimpleBean = wait<br>
+Methods of SimpleBean = getName<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.13: Result of introspection<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javabeans/samples/IntrospectionExample</span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_3">return
+to top of the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have learned
+how to use Introspection.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+<br>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Event Handling<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to learn
+how to use event handling of JavaBeans.<br>
+</p>
+<ol>
+  <ol>
+    <li><a href="#4.1">Add event handling using built-in event source,
+Button class</a></li>
+    <li><a href="#4.2">Add event handling using your own event source</a><br>
+    </li>
+  </ol>
+</ol>
+<p style="margin-left: 40px;"></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Add event handling using built-in event source, Button class<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">ActionEventExample</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">ActionEventExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">ActionEventExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">ActionEventExample.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+2. Modify the IDE generated <span style="font-weight: bold;">ActionEventExample.java</span>
+as
+shown in Code-4.11 below. Study the code by special attention to the
+bold-fonted comments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.awt.BorderLayout;<br>
+import javax.swing.JButton;<br>
+import javax.swing.JFrame;<br>
+import javax.swing.JTextArea;<br>
+import javax.swing.WindowConstants;<br>
+      <br>
+public class ActionEventExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame frame = new JFrame(
+"Button Handler" );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JTextArea area = new
+JTextArea( 6, 80 );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton button = new
+JButton( "Fire Event" );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Register an ActionListener object to the event source</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+button.addActionListener( new ButtonEventHandler( area ) );</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.add( button,
+BorderLayout.NORTH );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.add( area,
+BorderLayout.CENTER );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.pack();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+frame.setDefaultCloseOperation( WindowConstants.DISPOSE_ON_CLOSE );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setLocationRelativeTo(
+null );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.setVisible( true );<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11: ActionEventExample.java<br>
+<br>
+3. Write <span style="font-weight: bold;">ButtonEventHandler.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import
+java.awt.event.ActionEvent;<br>
+import java.awt.event.ActionListener;<br>
+import javax.swing.JTextArea;<br>
+import java.awt.BorderLayout;<br>
+import javax.swing.JButton;<br>
+import javax.swing.JFrame;<br>
+import javax.swing.WindowConstants;<br>
+      <br>
+public class ButtonEventHandler implements ActionListener {<br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Component that will contain messages about<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * events generated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; private JTextArea output;<br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Creates an ActionListener that will put
+messages in<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * JTextArea everytime event received.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public ButtonEventHandler( JTextArea output ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.output = output;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; /**</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; * When
+receives action event notification, appends</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; *
+message to the JTextArea passed into the constructor.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; */</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+actionPerformed( ActionEvent event ) {</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.output.append( "Action occurred in the Button Handler: " + event +
+'\n' );</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: ButtonEventHandler.java<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">4. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">ActionEventExample </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the Button Handler dialog box with Fire Event button is
+displayed. <br>
+  </li>
+  <li>Click Fire Event button. (Figure-4.12 below)</li>
+</ul>
+</div>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/1_button1.png" style="width: 590px; height: 168px;"><br>
+Figure-4.12: Result of running ActionEventExample <br>
+<ul>
+  <li>Observe that event handler method displays "<span
+ style="font-weight: bold;">Action occurred in the Button Handler: ...</span>".
+(Figure-4.13 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_button2.png"
+ style="width: 590px; height: 168px;"><br>
+Figure-4.13: Event handler is called<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javabeans/samples/</span><span
+ style="font-weight: bold;">ActionEventExample</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Add event handling using your own event source<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyEventExample</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">MyEventExample</span>.&nbsp;
+(Figure-4.10 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyEventExample
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">MyEventExample.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+2. Modify the IDE generated <span style="font-weight: bold;">MyEventExample.java</span>
+as
+shown in Code-4.21 below. Study the code by special attention to the
+bold-fonted comments.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class MyEventExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create an event source</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyEventSource s1 = new MyEventSource();</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Register an event listener to the event source</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+s1.addMyEventListener( new MyEventListenerImpl() );</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Triger an event</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+s1.triggerSomethingEvent("I won the lottery!");</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Trigger another event</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+s1.triggerSomethingEvent("She said Yes!");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.21: MyEventExample.java<br>
+<br>
+3. Write <span style="font-weight: bold;">MyEvent.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.EventObject;<br>
+      <br>
+      <span style="font-weight: bold;">public class MyEvent extends
+EventObject</span> {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of MyEvent */<br>
+&nbsp;&nbsp;&nbsp; public MyEvent(Object source) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(source);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public MyEvent(Object source, String myEventName) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(source);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.myEventName =
+myEventName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String myEventName;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getMyEventName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return myEventName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setMyEventName(String myEventName) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.myEventName =
+myEventName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.22: MyEvent.java<br>
+<br>
+4. Write <span style="font-weight: bold;">MyEventListenerInterface.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.util.EventObject;<br>
+      <br>
+public interface MyEventListenerInterface { <br>
+&nbsp;&nbsp;&nbsp; public void somethingHappened(MyEvent event);<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.23: MyEventListenerInterface.java<br>
+<br>
+5. Write <span style="font-weight: bold;">MyEventListenerImpl.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">public
+class MyEventListenerImpl implements MyEventListenerInterface</span> {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void somethingHappened(MyEvent event ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Event "
++ event.getMyEventName() + <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" Occurred at " + new java.util.Date());<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.24: MyEventListenerImpl.java<br>
+<br>
+6. Write <span style="font-weight: bold;">MyEventSource.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.Serializable;<br>
+import java.util.ArrayList;<br>
+      <br>
+public class MyEventSource implements Serializable {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Maintain the event listeners<br>
+&nbsp;&nbsp;&nbsp; ArrayList a1 = new ArrayList();<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of MyEventSource */<br>
+&nbsp;&nbsp;&nbsp; public MyEventSource() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void
+addMyEventListener(MyEventListenerInterface l){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.add(l);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void
+removeMyEventListener(MyEventListenerInterface l){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1.remove(l);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void triggerSomethingEvent(String eventName){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Invoke event listener<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Object item: a1){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MyEventListenerInterface m1 = (MyEventListenerInterface)item;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+m1.somethingHappened(new MyEvent(this, eventName));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.25: MyEventSource.java<br>
+</div>
+<p style="margin-left: 40px;">7. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyEventExample </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in Output window of the IDE.&nbsp;
+(Figure-4.26 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Event I won the lottery!
+Occurred at Sat Mar 03 17:27:25 EST 2007<br>
+Event She said Yes! Occurred at Sat Mar 03 17:27:25 EST 2007<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.26: Result<br>
+<br>
+<img alt="" src="index_files/1_label22.png"
+ style="width: 833px; height: 682px;"><br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+This exercise up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javabeans/samples/</span><span
+ style="font-weight: bold;">MyEventExample</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned how
+to add event handling to the Java application.<br>
+</p>
+<div style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+</div>
+<br>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<div style="margin-left: 40px;"><br>
+You can do either of the two homeworks (Homework #1 or Homework #2)
+mentioned below.<br>
+<br>
+Homework #1<br>
+<hr style="width: 100%; height: 2px;"><br>
+</div>
+<div style="margin-left: 40px;">1. The homework is to modify <span
+ style="font-weight: bold;">ActionEventExample </span>project
+above as following.&nbsp; (You might want to create a new project by
+copying
+the <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">ActionEventExample</span>
+project.&nbsp; You can name the homework project in any way you want
+but here I am going to call it <span style="font-weight: bold;">MyActionEventExample</span>.)
+<br>
+<ul>
+  <li>Add another button.</li>
+  <li>When the newly added button is clicked, invoke an event handler
+which displays date and time of the event.<br>
+  </li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javabeans.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyActionEventExample</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyActionEventExample</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyActionEventExample</span>)<br>
+    </li>
+    <li>jar cvf MyActionEventExample.zip MyActionEventExample (<span
+ style="font-weight: bold;">MyActionEventExample </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javabeans.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javabeans</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javabeans.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+</ul>
+<div style="margin-left: 40px;">Homework #2<br>
+<hr style="width: 100%; height: 2px;"><br>
+<div style="margin-left: 40px;">1. The homework exercise is to create
+<span style="font-weight: bold;">MyOwnEventExample </span>project as
+following. <br>
+<ul>
+  <li>The new event is called MyOwnEvent.</li>
+  <li>Write MyOwnEvent.java.&nbsp; This class has the following method</li>
+  <ul>
+    <li>getCurrentTime() - use java.util.Date() method to return
+current date and time</li>
+  </ul>
+  <li>Write MyOwnEventListenerInterface.java.</li>
+  <li>Write MyOwnListenerImpl.java.</li>
+  <ul>
+    <li>When event is fired, display the date and time of the event<br>
+    </li>
+  </ul>
+  <li>Write MyOwnEventSource.java</li>
+  <li>Write MyOwnEventExample.java in which event registration and
+event triggering is performed.</li>
+</ul>
+<br>
+</div>
+2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javabeans.<br>
+</span>
+<ul>
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyOwnEventExample</span><span style="font-weight: bold;"></span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains MyOwnEventExample
+directory&gt;
+(assuming you named your project as MyOwnEventExample)<br>
+    </li>
+    <li>jar cvf MyOwnEventExample.zip MyOwnEventExample
+(MyOwnEventExample<span style="font-weight: bold;"> </span>directory
+should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javabeans.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javabeans</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javabeans.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project</li>
+</ul>
+<br>
+</div>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

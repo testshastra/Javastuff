@@ -1,0 +1,3547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1027: Java Interface and Abstract class</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="LAB-1027: Java Interface and Abstract class"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Interface and Abstract Class<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+The Java interface feature of the Java programming language enables the
+flexibility and agility of Java application development.&nbsp; In this
+hands-on lab, you are going to explore the concept of Java Interface
+and abstract class.<br>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 120 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.
+<ul>
+  <li>1027_javainterface.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1027_javainterface.zip">download</a>)</li>
+  <ul>
+    <li>The zip file contains this document and the lab contents.&nbsp;
+      <br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb 3rd, 2007: Created</li>
+  <li>March 18th, 2007: Homework is updated</li>
+  <li>June 10th, 2008: JDK 6 and NetBeans 6.1 are used</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Abstract class (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Interface as a Type (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_3">Exercise 3: Implementing multiple
+interfaces (30
+minutes)</a></li>
+  <li><a href="#Exercise_4">Exercise 4: Interface and polymorphism (20
+minutes)</a></li>
+  <li><a href="#Exercise_5">Exercise 5: Inheritance among interfaces
+(30 minutes)</a></li>
+  <li><a href="#Exercise_6">Exercise 6: Rewriting an interface (20
+minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Abstract class <br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will write Java
+program that use abstract classes.&nbsp; You will also learn how to add
+polymorphic behavior to the program through abstact methods.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#1.1">Build and run an application that uses
+an Abstract class</a></li>
+    <li><a href="#1.2">Build MyOnlineShopUsingAbstractClass project</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run an application that uses an Abstract class<br>
+</h3>
+<p style="margin-left: 40px;">0. Start NetBeans IDE if you have not
+done so.<br>
+1. Create a NetBeans project<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/111_choosejavaproject.png"
+ style="width: 729px; height: 505px;"><br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyAbstractClassProject</span>.
+(Figure-1.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/1_abstract1.png" style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create a project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyAbstractClassProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+2. Write <span style="font-weight: bold;">LivingThing.java</span> as
+an abstract class.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyAbstractClassProject
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">LivingThing</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myabstractclassproject</span> </span>or
+choose<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span> <span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myabstractclassproject</span></span>from
+the drop-down menu.&nbsp; (Figure-1.11 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_abstract2.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.11: Write LivingThing abstract class<br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">LivingThing.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">LivingThing.java</span>
+as shown in Code-1.12 below.&nbsp; <br>
+  </li>
+  <li>Study the code by paying special attention to bold-fonted part.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myabstractclassproject;<br>
+      <br>
+      <span style="font-weight: bold;">// The LivingThing class is an
+abstract class because</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">// some methods in it are
+declared as abstract methods.</span><br>
+public abstract class LivingThing {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public LivingThing(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void breath(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Living
+Thing breathing...");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void eat(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Living
+Thing eating...");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; /**</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; *
+Abstract method walk()</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; * We
+want this method to be implemented by
+subclasses of</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; *
+LivingThing</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; */</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+abstract void walk();</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getName() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.12: LivingThing.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Human.java</span>.&nbsp; The
+<span style="font-weight: bold;">Human.java</span> is a concrete class
+that extends the <span style="font-weight: bold;">LivingThing </span>abstract
+class.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyAbstractClassProject
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.&nbsp;
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Human</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myabstractclassproject</span> </span>or
+choose<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span> <span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myabstractclassproject</span></span>from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Human.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Human.java</span>
+as shown in Code-1.13 below. <br>
+  </li>
+  <li>Study the code by paying special attention to bold-fonted part.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myabstractclassproject;<br>
+      <br>
+public class Human <span style="font-weight: bold;">extends LivingThing</span>
+{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Human(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(name);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Provide implementation of the abstract method.<br>
+&nbsp;&nbsp;&nbsp; public void walk(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Human "
++ getName() + " walks...");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: Human.java<br>
+<br>
+4. Write <span style="font-weight: bold;">Monkey.java</span>.
+(Code-1.14 below)<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myabstractclassproject;<br>
+      <br>
+public class Monkey extends LivingThing {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public Monkey(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(name);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Implement the abstract method<br>
+&nbsp;&nbsp;&nbsp; public void walk(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Monkey "
++ getName() + " also walks...");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.14: Monkey.java<br>
+<br>
+5.&nbsp; Modify <span style="font-weight: bold;">Main.java</span> as
+shown in Code-1.15 below.&nbsp; Study the code by paying special
+attention to bold-fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myabstractclassproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create Human object
+instance<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // and assign it to Human
+type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Human human1 = new
+Human("Sang Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; human1.walk();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create Human object
+instance</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// and assign it to
+LivingThing type.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LivingThing livingthing1 =
+human1;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+livingthing1.walk();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Create a Monkey object
+instance</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// and assign it to
+LivingThing type.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LivingThing livingthing2 =
+new Monkey("MonkeyWrench");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+livingthing2.walk();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display data from human1
+and livingthing1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Observe that they refer
+to the same object instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("human1.getName() = " + human1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("livingthing1.getName() = " +
+livingthing1.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Check of object instance
+that is referred by x and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // y is the same object
+instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean b1 = (human1 ==
+livingthing1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Do
+human1 and livingthing1 point to the same object instance? " + b1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compile error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // LivingThing z = new
+LivingThing();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.15: Main.java<br>
+<br>
+6. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyAbstractClassProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result is displayed in the Outout window of the IDE.
+(Figure-1.16 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Human Sang Shin walks...<br>
+Human Sang Shin walks...<br>
+Monkey MonkeyWrench also walks...<br>
+human1.getName() = Sang Shin<br>
+livingthing1.getName() = Sang Shin<br>
+Do human1 and livingthing1 point to the same object instance? true<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.16: Result<br>
+<br>
+7. For your own exercise, please do the following:<br>
+<ul>
+  <li>Define another abstract method in the LivingThing.java as
+following</li>
+  <ul>
+    <li> public abstract void dance(String dancingStyle);&nbsp; <br>
+    </li>
+  </ul>
+  <li><span style="color: rgb(0, 0, 0);"> Implement a concrete method
+in
+the Human.java and Monkey.java</span></li>
+  <li><span style="color: rgb(0, 0, 0);">Modify Main.java to invoke
+dance(</span>String dancingStyle<span style="color: rgb(0, 0, 0);">)
+method through obect instances of human1 and livingthing1.</span></li>
+  <ul>
+    <li><span style="color: rgb(0, 0, 0);">Example dancing styles could
+be Tango, ChaChaCha, or whatever<br>
+      </span></li>
+  </ul>
+</ul>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyAbstractClassProject.&nbsp;
+</span>You can just open it and run it.&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Build MyOnlineShopUsingAbstractClass program<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to rewrite
+<span style="font-weight: bold;">MyOnlineShop </span>program you built
+and run in the <a
+ href="http://www.javapassion.com/handsonlabs/javainheritance/">Java
+Inheritance hands-on
+lab</a> to use an abstract method of an abstract class (instead of
+overriding method of a concrete class).&nbsp;&nbsp; The differences are
+highlighted in bold font. <br>
+</p>
+<p style="margin-left: 40px;">&nbsp;The <span
+ style="font-weight: bold;">MyOnlineShop </span>project is provided as
+part of this hands-on lab zip file for your convenience.&nbsp; You can
+open it as <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyOnlineShop.&nbsp;
+</span>The instruction below is written with an assumption that you are
+stating from scratch. </p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyOnlineShopUsingAbstractClass</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span
+ style="font-weight: bold; color: rgb(0, 0, 0);">MyOnlineShopUsingAbstractClass</span><span
+ style="font-weight: bold;"> </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the
+editor window of the IDE.</li>
+</ul>
+2. Write <span style="font-weight: bold;">Product.java</span>.&nbsp;
+The Product class is an abstract class that has an abstract method
+called computeSalePrice().<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingAbstractClass
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Product</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Product.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Product.java</span>
+as shown in Code-1.20 below. <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+      <span style="font-weight: bold;">// Product class is now an
+abstract class</span><br>
+public <span style="font-weight: bold;">abstract </span>class Product
+{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private double regularPrice;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Product */<br>
+&nbsp;&nbsp;&nbsp; public Product(double regularPrice) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.regularPrice =
+regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+computeSalePrice() is now an abstract method</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+abstract double computeSalePrice();</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; public double getRegularPrice() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setRegularPrice(double regularPrice) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.regularPrice =
+regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.20: Product.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Electronics.java</span>.&nbsp;
+The Electronics class itself&nbsp; is an abstract class because it does
+not provide implementation of the computeSalePrice() abstract method.
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Electronics</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Electronics.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Electronics.java</span>
+as shown in Code-1.21 below.&nbsp; Note that Electronics class extends
+Product class.&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+      <span style="font-weight: bold;">// Electronics class is now an
+abstract class because<br>
+// it does not provide implementation of the<br>
+// computeSalePrice() abstract method.<br>
+      </span>public <span style="font-weight: bold;">abstract </span>class
+Electronics extends Product{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String manufacturer;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Electronics */<br>
+&nbsp;&nbsp;&nbsp; public Electronics(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.manufacturer =
+manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getManufacturer() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setManufacturer(String manufacturer) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.manufacturer =
+manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: Electronics.java<br>
+<br>
+4. Write <span style="font-weight: bold;">MP3Player.java</span>.&nbsp;
+The <span style="font-weight: bold;">MP3Player </span>class extends <span
+ style="font-weight: bold;">Electronics </span>class.&nbsp; Note also
+that the <span style="font-weight: bold;">MP3Player </span>class has
+implementation of the <span style="font-weight: bold;">computeSalePrice</span>()
+method.
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">MP3Player</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">MP3Player.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">MP3Player.java</span>
+as shown in Code-1.23 below.&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class MP3Player extends Electronics{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String color;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public MP3Player(double regularPrice, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String color) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice,
+manufacturer);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.color = color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Implement the
+abstract method</span><br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.9;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getColor() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setColor(String color) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.color = color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.23: MP3Player.java<br>
+<br>
+5. Write <span style="font-weight: bold;">TV.java</span>.&nbsp; The<span
+ style="font-weight: bold;"> TV</span> class extends <span
+ style="font-weight: bold;">Electronics </span>abstract class.&nbsp;
+Note also
+that the <span style="font-weight: bold;">TV</span> class has the
+implementation of the <span style="font-weight: bold;">computeSalePrice()</span>
+method.
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">TV</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">TV.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">TV.java</span>
+as shown in Code-1.24 below.&nbsp;&nbsp;</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class TV extends Electronics {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int size;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of TV */<br>
+&nbsp;&nbsp;&nbsp; public TV(double regularPrice, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int size) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice,
+manufacturer);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.size = size;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Implement the
+abstract method</span><br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.8;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.24: TV.java<br>
+<br>
+6. Write <span style="font-weight: bold;">Book.java</span>.&nbsp; <span
+ style="font-weight: bold;">The Book</span> class extends <span
+ style="font-weight: bold;">Product </span>class.&nbsp; Note also that
+the <span style="font-weight: bold;">Book</span> class has the
+implementation of the <span style="font-weight: bold;">computeSalePrice()</span>
+method.
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyFinalClassExample
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Book</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Book.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Book.java</span>
+as shown in Code-1.25 below.&nbsp;&nbsp;</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Book extends Product{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String publisher;<br>
+&nbsp;&nbsp;&nbsp; private int yearPublished;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Book */<br>
+&nbsp;&nbsp;&nbsp; public Book(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Implement the
+abstract method</span><br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.5;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getPublisher() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setPublisher(String publisher) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public int getYearPublished() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setYearPublished(int yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.25: Book.java<br>
+<br>
+7. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-1.26 below.&nbsp; Study the code by special attention to the
+bold fonted comments,<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> </span>// Declare and create
+Product array of size 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Product[] pa = new
+Product[5];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Create object instances and assign them to</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// the type of Product.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[0] = new TV(1000,
+"Samsung", 30);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[1] = new TV(2000, "Sony",
+50);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[2] = new MP3Player(250,
+"Apple", "blue");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[3] = new Book(34, "Sun
+press", 1992);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[4] = new Book(15, "Korea
+press", 1986);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compute total regular
+price and total<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sale price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalRegularPrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalSalePrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;pa.length; i++){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Call a method of the super class to get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+the regular price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalRegularPrice += pa[i].getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+Since the sale price is computed differently</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+depending on the product type, overriding (implementation)</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+method of the object instance of the sub-class</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+gets invoked.&nbsp; This is runtime polymorphic</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+behavior.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">totalSalePrice +=
+pa[i].computeSalePrice();</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Item number " + i +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+": Type = " + pa[i].getClass().getName() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Regular price = " + pa[i].getRegularPrice() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Sale price = " + pa[i].computeSalePrice());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalRegularPrice = " + totalRegularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalSalePrice = " + totalSalePrice); <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.26: Main.java<br>
+<br>
+8. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingAbstractClass</span><span
+ style="font-weight: bold;"> </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.&nbsp;
+(Figure-1.27 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price =
+2000.0, Sale price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price =
+250.0, Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price =
+34.0, Sale price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price =
+15.0, Sale price = 7.5<br>
+totalRegularPrice = 3299.0<br>
+totalSalePrice = 2649.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.27: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyOnlineShopUsingAbstractClass.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top
+of
+the exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you will build a simple
+program using an abstract class.&nbsp; You also learned how to add
+polymorphic behavior to the program using abstract methods.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; <a href="#Tutorial_Exercises">return to the
+top</a><br>
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Exercise_2"></a>Exercise 2: Java Interface as a Type<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will build a simple
+Java application that uses Interface as a type.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#2.1">Build a Java program that uses Java interface as
+a type<br>
+      </a></li>
+    <li><a href="#2.2">Build a Java program that uses Relation Java
+interface</a></li>
+  </ol>
+</ul>
+<br>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build a Java program that uses Interface as a type<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.<br>
+  </li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyPersonInterface</span>.&nbsp;
+(Figure-2.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_person1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-2.10: Create <span style="color: rgb(0, 0, 0);">MyPersonInterfaceProject</span>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyPersonInterfaceProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+2. Write <span style="font-weight: bold;">PersonInterface.java</span>.&nbsp;
+The PersonInterface is Java interface.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPersonInterfaceProject
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.&nbsp;
+(You can choose <span style="font-weight: bold;">New-&gt;Java Interface</span>
+as well.)<br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">PersonInterface</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu.&nbsp; (Figure-2.11 below) <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_person2.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-2.11: PersonInterface interface<br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">PersonInterface.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">PersonInterface.java</span>
+as shown in Code-2.12 below.&nbsp; <br>
+  </li>
+</ul>
+</div>
+<ul style="margin-left: 40px;">
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public interface PersonInterface {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; // Compute person's total wealth<br>
+&nbsp;&nbsp; int computeTotalWealth();<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp; // Get person's name<br>
+&nbsp;&nbsp; String getName();<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.12: PersonInterface.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Person.java</span>.&nbsp;
+The Person class implements PersonInterface interface.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">MyPersonInterfaceProject</span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Person</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Person.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Person.java</span>
+as shown in Code-2.13 below.&nbsp; <br>
+  </li>
+  <li>Study the code by paying special attention to bold-fonted part.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class Person<span style="font-weight: bold;"> implements
+PersonInterface</span> {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int cashSaving;<br>
+&nbsp;&nbsp;&nbsp; int retirementFund;<br>
+&nbsp;&nbsp;&nbsp; String firstName;<br>
+&nbsp;&nbsp;&nbsp; String lastName;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Constructor with arguments<br>
+&nbsp;&nbsp;&nbsp; Person(int cashSaving,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+retirementFund,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+firstName,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+lastName){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.cashSaving = cashSaving;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.retirementFund =
+retirementFund;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.firstName = firstName;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lastName = lastName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // Compute
+person's total wealth</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public int
+computeTotalWealth(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println((cashSaving + retirementFund));;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (cashSaving +
+retirementFund);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // Get
+person's name</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public String
+getName(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return firstName + " " +
+lastName;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.13: Person.java<br>
+<br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-2.14 below.&nbsp; Study the code
+paying special attention to the bold-fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an object instance
+of Person class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person(10000, 20000, "Sang", "Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// You can assign the object instance to</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// PersonInterface type.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">PersonInterface
+personinterface1 = person1;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display data from person1
+and
+personinterface1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Observe that they refer to the same object instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("person1.getName() = " + person1.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" person1.computeTotalWealth() = " + person1.computeTotalWealth());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("personinterface1.getName() = " +
+personinterface1.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" personinterface1.computeTotalWealth() = " +
+personinterface1.computeTotalWealth());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Check of object instance
+that is
+referred by person1 and <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// personinterface1 is the same object instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean b1 = (person1 ==
+personinterface1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Do
+person1 and personinterface1 point to the same object instance? " + b1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create an object instance of Person class</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// and assign it to the interface type directly.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">PersonInterface
+personinterface2 = new Person(3000, 4000, "Dadu", "Daniel");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("personinterface2.getName() = " +
+personinterface2.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" personinterface2.computeTotalWealth() = " +
+personinterface2.computeTotalWealth());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.14: Main.java<br>
+<br>
+5. Build and run the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPersonInterfaceProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.&nbsp;
+(Figure-2.15 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">30000<br>
+person1.getName() = Sang Shin, person1.computeTotalWealth() = 30000<br>
+30000<br>
+personinterface1.getName() = Sang Shin,
+personinterface1.computeTotalWealth() = 30000<br>
+Do person1 and personinterface1 point to the same object instance? true<br>
+7000<br>
+personinterface2.getName() = Dadu Daniel,
+personinterface2.computeTotalWealth() = 7000<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.15: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyPersonInterfaceProject.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Build a Java program that uses RelationInterface Interface <br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to build
+another Java program that uses a Java interface called
+RelationInterface.<br>
+</p>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. </li>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyRelationInterfaceProject</span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyRelationInterfaceProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+2. Write <span style="font-weight: bold;">RelationInterface</span>
+Java interface.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPersonInterfaceProject
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.&nbsp;
+(You can choose <span style="font-weight: bold;">New-&gt;Java Interface</span>
+as well.)<br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">RelationInterface</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myrelationinterfaceproject</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myrelationinterfaceproject</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu.&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">RelationInterface.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">RelationInterface.java</span>
+as shown in Code-2.21 below.&nbsp; </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myrelationinterfaceproject;<br>
+      <br>
+// Define an interface with three abstract methods.<br>
+// Any class that implements this interface has to<br>
+// implement all three methods.<br>
+public interface RelationInterface {<br>
+&nbsp;&nbsp;&nbsp; public boolean isGreater( Object a, Object b);<br>
+&nbsp;&nbsp;&nbsp; public boolean isLess( Object a, Object b);<br>
+&nbsp;&nbsp;&nbsp; public boolean isEqual( Object a, Object b);<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: RelationInterface.java<br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+3. Write <span style="font-weight: bold;">Line.java</span>.&nbsp; <span
+ style="font-weight: bold;">Line
+</span>class implements <span style="font-weight: bold;">RelationInterface
+</span>interface.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">MyPersonInterfaceProject</span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Line</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myrelationinterfaceproject</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myrelationinterfaceproject</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Line.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Line.java</span>
+as shown in Code-2.23 below.&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myrelationinterfaceproject;<br>
+      <br>
+public class Line <span style="font-weight: bold;">implements
+RelationInterface</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private double x1;<br>
+&nbsp;&nbsp;&nbsp; private double x2;<br>
+&nbsp;&nbsp;&nbsp; private double y1;<br>
+&nbsp;&nbsp;&nbsp; private double y2;<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Constructor methoe of the Line class.<br>
+&nbsp;&nbsp;&nbsp; public Line(double x1,double x2,double y1,double y2){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.x1 = x1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.x2 = x2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.y1 = y1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.y2 = y2;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; // A new method definition of the Line class<br>
+&nbsp;&nbsp;&nbsp; public double getLength(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double length =
+Math.sqrt(&nbsp;&nbsp;&nbsp; (x2-x1)*(x2-x1) +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(y2-y1)*(y2-y1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return length;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Implement isGreater(..) method defined in the
+Relation interface<br>
+&nbsp;&nbsp;&nbsp; public boolean isGreater( Object a, Object b){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double aLen =
+((Line)a).getLength();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double bLen =
+((Line)b).getLength();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (aLen &gt; bLen);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp; // Implement isLess(..) method defined in the
+Relation interface <br>
+&nbsp;&nbsp;&nbsp; public boolean isLess( Object a, Object b){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double aLen =
+((Line)a).getLength();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double bLen =
+((Line)b).getLength();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (aLen &lt; bLen);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; // Implement isEqual(..) method defined in the
+Relation interface<br>
+&nbsp;&nbsp;&nbsp; public boolean isEqual( Object a, Object b){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double aLen =
+((Line)a).getLength();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double bLen =
+((Line)b).getLength();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (aLen == bLen);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.23: Line.java<br>
+<br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-2.24 below.&nbsp; Study the code
+paying special attention to the bold-fonted part.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myrelationinterfaceproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create two Line object
+instances.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Line line1&nbsp; = new
+Line(1.0, 2.0, 1.0, 2.0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Line line2&nbsp; = new
+Line(2.0, 3.0, 2.0, 3.0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean b1 =
+line1.isGreater(line1, line2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("line1 is
+greater than line2: " + b1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean b2 =
+line1.isEqual(line1, line2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("line1 is
+equal with line2: " + b2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Note that the line3 is
+object instance of Line type.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Because the Line type is
+also a type of RelationInterface,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// the line3 variable can be
+declared as RelationInterface type.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// This is a very very
+important concept you need to understand.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RelationInterface
+line3&nbsp; = new Line(1.0, 5.0, 1.0, 5.0);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean b3 =
+line3.isEqual(line1, line3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("line1 is
+equal with line3: " + b3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Length
+of line1 is " + line1.getLength());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Length
+of line2 is " + line2.getLength());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // The following line of
+code will generate a compile error since line3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // is declared as
+RelationInterface
+interface type not Line type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // and the getLength()
+method is not one of the methods defined<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // in the RelationInterface
+interface.&nbsp; It is commented out for now.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+System.out.println("Length of line3 is " + line3.getLength());<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.24: Main.java<br>
+<br>
+5. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyRelationInterfaceProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.&nbsp;
+(Figure-2.25 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">line1 is greater than line2:
+false<br>
+line1 is equal with line2: true<br>
+line1 is equal with line3: false<br>
+Length of line1 is 1.4142135623730951<br>
+Length of line2 is 1.4142135623730951<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.25: Result<br>
+<br>
+6.&nbsp; For your own exercise, do the following.<br>
+<ul>
+  <li>Uncomment the last commented line of the <span
+ style="font-weight: bold;">Main.java</span> that contains <span
+ style="font-weight: bold;">line3.getLength()</span> and observe the
+compile error.</li>
+  <li>Understand why the compiler error occurs.<br>
+  </li>
+</ul>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyRelationInterfaceProject.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a></div>
+<br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you built two Java
+programs which use Java interface.&nbsp; You learned how a Java
+interface is used as a type.&nbsp; You learned how a concrete class
+implements a Java interface.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Implementing multiple
+Interfaces<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;"> In this exercise, you are going to learn
+a how a concrete class can implement multiple Java interfaces.&nbsp;
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+  <li><a href="#3.1">Build and run a Java program that uses multiple
+Java interfaces</a></li>
+</ol>
+<br>
+<ul style="margin-left: 40px;">
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Build and run a Java program that uses multiple Java interfaces<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project you built above for the change you are going to make in
+this exercise or you might want
+to
+create a new project, for example, <span style="font-weight: bold;">MyPersonMultipleInterfaces</span><span
+ style="font-weight: bold;"></span>,
+by "copying" <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+- Right click <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created <span style="font-weight: bold;">MyPersonMultipleInterfaces</span>
+project.<br>
+<br>
+1. Write <span style="font-weight: bold;">AnotherInterfaceExample.java.&nbsp;</span>
+<span style="font-weight: bold;">AnotherInterfaceExample </span>interface
+is the 2nd Java interface that we want to add
+to the program.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">MyPersonInterfaceProject</span> project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="color: rgb(51, 51, 255); font-weight: bold;">AnotherInterfaceExample</span></li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">AnotherInterfceExample.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">AnotherInterfceExample.java</span>
+as shown in Code-3.10 below.&nbsp; </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public interface AnotherInterfaceExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Measure person's intelligence<br>
+&nbsp;&nbsp;&nbsp; int measureIntelligence(String name);<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.10: AnotherInterfaceExample.java<br>
+<br>
+2. Modify <span style="font-weight: bold;">Person.java</span> as shown
+in Code-3.11 below.&nbsp; The change is to have the <span
+ style="font-weight: bold;">Person </span>class to
+implement the <span style="font-weight: bold;">AnotherInterfaceExample
+</span>interface in addition to
+<span style="font-weight: bold;">PersonInterface </span>interface.&nbsp;
+The code
+fragments that need to be added are highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class Person implements PersonInterface<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">,</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+AnotherInterfaceExample</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int cashSaving;<br>
+&nbsp;&nbsp;&nbsp; int retirementFund;<br>
+&nbsp;&nbsp;&nbsp; String firstName;<br>
+&nbsp;&nbsp;&nbsp; String lastName;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Constructor with arguments<br>
+&nbsp;&nbsp;&nbsp; Person(int cashSaving,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+retirementFund,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+firstName,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+lastName){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.cashSaving = cashSaving;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.retirementFund =
+retirementFund;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.firstName = firstName;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lastName = lastName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Compute person's total wealth<br>
+&nbsp;&nbsp;&nbsp; public int computeTotalWealth(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println((cashSaving + retirementFund));;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (cashSaving +
+retirementFund);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Get person's name<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return firstName + " " +
+lastName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+// Implement method of AnotherInterfaceExample</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public int measureIntelligence(String name){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (name.startsWith("smart")){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 100;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else{</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return 50;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11: Modified Person.java<br>
+<br>
+3. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-3.12 below. The change is to show that now the object instance
+of the Person class now can invoke the method defined in the new
+interface. &nbsp; The code fragments that
+need to be changed are highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> package
+mypersoninterfaceproject;
+      <ul>
+      </ul>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an object instance
+of Person class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Person person1 = new
+Person(10000, 20000, "Sang", "Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // You can assign the object
+instance to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // PersonInterface type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PersonInterface
+personinterface1 = person1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display data from person1
+and personinterface1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Observe that they refer
+to the same object instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("person1.getName() = " + person1.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" person1.computeTotalWealth() = " + person1.computeTotalWealth() <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">+ "," +</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" person1.measureIntelligence() = " +
+person1.measureIntelligence(person1.getName()</span>));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("personinterface1.getName() = " +
+personinterface1.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" personinterface1.computeTotalWealth() = " +
+personinterface1.computeTotalWealth());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">// Compile error
+is expected on the following line of code.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// personinterface1.measureIntelligence(personinterface1.getName());</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// You can assign the object instance to</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// AnotherInterfaceExample type.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+AnotherInterfaceExample anotherinterfaceexample1 = person1;</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Check of object instance that is referred by personinterface1 and </span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// anotherinterfaceexample1 is the same object instance.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+boolean b1 = (personinterface1 == anotherinterfaceexample1);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Do personinterface1 and anotherinterfaceexample1
+point to the same object instance? " + b1);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.12: Modified Main.java<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">4. Build and run the program.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPersonMultipleInterfaces
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">30000<br>
+person1.getName() = Sang Shin, person1.computeTotalWealth() = 30000,
+person1.measureIntelligence() = 50<br>
+30000<br>
+personinterface1.getName() = Sang Shin,
+personinterface1.computeTotalWealth() = 30000<br>
+Do personinterface1 and anotherinterfaceexample1 point to the same
+object instance? true<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.13: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyPersonMultipleInterfaces.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+5. For your own exercise, please do the following:<br>
+<ul>
+  <li>Add the 3rd interface with the following mtehod</li>
+  <ul>
+    <li>int computeFirstNameLength(String name);</li>
+  </ul>
+  <li>Make the Person class to implement the 3rd interface</li>
+  <ul>
+    <li>The implementation of the computeFirstNameLength(String name)
+returns the length of the first name<br>
+    </li>
+  </ul>
+  <li>Modify Main.java to display information accordingly<br>
+  </li>
+</ul>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have reimplemented
+MyPersonInterfaceProject to have the Person class to implement multiple
+Java interfaces.<br>
+<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Inheritance and polymorphism<br>
+</h2>
+<p style="margin-left: 40px;"> In this exercise, you are going to
+rewrite
+<span style="font-weight: bold;">MyOnlineShopUsingAbstractClass </span>program
+you built above <span style="text-decoration: underline;"><span
+ style="font-weight: bold;"></span></span> to
+use Java interface (instead of Abstract class).&nbsp;&nbsp; </p>
+<ol style="margin-left: 40px;">
+  <li><a href="#4.1">Build MyOnlineShopUsingInterface project</a><a
+ href="index.html#3.1"><br>
+    </a></li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Build MyOnlineShopUsingInterface project<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Create a NetBeans project<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyOnlineShopUsingInterface</span>.
+(Figure-1.10 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that the&nbsp;<span style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;"> </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">Main.java</span>
+is displayed in the editor window of the IDE.</li>
+</ul>
+<div style="margin-left: 40px;">
+2. Write <span style="font-weight: bold;">ProductInterface.java</span>.&nbsp;
+<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+(You can choose <span style="font-weight: bold;">New-&gt;Java Interface</span>)<br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ProductInterface</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">ProductInterface.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">ProductInterface.java</span>
+as shown in Code-4.11 below. </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public interface ProductInterface {<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice();<br>
+&nbsp;&nbsp;&nbsp; public double getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp; public void setRegularPrice(double regularPrice);<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11: ProductInterface.java<br>
+<br>
+3. Write <span style="font-weight: bold;">Product.java</span>.&nbsp; <br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Product</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Product.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Product.java</span>
+as shown in Code-4.12 below. </li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class Product implements ProductInterface{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private double regularPrice;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Product */<br>
+&nbsp;&nbsp;&nbsp; public Product(double regularPrice) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.regularPrice =
+regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Implement the methods of the ProductInterface<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getRegularPrice() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setRegularPrice(double regularPrice) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.regularPrice =
+regularPrice;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: Product.java
+</div>
+<div style="margin-left: 40px;"><br>
+4. Write <span style="font-weight: bold;">ElectronicsInterface.java</span>.&nbsp;
+The ElectronicsInterface is a Java interface which extends
+ProductInterface interface.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+(You can choose <span style="font-weight: bold;">New-&gt;Java Interface</span>)<br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ElectronicsInterface</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generate <span style="font-weight: bold;">ElectronicsInterface.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">ElectronicsInteface.java</span>
+as shown in Code-4.13 below. </li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public interface ElectronicsInterface extends ProductInterface {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; public String getManufacturer();<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: ElectronicsInterface.java<br>
+<br>
+5. Write <span style="font-weight: bold;">Electronics.java</span>.&nbsp;
+<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Electronics</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Electronics.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Electronics.java</span>
+as shown in Code-4.12 below. </li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class Electronics extends Product implements
+ElectronicsInterface {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String manufacturer;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Electronics */<br>
+&nbsp;&nbsp;&nbsp; public Electronics(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.manufacturer =
+manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getManufacturer() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setManufacturer(String manufacturer) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.manufacturer =
+manufacturer;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: Electronics.java<br>
+<br>
+6. Write <span style="font-weight: bold;">MP3Player.java</span>.&nbsp;
+<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">MP3Player</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">MP3Player.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">MP3Player.java</span>
+as shown in Code-4.12 below. </li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class MP3Player extends Electronics{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String color;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public MP3Player(double regularPrice, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String color) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice,
+manufacturer);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.color = color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override the method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.9;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getColor() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setColor(String color) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.color = color;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: MP3Player.java<br>
+<br>
+7. Write <span style="font-weight: bold;">TV.java</span>.&nbsp; <br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">TV</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">TV.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">TV.java</span>
+as shown in Code-4.12 below. </li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class TV extends Electronics {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int size;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of TV */<br>
+&nbsp;&nbsp;&nbsp; public TV(double regularPrice, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String manufacturer,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int size) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice,
+manufacturer);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.size = size;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override the method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.8;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: TV.java<br>
+<br>
+8. Write <span style="font-weight: bold;">Book.java</span>.&nbsp; <br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+    <br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Book</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">usinginterface</span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Book.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Book.java</span>
+as shown in Code-4.12 below. </li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class Book extends Product {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String publisher;<br>
+&nbsp;&nbsp;&nbsp; private int yearPublished;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Book */<br>
+&nbsp;&nbsp;&nbsp; public Book(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override the method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.5;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getPublisher() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setPublisher(String publisher) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public int getYearPublished() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setYearPublished(int yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: Book.java<br>
+<br>
+9. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-3.12 below. &nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> package
+myonlineshopusinginterface;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Main */<br>
+&nbsp;&nbsp;&nbsp; public Main() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declare and create
+Product array of size 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ProductInterface[] pa = new
+Product[5];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create object instances
+and assign them to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // the type of Product.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[0] = new TV(1000,
+"Samsung", 30);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[1] = new TV(2000, "Sony",
+50);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[2] = new MP3Player(250,
+"Apple", "blue");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[3] = new Book(34, "Sun
+press", 1992);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[4] = new Book(15, "Korea
+press", 1986);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compute total regular
+price and total<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sale price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalRegularPrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalSalePrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;pa.length; i++){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Call a method of the super class to get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+the regular price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalRegularPrice += pa[i].getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Since the sale price is computed differently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+depending on the product type, overriding (implementation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+method of the object instance of the sub-class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+gets invoked.&nbsp; This is runtime polymorphic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+behavior.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalSalePrice += pa[i].computeSalePrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Item number " + i +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+": Type = " + pa[i].getClass().getName() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Regular price = " + pa[i].getRegularPrice() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Sale price = " + pa[i].computeSalePrice());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalRegularPrice = " + totalRegularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalSalePrice = " + totalSalePrice);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.12: Modified Main.java<br>
+</div>
+<p style="margin-left: 40px;">4. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshopusinginterface.TV, Regular price = 1000.0, Sale price =
+800.0<br>
+Item number 1: Type = myonlineshopusinginterface.TV, Regular price =
+2000.0, Sale price = 1600.0<br>
+Item number 2: Type = myonlineshopusinginterface.MP3Player, Regular
+price = 250.0, Sale price = 225.0<br>
+Item number 3: Type = myonlineshopusinginterface.Book, Regular price =
+34.0, Sale price = 17.0<br>
+Item number 4: Type = myonlineshopusinginterface.Book, Regular price =
+15.0, Sale price = 7.5<br>
+totalRegularPrice = 3299.0<br>
+totalSalePrice = 2649.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.13: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyOnlineShopUsingInterface.&nbsp;
+</span>You can just open it and run it. <br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have rewritten
+MyOnlineShop application using Java interfaces.<br>
+<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Exercise_5"></a>Exercise 5: Inheritance among Interfaces<br>
+</h2>
+<p style="margin-left: 40px;">Interfaces can have inheritance
+relationship among themselves. &nbsp;
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#5.1">Build and run a Java program that uses Java
+interfaces that are related through inheritance</a></li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1)
+Build and run a Java program that uses Java interfaces that are related
+through inheritance<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+for the change you are going to make in this exercise or you might want
+to
+create a new project, for example, <span style="font-weight: bold;">MyPersonInheritanceInterfaces</span><span
+ style="font-weight: bold;"></span>,
+by "copying" <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+- Right click <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created <span style="font-weight: bold;">MyPersonInheritanceInterfaces</span>
+project.<br>
+<br>
+1. Write <span style="font-weight: bold;">StudentInterface.java. </span>The
+<span style="font-weight: bold;">StudentInterface </span>interface
+extends <span style="font-weight: bold;">PersonInterface</span>.&nbsp;
+In other words, <span style="font-weight: bold;">StudentInterface </span>interface
+is a child interface of the <span style="font-weight: bold;">PersonInterface</span>.&nbsp;
+<br>
+<ul>
+  <li>Right click MyPersonInheritanceInterfacesproject
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.
+(You can choose New-&gt;Java Interface as well.)<br>
+  </li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="color: rgb(51, 51, 255); font-weight: bold;">StudentInterface</span></li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter&nbsp;<span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">StudentInterface.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">StudentInterface.java</span>
+as shown in Code-5.10 below. <br>
+  </li>
+  <li>Study the code by paying attention to the bold-fonted part.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br style="font-weight: bold;">
+      <span style="font-weight: bold;">// StudentInterface interface
+extends PersonInteface interface</span><br>
+      <span style="font-weight: bold;">public interface
+StudentInterface extends PersonInterface</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Find the school the student attends<br>
+&nbsp;&nbsp;&nbsp; String findSchool();<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.10: StudentInterface.java<br>
+<br>
+2. Write <span style="font-weight: bold;">Student.java</span>.&nbsp;
+The Student class implements StudentInterface interface.&nbsp;&nbsp;
+The Student class implements all the methods defined in the
+StudentInterface interface and its parent interfaces.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingAbstractClass
+    </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Student</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span>
+    </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">mypersoninterfaceproject</span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Student.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Student.java</span>
+as shown in Code-5.11 below. </li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class Student implements StudentInterface {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int cashSaving;<br>
+&nbsp;&nbsp;&nbsp; int retirementFund;<br>
+&nbsp;&nbsp;&nbsp; String firstName;<br>
+&nbsp;&nbsp;&nbsp; String lastName;<br>
+&nbsp;&nbsp;&nbsp; String school;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Constructor with arguments<br>
+&nbsp;&nbsp;&nbsp; Student(int cashSaving,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+retirementFund,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String firstName,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String lastName,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String school){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.cashSaving = cashSaving;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.retirementFund =
+retirementFund;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.firstName = firstName;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lastName = lastName;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.school = school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Compute person's total wealth<br>
+&nbsp;&nbsp;&nbsp; public int computeTotalWealth(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println((cashSaving + retirementFund));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (cashSaving +
+retirementFund);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Get person's name<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return firstName + " " +
+lastName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Find out the school the student attends<br>
+&nbsp;&nbsp;&nbsp; public String findSchool(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return school;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.11: Modified Student.java<br>
+<br>
+3. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-5.12 below&nbsp;&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an object instance
+of Student class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Student student1 = new
+Student(10000, 20000, "Sang", "Shin", "Good School");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // You can assign the object
+instance to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // StudentInterface type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentInterface
+studentinterface1 = student1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display data from
+student1 and studentinterface1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Observe that they refer
+to the same object instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("student1.getName() = " + student1.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" student1.computeTotalWealth() = " + student1.computeTotalWealth()+
+"," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" student1.findSchool() = " + student1.findSchool());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("studentinterface1.getName() = " +
+studentinterface1.getName() + "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" studentinterface1.computeTotalWealth() = " +
+studentinterface1.computeTotalWealth()+ "," +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+" studentinterface1.findSchool() = " + studentinterface1.findSchool());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Check of object instance
+that is referred by student1 and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // studentinterface1 is the
+same object instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean b1 = (student1 ==
+studentinterface1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Do
+student1 and studentinterface1 point to the same object instance? " +
+b1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.12: Modified Main.java<br>
+</div>
+<p style="margin-left: 40px;">4. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyPersonInheritanceInterfaces
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE. (Figure-5.13
+below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">30000<br>
+student1.getName() = Sang Shin, student1.computeTotalWealth() = 30000,
+student1.findSchool() = Good School<br>
+30000<br>
+studentinterface1.getName() = Sang Shin,
+studentinterface1.computeTotalWealth() = 30000,
+studentinterface1.findSchool() = Good School<br>
+Do student1 and studentinterface1 point to the same object instance?
+true<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.13: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyPersonInheritanceInterfaces.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you built a Java
+program which uses a Java interface which is a child interface of
+another interface.<br>
+<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Exercise_6"></a>Exercise 6: Rewriting an Interface<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you are going
+to
+learn how to handle adding new methods to a existing Java interface
+without breaking existing applications that use the interface.
+</div>
+<ol style="margin-left: 40px;">
+  <li><a href="#6.1">Try to add another method to the PersonInterface
+interface</a><br>
+  </li>
+</ol>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="6.1"></a>(6.1)
+Try to add another method the PersonInterface interface<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+You can use the <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+for the change you are going to make in this exercise or you might want
+to
+create a new project, for example, <span style="font-weight: bold;">MyRewritingInterface</span>,
+by "copying" <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+- Right click <span style="font-weight: bold;">MyPersonInterfaceProject
+</span>project
+and select <span style="font-weight: bold;">Copy Project</span>.&nbsp;
+This document assumed you have created <span style="font-weight: bold;">MyRewritingInterface</span>
+project.<br>
+<br>
+1. Modify <span style="font-weight: bold;">PersonInterface.java</span>
+as shown
+in Code-6.11 below.&nbsp; The change is to another method to the
+PersonInterface.java.&nbsp; The code
+fragments that need to be added are highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public interface PersonInterface {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; // Compute person's total wealth<br>
+&nbsp;&nbsp; int computeTotalWealth();<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp; // Get person's name<br>
+&nbsp;&nbsp; String getName();<br>
+      <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+// Add another method to the interface </span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+void newMethod();</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.11: Modified PersonInterface.java<br>
+<br>
+2. Observe the compile error in the<span style="font-weight: bold;">
+Person.java</span>.&nbsp; (Figure-6.12 below)<br>
+<br>
+&lt;Learning point&gt; It is not unusual to have one developer (or one
+Java API specification group) defines a set of Java interfaces and
+other developers (or groups) implement them.&nbsp; Now if the interface
+is changed (adding another method to it), the existing implementation
+classes will be broken.&nbsp; That is what you observed in this
+step.&nbsp; The solution to this problem is to define another Java
+interface that contains only the newly added method.<br>
+<br>
+<img alt="" src="index_files/6_rewriting1.png"
+ style="width: 842px; height: 714px;"><br>
+Figure-6.12: The Person class is now broken<br>
+</div>
+<p style="margin-left: 40px;">3. Remove the change you made in<span
+ style="font-weight: bold;"> PersonInterface.java</span> in the
+previous step as shown in Code-6.13 below.&nbsp; This is the original
+code before thd change.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public interface PersonInterface {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Compute person's total wealth<br>
+&nbsp;&nbsp;&nbsp; int computeTotalWealth();<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Get person's name<br>
+&nbsp;&nbsp;&nbsp; String getName();<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.13: PersonInterface.java<br>
+<br>
+4. Write <span style="font-weight: bold;">PersonInterfaceAnother.java</span>.&nbsp;
+The PersonInterfaceAnother interface is a newly created interface that
+contains newly added method.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public interface PersonInterfaceAnother {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;</span><span
+ style="color: rgb(0, 0, 0);"> // Add another method to the interface </span><br
+ style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">&nbsp;&nbsp; void newMethod();</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-6.14: PersonInterfaceAnother.java<br>
+<br>
+5. Write <span style="font-weight: bold;">PersonAnother.java</span>.&nbsp;
+The <span style="font-weight: bold;">PersonAnother </span>class
+implements both <span style="font-weight: bold;">Person </span>and <span
+ style="font-weight: bold;">PersonInterfaceAnother </span>interfaces.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class PersonAnother <span style="font-weight: bold;">implements
+PersonInterface,</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+PersonInterfaceAnother</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int cashSaving;<br>
+&nbsp;&nbsp;&nbsp; int retirementFund;<br>
+&nbsp;&nbsp;&nbsp; String firstName;<br>
+&nbsp;&nbsp;&nbsp; String lastName;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Constructor with arguments<br>
+&nbsp;&nbsp;&nbsp; PersonAnother(int cashSaving,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+retirementFund,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+firstName,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+lastName){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.cashSaving = cashSaving;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.retirementFund =
+retirementFund;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.firstName = firstName;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.lastName = lastName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Compute person's total wealth<br>
+&nbsp;&nbsp;&nbsp; public int computeTotalWealth(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println((cashSaving + retirementFund));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (cashSaving +
+retirementFund);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Get person's name<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return firstName + " " +
+lastName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;<span
+ style="color: rgb(0, 0, 0);"> // Implement a new method</span></span><br
+ style="font-weight: bold; color: rgb(0, 0, 0);">
+      <span style="font-weight: bold; color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+public void newMethod(){</span><br
+ style="font-weight: bold; color: rgb(0, 0, 0);">
+      <span style="font-weight: bold; color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Some code</span><br style="font-weight: bold; color: rgb(0, 0, 0);">
+      <span style="font-weight: bold; color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.15: PersonAnother.java<br>
+<br>
+6. Write <span style="font-weight: bold;">PersonAnother2.java</span>.&nbsp;
+The <span style="font-weight: bold;">PersonAnother2 </span>class
+extends <span style="font-weight: bold;">Person </span>class and
+implements <span style="font-weight: bold;">PersonInterfaceAnother </span>interface.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mypersoninterfaceproject;<br>
+      <br>
+public class PersonAnother2 extends Person implements
+PersonInterfaceAnother{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; PersonAnother2(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Implement a new method<br>
+&nbsp;&nbsp;&nbsp; public void newMethod(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Some code<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.16: PersonAnother2.java<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this step is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javainterface/samples/MyRewritingInterface.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+7. For your exercise, please do the following tasks:<br>
+<ul>
+  <li>Create another interface called PersonInterface3 with the
+following method</li>
+  <ul>
+    <li>String toChangeNameToUpperCase() // Change name to upper case</li>
+  </ul>
+  <li>Create another implementation class called PersonAnother3 that
+implements PersonInterface, PersonInterface2, PersonInterface interfaces</li>
+  <li>Modify Main.java to create a object&nbsp; instance of
+PersonAnother3 and display the name in upper case.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;"></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have learned how to
+add new methods to the Java interface without breaking existing code
+that depends on the existing Java interface.<br>
+<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify the <span
+ style="font-weight: bold; color: rgb(0, 0, 0);">MyPersonMultipleInterfaces</span>
+project
+above.&nbsp;&nbsp;
+(You might want to create a
+new project by copying
+the <span style="font-weight: bold;">MyGetPersonMultipleInterfaces</span>
+project.)&nbsp;
+You can name the new project in any way you want but here I am going to
+call to call it as <span style="font-weight: bold;">MyGetPersonMultipleInterfaces2</span>.&nbsp;
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Write
+an interface called <span style="font-weight: bold;">MyOwnInterface</span>,
+which has the following method</li>
+  <ul>
+    <li>AddressInterface getAddress();</li>
+  </ul>
+  <li>The <span style="font-weight: bold;">AddressInterface </span>is
+a Java interface that has the following methods.</li>
+  <ul>
+    <li>int getStreetNumber();</li>
+    <li>void setStreetNumber(int streetNumber);<br>
+    </li>
+    <li>String getStreetName();</li>
+    <li>void setStreetName(String streetName);<br>
+    </li>
+    <li>String getCountry();</li>
+    <li>void setCountry(String country);</li>
+  </ul>
+  <li>Write <span style="font-weight: bold;">AddressImpl </span>class
+that implements <span style="font-weight: bold;">AddressInterface</span><br>
+  </li>
+  <li>Make the <span style="font-weight: bold;">Person </span>class
+to implement <span style="font-weight: bold;">MyOwnInterface</span>.</li>
+  <li>Initialize a Person object with proper data and display it.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javainterface.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;"> My</span><span
+ style="font-weight: bold;">GetPersonMultipleInterfaces</span><span
+ style="font-weight: bold;">2</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyGetPersonMultipleInterfaces2</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyGetPersonMultipleInterfaces2</span>)<br>
+    </li>
+    <li>jar cvf MyGetPersonMultipleInterfaces2.zip
+MyGetPersonMultipleInterfaces2 (<span style="font-weight: bold;">MyGetPersonMultipleInterfaces2
+      </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javainterface.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javainterface</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javainterface.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project - war file with necessary source files is OK.</li>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

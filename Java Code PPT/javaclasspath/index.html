@@ -1,0 +1,1432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1003: Java Classpath</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="LAB-1003: Java Classpath" name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Classpath<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sangshinpassion@gmail.com"></a><a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+The goal of this hands-on lab is to get you exposed to the concept of
+Java classpath and how it affects compilation and execution of Java
+programs.&nbsp; The classpath is the most basic but essential concept
+you&nbsp; will need to understand - it is basically a location where
+*.class files reside.&nbsp;&nbsp; If the classpath is not set up
+correctly, you will experience the infamous
+"java.lang.NoClassDefFoundError: &lt;name of the class file&gt;"
+exception.
+<p></p>
+<p align="center"><b>Expected duration: 60 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/javaintro"><img
+ alt=""
+ src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent">
+<p><br>
+</p>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>. <br>
+<ul>
+  <li>1003_javaclasspath.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1003_javaclasspath.zip">download</a>)</li>
+  <ul>
+    <li>The zip file contains this document and the lab contents<br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Jan. 29th, 2007: Created</li>
+  <li>Oct. 1st, 2007: Some cosmetic changes</li>
+  <li>Sep. 10th, 2008: Some wording is changed<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Experiment with class path with
+the Hello program at the command line (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Experiment with class path with
+the StudentRecordExample program at the command line (30 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Experiment with class path
+with the Hello program at the command line<br>
+</h2>
+<p style="margin-left: 40px;">Please do this exercise at the command
+line (in a terminal window).&nbsp; In this exercise, you are going to
+play around with the class path with a simple program which has a
+single class.
+</p>
+<ul>
+  <ol start="0">
+    <li><a href="#1.0">Build Hello program using "javac" and "java" at
+the command line</a><br>
+    </li>
+    <li><a href="#1.1">Exercise with "-classpath" or "-cp" option when
+running the "java" command</a><br>
+    </li>
+    <li><a href="#1.2">Exercise with the CLASSPATH environment variable</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.0"></a>(1.0)
+Build Hello program using "javac" and "java" at the command line<br>
+</h3>
+<p style="margin-left: 40px;">This step is something you've done as
+part of <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/#Exercise_1">Exercise
+1 of the LAB-1001: Getting to know your Java programming environment
+hands-on lab</a>.&nbsp; The same step is quoted here just in case you
+have not done it.<br>
+</p>
+<div style="margin-left: 40px;">1. Create a directory where you are
+going
+to
+write Java programs. (This is something you have done in the previous
+hands<br>
+<br>
+<span style="font-weight: bold;"></span></div>
+<div style="margin-left: 80px;">C:\&gt;<span style="font-weight: bold;">mkdir
+c:\myjavaprograms<br>
+</span>C:\&gt;<span style="font-weight: bold;">cd \myjavaprograms<br>
+</span></div>
+<p style="margin-left: 40px;">2. Write <span style="font-weight: bold;">Hello.java</span>
+using
+your editor of choice such as notepad on Windows platform or gedit on
+Solaris platform (in this example, I am using <span
+ style="font-weight: bold;">jedit</span>) as shown in Code-1.10
+below.&nbsp; <br>
+</p>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">jedit
+Hello.java</span><br>
+<span style="font-weight: bold;"></span></p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Hello {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * My first Java program<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print the string "Hello
+world" on screen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Hello
+world");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-1.10: Hello.java<br>
+<br>
+3. Compile <span style="font-weight: bold;">Hello.java</span> using <span
+ style="font-weight: bold;">javac</span>
+compiler.&nbsp; The <span style="font-weight: bold;">javac </span>compiler
+comes with J2SE SDK you've download.&nbsp; It resides in <span
+ style="font-weight: bold;">%JAVA_HOME%\bin</span> (Windows) or <span
+ style="font-weight: bold;">$JAVA_HOME/bin</span> (Solaris/Linux)
+directory. The result of compilation will be the creation of <span
+ style="font-weight: bold;">Hello.class</span> file.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac
+Hello.java</span><br>
+</div>
+<br>
+4. Make sure <span style="font-weight: bold;">Hello.class</span> file
+has been created.&nbsp; The <span style="font-weight: bold;">Hello.class</span>
+file contains bytecode representation of the Hello class.<br>
+<div style="margin-left: 40px;"><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">dir Hello.class<br>
+&nbsp;</span>Volume in drive C is ACER<br>
+&nbsp;Volume Serial Number is 58CE-B0DC<br>
+<br>
+&nbsp;Directory of C:\myjavaprograms<br>
+<br>
+01/19/2007&nbsp; 12:16
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+415 Hello.class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1
+File(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+415 bytes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 Dir(s)&nbsp; 21,578,907,648 bytes free<br>
+</div>
+<br>
+5. Run the <span style="font-weight: bold;">Hello </span>program
+using <span style="font-weight: bold;">java </span>command. <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+Hello</span><span style="font-weight: bold;"></span><br
+ style="font-weight: bold;">
+Hello world&nbsp; (or This is my first Java program! if you modified it
+as part of your homework)<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Exercise with "-classpath" or "-cp" option when running "java" command<br>
+</h3>
+<p style="margin-left: 40px;">&lt;Learning point&gt; The "<span
+ style="font-weight: bold;">-classpath &lt;path&gt;</span>" or "<span
+ style="font-weight: bold;">-cp &lt;path&gt;</span>" option specifies
+the location where the class files (in this example, we have only a
+single class file called Hello.class)
+reside.&nbsp; When you don't specify the classpath option, the Java
+interpreter tries to find the class files in the directories specified
+in the CLASSPATH environment variables or in a current directory.&nbsp;
+In fact,&nbsp; the Java interpreter tries to find the class files in
+the following order.<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>In the directories you specify with <span
+ style="font-weight: bold;">-classpath</span> or <span
+ style="font-weight: bold;">-cp</span> option.&nbsp; </li>
+  <li>In the directories that are specified in the <span
+ style="font-weight: bold;">CLASSPATH </span>environment variable (If
+you have not specified the <span style="font-weight: bold;">-classpath</span>
+or <span style="font-weight: bold;">-cp</span> option) </li>
+  <li>In the currently directory (If you have not specified the
+-classpath or -cp option and the environment variable CLASSPATH is not
+set)</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">1. Run the Hello program using java
+command with -<span style="font-weight: bold;">cp .</span>&nbsp; (there
+is a space then a dot after <span style="font-weight: bold;">-cp</span>
+followed by a space) option or -classpath option.<br>
+(there is a space then a dot after -classpath followed by a space) .<br>
+</p>
+<div style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+-cp . Hello</span><br>
+</div>
+<div style="margin-left: 80px;">Hello world<br>
+</div>
+<div style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+-classpath . Hello</span><br>
+</div>
+<div style="margin-left: 80px;">
+Hello world<br>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Run "<span style="font-weight: bold;">java
+-classpath .. Hello" </span>to see if
+it still works. (Instead of single dot ., you specify double dots <span
+ style="font-weight: bold;">..</span> between <span
+ style="font-weight: bold;">-classpath</span> and <span
+ style="font-weight: bold;">Hello</span>.&nbsp; The double dot ..
+specifies a parent directory, C:\ in this example while single dot .
+specifies the current
+directory, c:\myjavaprograms in this example.) It should fail as
+following.&nbsp; It is because you set
+the classpath to a parent directory, C:\, which does not contain <span
+ style="font-weight: bold;">Hello.class</span>
+file.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -classpath .. Hello</span><br>
+Exception in thread "main" java.lang.NoClassDefFoundError: Hello<br>
+</div>
+<br>
+3. Now copy the <span style="font-weight: bold;">Hello.clas</span>s
+file to the parent directory and try
+the above command again.&nbsp; You should see the following
+result.&nbsp; Try to think why this works. <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">move
+Hello.class ..</span>&nbsp; <span style="font-style: italic;">(move
+the Hello.class to parent directory)</span><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java -classpath
+.. Hello</span> <span style="font-style: italic;">(run the program
+using the classpath set
+to the parent directory)</span><br>
+Hello world<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java -classpath
+C:\ Hello</span> <span style="font-style: italic;">(same as above, you
+the classpath
+explicitly)</span><br>
+Hello world<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java -classpath .
+Hello</span> <span style="font-style: italic;">(this should fail
+because you no longer
+have Hello.class in the current directory)</span><br>
+Exception in thread "main" java.lang.NoClassDefFoundError: Hello<br>
+<br>
+</div>
+4. You can specify multiple directories for the -classpath and -cp
+option.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -classpath .;..;c:\tmp
+Hello </span>(<span style="font-style: italic;">if the Hello.class
+file is found in one of the three directories, it should work</span>.)<span
+ style="font-weight: bold;"><br>
+</span>Hello world<br>
+</div>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return
+to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Exercise with CLASSPATH environment variable<br>
+</h3>
+<p style="margin-left: 40px;">&lt;Learning point&gt; You can set system
+wide classpath via <span style="font-weight: bold;">CLASSPATH </span>environment
+variable.
+This classpath gets applied system-widely meaning it gets applied to
+all Java programs running on that platform.&nbsp; Of course, you can
+override it via -classpath or -cp option when you run a particular
+program.</p>
+<p style="margin-left: 40px;">1. Set the environment variable CLASSPATH
+first to the directory
+that contains Hello.class file and then run the program.<span
+ style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span><br>
+</p>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">set
+CLASSPATH=c:\myjavaprograms </span>(<span style="font-style: italic;">Set
+the CLASSPATH environment variable</span>)<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java Hello</span>&nbsp;
+(<span style="font-style: italic;">You are going to experience the
+Exception below because you don't
+have Hello.class in the currently anymore since you moved it to a
+parent directory in the previous step</span>)<br>
+Exception in thread "main" java.lang.NoClassDefFoundError: Hello<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">move
+..\Hello.class .</span> (<span style="font-style: italic;">Move the
+Hello.class back to the currently
+directory</span>)<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java Hello </span>(<span
+ style="font-style: italic;">It should work now</span>)<br>
+Hello world<br>
+</p>
+<p style="margin-left: 40px;">2. Set the environment variable CLASSPATH
+to a bogus directory and then
+run the program.<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span><br>
+</p>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">set
+CLASSPATH=c:\tmp</span> <span style="font-style: italic;">(Set the
+CLASSPATH environment variable to
+a bogus directory, c:\tmp)</span><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java Hello</span>
+<span style="font-style: italic;">(This should
+fail since the c:\tmp directory does not contain Hello.class file)</span><br>
+Exception in thread "main" java.lang.NoClassDefFoundError: Hello<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java -cp . Hello</span>
+<span style="font-style: italic;">(Now
+you are overriding the CLASSPATH with your own classpath)</span><br>
+Hello world<span style="font-weight: bold;"></span><br>
+<br>
+</div>
+3. Set the environment variable CLASSPATH to a set of directories and
+then run the program.<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span><br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">set
+CLASSPATH=c:\tmp;c:\myjavaprograms </span>(<span
+ style="font-style: italic;">Each directory is searched in sequence</span>)<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java Hello </span>(<span
+ style="font-style: italic;">This should work since c:\myjavaprograms
+directory has the Hello.class file</span>)<br>
+Hello world<br>
+</div>
+<br>
+</div>
+<div style="margin-left: 40px;">&lt;Learning point&gt; As you've seen
+above, you can set the environment variable CLASSPATH to a set of
+directories.&nbsp; For Windows, you use semi-colon ; while on
+Solaris/Linux platform, you use colon : as a delimiter. <br>
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return
+to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you learned how to use
+-classpath option and how to set and use CLASSPATH environment variabl.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a><br>
+</p>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<h2><a name="Exercise_2"></a>Exercise 2: Experiment with the class path
+with the StudentRecordExample program at the command line<br>
+</h2>
+<p style="margin-left: 40px;">Please do this exercise at the command
+line (in a terminal window).&nbsp; In
+this exercise, you are going to play around with the class path with
+StudentRecordExample program first without a package statement and then
+with package statement.&nbsp; Please note that one of the benefits of
+using an IDE is IDE handles all the class path issues for you so that
+you don't have to worry about it yourself.&nbsp; <br>
+</p>
+<ol start="1" style="margin-left: 40px;">
+  <li><a href="#2.1">Write StudentRecord.java and
+StudentRecordExample.java without package statement</a><br>
+  </li>
+  <li><a href="#2.2">Add package statement to StudentRecord.java and
+StudentRecordExample.java</a></li>
+  <li><a href="#2.3">Add a class from a different package</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Write StudentRecord.java and StudentRecordExample.java without package
+statement<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Write <span
+ style="font-weight: bold;">StudentRecord.java</span>
+using
+your editor of choice (in this example, I am using <span
+ style="font-weight: bold;">jedit</span>) as shown in Code-2.10
+below.&nbsp; You can cut and paste
+the code from the Code-2.10.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">jedit StudentRecord.java</span></div>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;"></span>public
+class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare instance variables.<br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; private double average;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare static variables.<br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getAverage(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double result =0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return result;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.10: StudentRecord.java<br>
+<br>
+2. Write StudentRecordExample.java
+using
+your editor of choice (in this example, I am using <span
+ style="font-weight: bold;">jedit</span>) as shown in Code-2.11
+below.&nbsp; You can cut and paste
+the code from the Code-2.11.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">jedit StudentRecordExample.java</span></div>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+StudentRecordExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an object instance
+of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord annaRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create another object
+instance of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord beahRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create the 3rd object
+instance of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord crisRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set the names of the
+students.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; annaRecord.setName("Anna");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beahRecord.setName("Beah");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; crisRecord.setName("Cris");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print anna's name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Name = "
++ annaRecord.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print number of students.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Student
+Count = "+StudentRecord.getStudentCount());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.11: StudentRecordExample.java<br>
+<br>
+3. Delete previously created class files so that we can start from
+clean state.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;del *.class (<span
+ style="font-style: italic;">Delete all class files</span>.)<br>
+<br>
+</div>
+4. Compile code by specifying the two files with javac.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac StudentRecord.java
+StudentRecordExample.java</span> (<span style="font-style: italic;">This
+should succeed</span>.)<br>
+C:\myjavaprograms&gt;dir Student*.class<br>
+&nbsp;Volume in drive C is ACER<br>
+&nbsp;Volume Serial Number is 58CE-B0DC<br>
+<br>
+&nbsp;Directory of C:\myjavaprograms<br>
+<br>
+01/27/2007&nbsp; 07:29
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,266 StudentRecord.class<br>
+01/27/2007&nbsp; 07:29
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,065 StudentRecordExample.class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+</div>
+5. Run the program.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -cp . StudentRecordExample</span> (<span
+ style="font-style: italic;">This should succeed.</span>)<br>
+Name = Anna<br>
+Student Count = 3<br>
+</div>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Add package statement to StudentRecord.java and
+StudentRecordExample.java<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to explore the relationship between the
+class path and packaging structure.&nbsp; One of the benefits of using
+an IDE is that IDE handles all the intricacies related to class
+path.&nbsp; <br>
+<br>
+1. Modify <span style="font-weight: bold;">StudentRecord.java</span>
+as shown in Code-2.20 below. The code fragment that needs to be added
+is highlighted in bold and blue-colored font.&nbsp; The modification is
+to add the package statement at the top of the file.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">// This class now
+belongs to studentpackage </span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"> package</span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">package
+studentpackage;</span><br>
+      <br>
+public class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare instance variables.<br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; private double average;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare static variables.<br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-2.20: package statement is added<br>
+<br>
+2. Modify <span style="font-weight: bold;">StudentRecordExample.java</span>
+as
+shown in Code-2.21 below. The code fragment that needs to be added is
+highlighted in bold and blue-colored font.&nbsp; The modification is to
+add
+the package statement at the top of the file.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">// This class now
+belongs to studentpackage package.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">package
+studentpackage;<br>
+      <br>
+      </span>public class StudentRecordExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an object instance
+of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord annaRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create another object
+instance of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord beahRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create the 3rd object
+instance of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord crisRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set the names of the
+students.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; annaRecord.setName("Anna");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beahRecord.setName("Beah");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; crisRecord.setName("Cris");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print anna's name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Name = "
++ annaRecord.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print number of students.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Student
+Count = "+StudentRecord.getStudentCount());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: package statement is added<br>
+<br>
+3. Delete previously created class files so that we can start from
+clean state.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;del *.class (<span
+ style="font-style: italic;">Delete all class files</span>.)<br>
+<br>
+</div>
+4. Compile code by specifying the two files with javac.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac StudentRecord.java
+StudentRecordExample.java</span> (<span style="font-style: italic;">This
+should succeed</span>.)<br>
+C:\myjavaprograms&gt;dir Student*.class<br>
+&nbsp;Volume in drive C is ACER<br>
+&nbsp;Volume Serial Number is 58CE-B0DC<br>
+<br>
+&nbsp;Directory of C:\myjavaprograms<br>
+<br>
+01/27/2007&nbsp; 07:29
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,266 StudentRecord.class<br>
+01/27/2007&nbsp; 07:29
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,065 StudentRecordExample.class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+</div>
+5. Run the program.&nbsp; You should experience<span
+ style="font-weight: bold;"> java.lang.NoClassDefFoundError:
+StudentRecordExample </span>exception.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -cp . StudentRecordExample</span> (<span
+ style="font-style: italic;">This should fail.</span>)<br>
+Exception in thread "main" java.lang.NoClassDefFoundError:
+StudentRecordExample<br>
+(wrong name: studentpackage/StudentRecordExample)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.defineClass1(Native Method)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.security.SecureClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.access$100(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader$1.run(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.security.AccessController.doPrivileged(Native Method)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.findClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClassInternal(Unknown Source)<br>
+</div>
+<br>
+<div style="margin-left: 40px;">&lt;Learning point&gt; The exception
+occurs because the java
+runtime tries to find <span style="font-weight: bold;">StudentRecordExample.class</span>
+under <span style="font-weight: bold;">studentpackage </span>directory
+(starting from the current class path, which is set as current
+directory) since the <span style="font-weight: bold;">StudentRecordExample.java
+</span>now has a <span style="font-weight: bold;">package
+studentpackage; </span>statement,
+which indicates that the Java class file resides under <span
+ style="font-weight: bold;">studentpackage </span>directory.<br>
+</div>
+<br>
+6.&nbsp; Create a new directory called <span style="font-weight: bold;">strudentpackage
+</span>and then move<span style="font-weight: bold;"> StudentRecord.java</span>
+and <span style="font-weight: bold;">StudentRecordExample.java </span>under
+it.
+<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">mkdir studentpackage</span> (Create a
+subdirectory called studentpackage.)<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">move
+StudentRecord.java studentpackage\StudentRecord.java</span><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">move
+StudentRecordExample.java studentpackage\StudentRecordExample.java</span><br>
+</div>
+<br>
+<div style="margin-left: 40px;">&lt;Learning point&gt; The *.java files
+which have package statement have to be located in the actual directory
+structure that reflects the directory specified in the package
+statement.<br>
+</div>
+<br>
+7. Compile the code.&nbsp; You get this compile error because you are
+trying to
+compile the two Java files that are not present in the current
+directory anymore.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">del *.class</span><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">javac
+StudentRecord.java
+StudentRecordExample.java</span><br>
+<span style="font-weight: bold;"></span>error: cannot read:
+StudentRecord.java<br>
+1 error<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span></div>
+<br>
+8. Compile the code using path of the *.java files.&nbsp; The
+compilation should succeed.&nbsp; Note that the class
+files are now created under <span style="font-weight: bold;">studentpackage
+</span>directory not in the current
+directory.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac
+studentpackage/StudentRecord.java
+studentpackage/StudentRecordExample.java</span><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">dir
+studentpackage</span><br>
+&nbsp;Directory of C:\myjavaprograms\studentpackage<br>
+<br>
+01/27/2007&nbsp; 08:09 PM&nbsp;&nbsp;&nbsp;
+&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br>
+01/27/2007&nbsp; 08:09 PM&nbsp;&nbsp;&nbsp;
+&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..<br>
+01/27/2007&nbsp; 08:02
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+694 StudentRecord.java<br>
+01/27/2007&nbsp; 08:01
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,343 StudentRecordExample.java<br>
+01/27/2007&nbsp; 08:14
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+738 StudentRecord.class<br>
+01/27/2007&nbsp; 08:14
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+978 StudentRecordExample.class<br>
+</div>
+<br>
+9. Run the program by providing using <span style="font-weight: bold;">"-classpath</span>
+." option.&nbsp; <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+-classpath . StudentRecordExample</span><br>
+<span style="font-weight: bold;"></span>Exception in thread "main"
+java.lang.NoClassDefFoundError: StudentRecordExample<br>
+</div>
+<br>
+<div style="margin-left: 40px;">&lt;Explanation&gt; Please note that
+you get <span style="font-weight: bold;">java.lang.NoClassDefFoundError:
+StudentRecordExample</span> exception.&nbsp; This occurs because the
+Java runtime tries to find <span style="font-weight: bold;">StudentRecordExample.class</span>
+in a directory (or directoties) specified as the class path. And there
+is only one directory in the class path, which is the current directory
+and the current directory does not have the StudentRecordExample.class
+file, hence the exception.<br>
+</div>
+<br>
+10. Run the program by providing using "<span style="font-weight: bold;">-classpath</span>
+<span style="font-weight: bold;">studentpackage</span>"<span
+ style="font-weight: bold;"> </span>option.&nbsp; <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+-classpath studentpackage StudentRecordExample</span><br>
+<span style="font-weight: bold;"></span>Exception in thread "main"
+java.lang.NoClassDefFoundError: StudentRecordExample<br>
+(wrong name: studentpackage/StudentRecordExample)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.defineClass1(Native Method)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.security.SecureClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.access$100(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader$1.run(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.security.AccessController.doPrivileged(Native Method)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.findClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClassInternal(Unknown Source)<br>
+</div>
+<br>
+<div style="margin-left: 40px;"><span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span>&lt;Explanation&gt; Please note that
+you still get <span style="font-weight: bold;">java.lang.NoClassDefFoundError:
+StudentRecordExample</span>
+exception. But this time, the exception also says <span
+ style="font-weight: bold;">(wrong name:
+studentpackage/StudentRecordExample) </span>in the second line<span
+ style="font-weight: bold;">.</span>&nbsp; This typically indicates
+that the Java runtime finds the class file but somehow the package
+directory structure specified in the class file does not match the
+actual directory structure.&nbsp; For exmaple, in this particular
+example, the Java runtime tries to find
+<span style="font-weight: bold;">StudentRecordExample.class</span> file
+in the class path first. (The class path is set to studentpackage
+directory.) And it finds it.&nbsp; That is the reason you don't get a
+single one line exception as you've seen in the above step.&nbsp; <br>
+<br>
+Now once the class file is found, the Java runtime verifies package
+hierarchy specified in the class file, which is <span
+ style="font-weight: bold;">studentpackage </span>with the actual
+directory structure - remember in Java platform, the package structure
+must reflect the actual directory structue.&nbsp; In other
+words, the Java rumtime tries to find <span style="font-weight: bold;">./studentpackage/StudentRecordExample.class</span>
+file under the class path<span style="font-weight: bold;"></span>.
+Since the class path is set to studentpackage directory, basicslly it
+is looking for
+./studentpackage/studentpackage/StudentRecordExample.class, which does
+not exist.<br>
+</div>
+<br>
+11. Run the program by providing using <span style="font-weight: bold;">"-classpath</span>
+<span style="font-weight: bold;">." </span>option but with the proper
+path to the class file.&nbsp; <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+-classpath . studentpackage.StudentRecordExample</span><br>
+<span style="font-weight: bold;">Name = Anna</span><br>
+<span style="font-weight: bold;">Student Count = 3</span><br>
+<span style="font-weight: bold;"></span></div>
+<span style="font-weight: bold;"><br>
+</span>
+<div style="margin-left: 40px;">&lt;Explanation&gt; It succeeds because
+the Java runtime finds the <span style="font-weight: bold;">StudentRecordExample.class</span>
+file under <span style="font-weight: bold;">studentpackage </span>directory
+starting from the class path.&nbsp; And the Java runtime then<br>
+<br>
+</div>
+12. Run the program with "<span style="font-weight: bold;">classpath
+-studentpackage</span>" option but with the proper path to the class
+file.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -classpath studentpackage
+studentpackage.StudentRecordExample</span><br>
+Exception in thread "main" java.lang.NoClassDefFoundError:
+studentpackage/StudentRecordExample<br>
+</div>
+<br>
+13. Run the program under the C:\myjavaprograms\studentpackage
+directory.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">cd studentpackage </span><br>
+<span style="font-weight: bold;"></span>C:\myjavaprograms\studentpackage&gt;<span
+ style="font-weight: bold;">java -classpath . StudentRecordExample</span><br>
+Exception in thread "main" java.lang.NoClassDefFoundError:
+StudentRecordExample<br>
+(wrong name: studentpackage/StudentRecordExample)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.defineClass1(Native Method)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.security.SecureClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.defineClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.access$100(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader$1.run(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.security.AccessController.doPrivileged(Native Method)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.net.URLClassLoader.findClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClass(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.lang.ClassLoader.loadClassInternal(Unknown Source)<br>
+<br>
+</div>
+<br>
+</div>
+<span style="font-weight: bold;"></span>
+<div style="margin-left: 40px;">14. Run the program under the
+C:\myjavaprograms\studentpackage
+directory with proper classpath and path to the class file.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms\studentpackage&gt;<span
+ style="font-weight: bold;">java -classpath ..
+studentpackage.StudentRecordExample</span><br>
+Name = Anna<br>
+Student Count = 3<br>
+</div>
+<br>
+15. Run the program under the C:\
+directory with proper classpath and path to the class file.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">cd \<br>
+</span></div>
+<div style="margin-left: 40px;">C:\&gt;<span style="font-weight: bold;">java
+-classpath myjavaprograms studentpackage.StudentRecordExample</span><br>
+Name = Anna<br>
+Student Count = 3<br>
+</div>
+<br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Add another class that has a different package<br>
+</h3>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+1. Create another directory called anotherpackge where you are going to
+write a new Java program.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">mkdir anotherpackage</span><br>
+</div>
+<br>
+2. Write<span style="font-weight: bold;"> DummyClass.java</span> as
+shown in Code-2.31 below under <span style="font-weight: bold;">anotherpackage
+</span>directory.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">cd anotherpackage</span><br>
+C:\myjavaprograms\anotherpackage&gt;<span style="font-weight: bold;">jedit
+DummyClass.java</span><br>
+<br>
+</div>
+<span style="font-weight: bold;"></span>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package anotherpackage;<br>
+      <br>
+public class DummyClass {<br>
+&nbsp;&nbsp; public String sayHello(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Hello, I am
+dummy.&nbsp; Your name is " + name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.31: DummyClass.java<span style="font-weight: bold;"><br>
+</span><br>
+3.&nbsp; Modify <span style="font-weight: bold;">StudentRecord.java</span>
+to use <span style="font-weight: bold;">DummyClass </span>as shown in
+Code-2.32 below. The code fragments that need to be added are
+highlighted in bold and blue-colored font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 0, 0);">// This class now belongs to
+studentpackage package.</span><br style="color: rgb(0, 0, 0);">
+      <span style="color: rgb(0, 0, 0);">package studentpackage;</span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"><br>
+      <br>
+// Import packages<br>
+import anotherpackage.*;<br>
+      </span><br>
+public class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare instance variables.<br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; private double average;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare static variables.<br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">DummyClass dummy =
+new DummyClass();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(dummy.sayHello(name));<br>
+      </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-2.32: Modified StundentRecord.java<br>
+<br>
+4. Compile the code and verify that the class files are present.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+C:\myjavaprograms\anotherpackage&gt;<span style="font-weight: bold;">cd
+\myjavaprograms</span>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac studentpackage/*.java</span><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">dir studentpackage</span><br>
+<br>
+01/27/2007&nbsp; 09:19 PM&nbsp;&nbsp;&nbsp;
+&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br>
+01/27/2007&nbsp; 09:19 PM&nbsp;&nbsp;&nbsp;
+&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..<br>
+01/27/2007&nbsp; 09:27
+PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,345 StudentRecordExample.java<br>
+01/28/2007&nbsp; 08:28
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+827 StudentRecord.java<br>
+01/28/2007&nbsp; 08:30
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+973 StudentRecord.class<br>
+01/28/2007&nbsp; 08:30
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+978 StudentRecordExample.class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">dir anotherpackage</span><br>
+<br>
+01/28/2007&nbsp; 08:03 AM&nbsp;&nbsp;&nbsp;
+&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br>
+01/28/2007&nbsp; 08:03 AM&nbsp;&nbsp;&nbsp;
+&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..<br>
+01/28/2007&nbsp; 08:27
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+165 DummyClass.java<br>
+01/28/2007&nbsp; 08:30
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+503 DummyClass.class<br>
+</div>
+<br>
+5. Run the program.<br>
+<br>
+<span style="font-weight: bold;"></span>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">C:\myjavaprograms&gt;java
+-classpath . studentpackage.StudentRecordExample<br>
+Hello, I am dummy.&nbsp; Your name is Anna<br>
+Name = Anna<br>
+Student Count = 3<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="font-weight: bold;"><br>
+<br>
+</span></div>
+<h3 style="margin-left: 40px;" class="tutorial">(2.3) Move
+StudentRecord.java to a subdirectory of studentpackage<br>
+</h3>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+&lt;to be provided&gt;<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<span style="font-weight: bold;"><br>
+</span><span style="font-weight: bold;"></span></div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have explored
+the relationship between class path and packaging structure.<br>
+</p>
+<p style="margin-left: 40px;"><br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to build and run a
+Java
+program at the command line using "javac" and "java" commands. (Do not
+use an IDE for this exercise.)<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Write
+a class called <span style="font-weight: bold;">Food </span>under <span
+ style="font-weight: bold;">foodpackage.fruitpackage </span>package
+- <br>
+  </li>
+  <ul>
+    <li><span style="font-weight: bold;">Food.java</span> should have
+the following package statement at the top <br>
+    </li>
+    <ul>
+      <li>package foodpackage.fruitpackage </li>
+    </ul>
+  </ul>
+  <ul>
+    <li>Add a couple of methods of your own to the <span
+ style="font-weight: bold;">Food.java</span></li>
+  </ul>
+  <li>Write a class called <span style="font-weight: bold;">FoodMain </span>under
+    <span style="font-weight: bold;">foodpackage.fruitpackage </span>package</li>
+  <ul>
+    <li><span style="font-weight: bold;">FoodMain </span>class creates
+a <span style="font-weight: bold;">Food </span>object</li>
+    <li><span style="font-weight: bold;">FoodMain </span>class then
+calls a method of <span style="font-weight: bold;">Food </span>object</li>
+  </ul>
+</ul>
+<div style="margin-left: 40px;">The goal of this homework exercise is
+to let you experience two-level
+package structure instead of just one.&nbsp; For example, the "<span
+ style="font-weight: bold;">foodpackage</span>" is a parent package of
+the "<span style="font-weight: bold;">fruitpackage</span>"
+package. And each should have its own directory and they should reflect
+the parent and child relationship of the package structure. What this
+means is that you would have to create <span style="font-weight: bold;">foodpackage
+</span>directory first and then <span style="font-weight: bold;">fruitpackage
+</span>directory underneath it.&nbsp; Then you will create <span
+ style="font-weight: bold;">Food.java</span>
+and <span style="font-weight: bold;">FoodMain.java</span> under <span
+ style="font-weight: bold;">fruitpackage </span>directory.</div>
+<ul style="margin-left: 40px;">
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javaclasspath.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;"> foodpackage</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>jar cvf foodpackage.zip foodpackage</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javaclasspath.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javaclasspath</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javaclasspath.&lt;whatever
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>

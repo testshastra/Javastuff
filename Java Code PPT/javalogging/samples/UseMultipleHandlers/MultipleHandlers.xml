@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2007-02-18T08:00:05</date>
+  <millis>1171803605718</millis>
+  <sequence>0</sequence>
+  <logger>loggerdemo</logger>
+  <level>INFO</level>
+  <class>UseMultipleHandlers</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>doing stuff</message>
+</record>
+<record>
+  <date>2007-02-18T08:00:05</date>
+  <millis>1171803605750</millis>
+  <sequence>1</sequence>
+  <logger>loggerdemo</logger>
+  <level>SEVERE</level>
+  <class>UseMultipleHandlers</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>dividing by 0</message>
+</record>
+<record>
+  <date>2007-02-18T08:00:05</date>
+  <millis>1171803605750</millis>
+  <sequence>2</sequence>
+  <logger>loggerdemo</logger>
+  <level>INFO</level>
+  <class>UseMultipleHandlers</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>done</message>
+</record>
+</log>

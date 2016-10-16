@@ -1,0 +1,1619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1025: Java Polymorphism</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="LAB-1025: Java Polymorphism" name="description">
+</head>
+<body onload="loginfocus()" class="composite"
+ style="background-image: url(index_files/beige.jpg);">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Polymorphism<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;<a
+ href="mailto:sangshinpassion@gmail.com"></a> <a
+ href="http://www.javapassion.com/javaintro/">www.javapassion.com/javaintro</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">"The Java interface feature of the Java
+programming language enables
+the
+flexibility and agility of Java application development.&nbsp; In this
+hands-on lab, you are going to explore the concept of Java Interface
+and abstract class. <span nd="1" name="intelliTxt" id="intelliTxt">
+Generally, the ability to appear in many forms. In <a
+ href="http://www.webopedia.com/TERM/p/object_oriented_programming_OOP.html">object-oriented
+programming</a>, <i>polymorphism</i> refers to a <a
+ href="http://www.webopedia.com/TERM/p/programming_language.html">programming
+language's</a> ability to process objects differently depending on
+their <a href="http://www.webopedia.com/TERM/p/data_type.html">data
+type</a> or <a href="http://www.webopedia.com/TERM/p/class.html">class</a>.
+More specifically, it is the ability to redefine <i>methods</i> for <i>derived
+classes.</i> For example, given a base class <i>shape,</i>
+polymorphism enables the <a itxtdid="3437607" target="_blank"
+ href="http://www.webopedia.com/TERM/p/polymorphism.html#"
+ style="border-bottom: 0.075em solid darkgreen; font-weight: normal; font-size: 100%; text-decoration: underline; background-color: transparent; padding-bottom: 1px;"
+ class="iAs">programmer</a> to define different <i>area</i>
+methods for any number of derived classes, such as circles, rectangles
+and triangles. No matter what shape an object is, applying the <i>area</i>
+method to it will return the correct results. Polymorphism is
+considered to be a requirement of any true <a itxtdid="2922986"
+ target="_blank"
+ href="http://www.webopedia.com/TERM/p/polymorphism.html#"
+ style="border-bottom: 0.075em solid darkgreen; font-weight: normal; font-size: 100%; text-decoration: underline; background-color: transparent; padding-bottom: 1px;"
+ class="iAs">object-oriented programming</a> language (OOPL)." Quoted
+from <a href="http://www.webopedia.com/TERM/p/polymorphism.html">Webopedia</a>.</span><br>
+<span nd="1" name="intelliTxt" id="intelliTxt"></span><br>
+<span nd="1" name="intelliTxt" id="intelliTxt">In this hands-on lab,
+you are going to explore polymorphic behaviors in
+Java programs.</span><br>
+<span nd="1" name="intelliTxt" id="intelliTxt"></span></div>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 90 minutes (not including time
+for homework)<br>
+</b></p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>. <br>
+<ul>
+  <li>1025_javapolymorphism.zip (<a
+ href="http://www.javapassion.com/handsonlabs/1025_javapolymorphism.zip">download</a>)</li>
+  <ul>
+    <li>The zip file contains this document and the lab contents.&nbsp;
+      <br>
+    </li>
+    <li>Download it and unzip in a directory of your choice</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Feb 3rd, 2007: Created</li>
+  <li>June 10th, 2008: NetBeans 6.1 and JDK 6 are used</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Polymorphic behavior via method
+overriding (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Polymorphic behavior via
+abstract class (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_3">Exercise 3: Polymorphic behavior via Java
+interface (30
+minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Polymorphic behavior via
+method overriding<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going build <span
+ style="font-weight: bold;">MyOnlineShop </span>project first and then
+add <span style="font-weight: bold;">ChildrenBook </span>and <span
+ style="font-weight: bold;">Cartoon </span>subclasses of the Book
+class.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#1.1">Build and run MyOnlineShop NetBeans
+project<br>
+      </a></li>
+    <li><a href="#1.2">Add ChildrenBook and Cartoon subclasses</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run MyOnlineShop NetBeans project<br>
+</h3>
+<p style="margin-left: 40px;">The <span style="font-weight: bold;">MyOnlineShop
+</span>project&nbsp; is the same project that you have built and run as
+part of Java Inheritance hands-on lab.&nbsp; Here we are going to build
+it again just to get a sense of how it works.<br>
+</p>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyOnlineShop</span> NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>.
+(Figure-1.10 below)&nbsp;</li>
+</ul>
+<img alt="" src="index_files/1_p1.png"
+ style="width: 893px; height: 744px;"><br>
+Figure-1.10: Open NetBeans project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Open Project</span>
+dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javapolymorphism/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>If you unzipped the hands-on lab zip file, <span
+ style="font-weight: bold;">1025_javapolymorphism.zip</span>, under C:\
+directory under Windows, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javapolymorphism\samples</span></li>
+    <li>If you unzipped the <span style="font-weight: bold;">1025_javapolymorphism.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory under Solaris/Linux, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javapolymorphism/samples</span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold;">MyOnlineShop</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.
+(Figure-1.11 below)&nbsp; <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_p2.png"
+ style="width: 680px; height: 379px;"><br>
+Figure-1.11: Open MyOnlineShop project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyOnlineShop</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">2. Build and run <span
+ style="font-weight: bold;">MyOnlineShop</span> project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop</span>
+project and select <span style="font-weight: bold;">Run</span>.
+    <br>
+  </li>
+  <li>Observe the result in the Output window of the IDE. (Figure-1.12
+below)</li>
+</ul>
+</div>
+<p style="margin-left: 40px;"></p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price = 2000.0, Sale
+price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price = 250.0,
+Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price = 34.0, Sale
+price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price = 15.0, Sale
+price = 7.5<br>
+totalRegularPrice = 3299.0<br>
+totalSalePrice = 2649.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.12: Result<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Add ChildrenBook and Cartoon<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+Suppose you want to add two subclasses of<span
+ style="font-weight: bold;"> Book</span> class and you will call them, <span
+ style="font-weight: bold;">ChildrenBook </span>and <span
+ style="font-weight: bold;">Cartoon</span>.<br>
+<br>
+1. Write <span style="font-weight: bold;">ChildrenBook.java</span>.&nbsp;
+<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ChildrenBook</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">ChildrenBook.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">ChildrenBook.java</span>
+as shown in Code-1.20 below. <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class ChildrenBook extends Book{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int age; // age this book is written for<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of ChildrenBook */<br>
+&nbsp;&nbsp;&nbsp; public ChildrenBook(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+age) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(100, "Sun press",
+2002);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.age = age;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override this method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.3;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.20: ChildrenBook.java<br>
+<br>
+2. Write <span style="font-weight: bold;">Cartoon.java</span>.&nbsp;
+The Electronics class itself&nbsp; is an abstract class because it does
+not provide implementation of the computeSalePrice() abstract method.
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Cartoon</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">Cartoon.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Cartoon.java</span>
+as shown in Code-1.21 below.&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Cartoon extends Book {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; String characterName;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Cartoon */<br>
+&nbsp;&nbsp;&nbsp; public Cartoon(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String characterName) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(150, "Sun press",
+1978);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.characterName =
+characterName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override this method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.4;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: Cartoon.java<br>
+<br>
+3. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-1.22 below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declare and create
+Product array of size 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Product[] pa = new Product[<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">7</span>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create object instances<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[0] = new TV(1000,
+"Samsung", 30);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[1] = new TV(2000, "Sony",
+50);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[2] = new MP3Player(250,
+"Apple", "blue");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[3] = new Book(34, "Sun
+press", 1992);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[4] = new Book(15, "Korea
+press", 1986);<br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="color: rgb(51, 51, 255);"> pa[5] = new ChildrenBook(15, "Pee
+Wee press", 1987, 8);</span></span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pa[6] = new Cartoon(14, "Pee Wee press", 1924, "Batman");</span><br
+ style="color: rgb(51, 51, 255);">
+      <span style="color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compute total regular
+price and total<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sale price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalRegularPrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalSalePrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;pa.length; i++){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Call a method of the super class to get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+the regular price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalRegularPrice += pa[i].getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Since the sale price is computed differently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+depending on the product type, overriding<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+method of the object instance of the sub-class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+gets invoked.&nbsp; This is runtime polymorphic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+behavior.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalSalePrice += pa[i].computeSalePrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Item number " + i +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+": Type = " + pa[i].getClass().getName() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Regular price = " + pa[i].getRegularPrice() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Sale price = " + pa[i].computeSalePrice());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalRegularPrice = " + totalRegularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalSalePrice = " + totalSalePrice);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.22: Main.java<br>
+</div>
+<p style="margin-left: 40px;">4. Build and run <span
+ style="font-weight: bold;">MyOnlineShop</span> project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop</span>
+project and select <span style="font-weight: bold;">Run</span>.
+    <br>
+  </li>
+  <li>Observe the result in the Output window of the IDE. (Figure-1.23
+below) </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"></div>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price = 2000.0, Sale
+price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price = 250.0,
+Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price = 34.0, Sale
+price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price = 15.0, Sale
+price = 7.5<br>
+      <span style="font-weight: bold;">Item number 5: Type =
+myonlineshop.ChildrenBook, Regular price = 100.0, Sale price = 30.0</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">Item number 6: Type =
+myonlineshop.Cartoon, Regular price = 150.0, Sale price = 60.0</span><br>
+totalRegularPrice = 3549.0<br>
+totalSalePrice = 2739.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.23: Result<a href="index.html#Exercise_1"></a><br>
+<br>
+</div>
+<div style="margin-left: 40px;"><span
+ style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javapolymorphism/samples/</span><span
+ style="font-weight: bold;">MyOnlineShop-solution</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top
+of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you built <span
+ style="font-weight: bold;">MyOnlineShop </span>project and exercised
+the polymorphic behavior through method overriding.
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; <a href="#Tutorial_Exercises">return to the
+top</a><br>
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Exercise_2"></a>Exercise 2: Polymorphic behavior via
+Abstract class<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going build <span
+ style="font-weight: bold;">MyOnlineShopUsingAbstractClass </span>project
+first and then
+add <span style="font-weight: bold;">ChildrenBook </span>and <span
+ style="font-weight: bold;">Cartoon </span>subclasses of the Book
+class.
+</p>
+<ul>
+  <ol>
+    <li><a href="#2.1">Build and run MyOnlineUsingAbstractClass
+NetBeans project.<br>
+      </a></li>
+    <li><a href="#2.2">Add ChildrenBook and Cartoon subclasses<br>
+      </a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">(2.1)
+Build and run MyOnlineShop NetBeans project<br>
+</h3>
+<p style="margin-left: 40px;">The <span style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;">UsingAbstractClass</span><span
+ style="font-weight: bold;">
+</span>project&nbsp; is the same project that you have built and run as
+part of Abstract Class and Java Interface hands-on lab.&nbsp; Here we
+are going to build
+it again just to get a sense of how it works.<br>
+</p>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyOnlineShopUsingAbstractClass</span>
+NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">Open Project</span>
+dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javapolymorphism/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;">UsingAbstractClass</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;">UsingAbstractClass</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">2. Build and run <span
+ style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;">UsingAbstractClass</span> project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;">UsingAbstractClass</span>
+project and select <span style="font-weight: bold;">Run</span>.
+    <br>
+  </li>
+  <li>Observe the result in the Output window of the IDE. (Figure-2.12
+below)<br>
+  </li>
+</ul>
+</div>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"></div>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price = 2000.0, Sale
+price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price = 250.0,
+Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price = 34.0, Sale
+price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price = 15.0, Sale
+price = 7.5<br>
+totalRegularPrice = 3299.0<br>
+totalSalePrice = 2649.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.12: Result</div>
+<div style="margin-left: 40px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Add ChildrenBook and Cartoon<br>
+</h3>
+<p style="margin-left: 40px;">
+Suppose you want to add two subclasses of<span
+ style="font-weight: bold;"> Book</span> class and you will call them, <span
+ style="font-weight: bold;">ChildrenBook </span>and <span
+ style="font-weight: bold;">Cartoon</span>.<br>
+<br>
+1. Write <span style="font-weight: bold;">ChildrenBook.java</span>.&nbsp;
+<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ChildrenBook</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that IDE generated <span style="font-weight: bold;">ChildrenBook.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">ChildrenBook.java</span>
+as shown in Code-1.20 below.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class ChildrenBook extends Book{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int age; // age this book is written for<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of ChildrenBook */<br>
+&nbsp;&nbsp;&nbsp; public ChildrenBook(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+age) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(100, "Sun press",
+2002);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.age = age;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override this method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.3;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: ChildrenBook.java<br>
+<br>
+2. Write <span style="font-weight: bold;">Cartoon.java</span>.&nbsp;
+<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Cartoon</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that IDE generated <span style="font-weight: bold;">Cartoon.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Cartoon.java</span>
+as shown in Code-1.20 below.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Cartoon extends Book {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; String characterName;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Cartoon */<br>
+&nbsp;&nbsp;&nbsp; public Cartoon(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String characterName) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(150, "Sun press",
+1978);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.characterName =
+characterName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override this method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.4;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: Cartoon.java<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-2.24 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declare and create
+Product array of size 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Product[] pa = new Product[<span
+ style="font-weight: bold;">7</span>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create object instances
+and assign them to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // the type of Product.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[0] = new TV(1000,
+"Samsung", 30);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[1] = new TV(2000, "Sony",
+50);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[2] = new MP3Player(250,
+"Apple", "blue");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[3] = new Book(34, "Sun
+press", 1992);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[4] = new Book(15, "Korea
+press", 1986);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> pa[5] = new ChildrenBook(15, "Pee Wee
+press", 1987, 8);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pa[6] = new Cartoon(14, "Pee Wee press", 1924, "Batman");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compute total regular
+price and total<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sale price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalRegularPrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalSalePrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;pa.length; i++){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Call a method of the super class to get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+the regular price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalRegularPrice += pa[i].getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Since the sale price is computed differently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+depending on the product type, overriding (implementation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+method of the object instance of the sub-class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+gets invoked.&nbsp; This is runtime polymorphic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+behavior.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalSalePrice += pa[i].computeSalePrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Item number " + i +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+": Type = " + pa[i].getClass().getName() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Regular price = " + pa[i].getRegularPrice() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Sale price = " + pa[i].computeSalePrice());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalRegularPrice = " + totalRegularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalSalePrice = " + totalSalePrice);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.24: Main.java<br>
+</div>
+<p style="margin-left: 40px;">5. Build and run <span
+ style="font-weight: bold;">MyOnlineShopUsingAbstractClass</span>
+project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop</span><span
+ style="font-weight: bold;">UsingAbstractClass</span>
+project and select <span style="font-weight: bold;">Run</span>.
+    <br>
+  </li>
+  <li>Observe the result in the Output window of the IDE. (Figure-2.25
+below) </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"></div>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price = 2000.0, Sale
+price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price = 250.0,
+Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price = 34.0, Sale
+price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price = 15.0, Sale
+price = 7.5<br>
+      <span style="font-weight: bold;">Item number 5: Type =
+myonlineshop.ChildrenBook, Regular price = 100.0,
+Sale price = 30.0</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">Item number 6: Type =
+myonlineshop.Cartoon, Regular price = 150.0, Sale
+price = 60.0</span><br>
+totalRegularPrice = 3549.0<br>
+totalSalePrice = 2739.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.25: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javapolymorphism/samples/</span><span
+ style="font-weight: bold;">MyOnlineShopUsingAbstractClass-solution</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you built <span
+ style="font-weight: bold;">MyOnlineShopUsingAbstractClass </span>project
+and exercised the polymorphic behavior through implementing (or
+overriding) abstract methods of an abstract class.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Polymorphic behavior via Java
+interface<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">In this exercise, you are going build <span
+ style="font-weight: bold;">MyOnlineShopUsingInterface </span>project
+first and then
+add <span style="font-weight: bold;">ChildrenBook </span>and <span
+ style="font-weight: bold;">Cartoon </span>subclasses of the Book
+class.
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+  <li><a href="#3.1">Build and run MyOnlineUsingInterface NetBeans
+project</a></li>
+  <li><a href="#3.2">Add ChildrenBook and Cartoon subclasses</a><br>
+  </li>
+</ol>
+<br>
+<ul style="margin-left: 40px;">
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Build and run MyOnlineUsingInterface NetBeans Project<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+</div>
+<p style="margin-left: 40px;">The <span style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;">
+</span>project&nbsp; is the same project that you have built and run as
+part of Abstract Class and Java Interface hands-on lab.&nbsp; Here we
+are going to build
+it again just to get a sense of how it works.<br>
+</p>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyOnlineShopUsingInterface</span>
+NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. <br>
+  </li>
+  <li>Observe that the <span style="font-weight: bold;">Open Project</span>
+dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javapolymorphism/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;"></span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;"></span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">2. Build and run <span
+ style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;"></span> project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;"></span>
+project and select <span style="font-weight: bold;">Run</span>.
+    <br>
+  </li>
+  <li>Observe the result in the Output window of the IDE. (Figure-3.11
+below)<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price = 2000.0, Sale
+price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price = 250.0,
+Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price = 34.0, Sale
+price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price = 15.0, Sale
+price = 7.5<br>
+totalRegularPrice = 3299.0<br>
+totalSalePrice = 2649.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.11: Result<br>
+<br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Add ChildrenBook and Cartoon<br>
+</h3>
+<p style="margin-left: 40px;">
+Suppose you want to add two subclasses of<span
+ style="font-weight: bold;"> Book</span> class and you will call them, <span
+ style="font-weight: bold;">ChildrenBook </span>and <span
+ style="font-weight: bold;">Cartoon</span>.
+<br>
+</p>
+<p style="margin-left: 40px;">1. Write <span style="font-weight: bold;">BookInterface.java</span>.&nbsp;
+<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">BookInterface</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that IDE generated <span style="font-weight: bold;">BookInterface.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">BookInterface.java</span>
+as shown in Code-3.20 below.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public interface BookInterface extends ProductInterface {&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getPublisher();<br>
+&nbsp;&nbsp;&nbsp; public void setPublisher(String publisher);<br>
+&nbsp;&nbsp;&nbsp; public int getYearPublished();<br>
+&nbsp;&nbsp;&nbsp; public void setYearPublished(int yearPublished);<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.20: BookInterface.java<br>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Modify <span
+ style="font-weight: bold;">Book.java</span> as shown in Code-3.21
+below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class Book extends Product<span style="font-weight: bold;">
+implements BookInterface</span>{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; private String publisher;<br>
+&nbsp;&nbsp;&nbsp; private int yearPublished;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Book */<br>
+&nbsp;&nbsp;&nbsp; public Book(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(regularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override the method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.5;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getPublisher() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setPublisher(String publisher) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.publisher = publisher;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public int getYearPublished() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setYearPublished(int yearPublished) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yearPublished =
+yearPublished;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.21: Book.java<br>
+</div>
+<p style="margin-left: 40px;">3. Write <span style="font-weight: bold;">ChildrenBook.java</span>.&nbsp;
+<br>
+</p>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ChildrenBook</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that IDE generated <span style="font-weight: bold;">ChildrenBook.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">ChildrenBook.java</span>
+as shown in Code-3.22 below.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class ChildrenBook extends Book{<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; int age; // age this book is written for<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of ChildrenBook */<br>
+&nbsp;&nbsp;&nbsp; public ChildrenBook(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+age) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(100, "Sun press",
+2002);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.age = age;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override this method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.3;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.22: ChildrenBook.java<br>
+<br>
+2. Write <span style="font-weight: bold;">Cartoon.java</span>.&nbsp;
+<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li>Right click <span style="font-weight: bold;">MyOnlineShop </span>project
+node and select <span style="font-weight: bold;">New-&gt;Java Class</span>.</li>
+  <li>Observe <span style="font-weight: bold;">Name and Location</span>
+pane of the <span style="font-weight: bold;">New Java Class</span>
+dialog box appears.<br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Cartoon</span>.</li>
+  <li>For the <span style="font-weight: bold;">Package </span>field,
+either enter <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);">myonlineshop</span> </span>or
+choose <span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">myonlineshop</span></span>
+from
+the drop-down menu. <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul style="margin-left: 40px;">
+  <li>Observe that IDE generated <span style="font-weight: bold;">Cartoon.java</span>
+gets displayed in the
+editor window.<br>
+  </li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Cartoon.java</span>
+as shown in Code-3.23 below.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myonlineshopusinginterface;<br>
+      <br>
+public class Cartoon extends Book {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; String characterName;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of Cartoon */<br>
+&nbsp;&nbsp;&nbsp; public Cartoon(double regularPrice,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String publisher,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int
+yearPublished,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String characterName) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(150, "Sun press",
+1978);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.characterName =
+characterName;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Override this method<br>
+&nbsp;&nbsp;&nbsp; public double computeSalePrice(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+super.getRegularPrice() * 0.4;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.23: Cartoon.java<br>
+</div>
+<div style="margin-left: 40px;"><br>
+4. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-3.24 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package myonlineshop;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declare and create
+Product array of size 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Product[] pa = new Product[<span
+ style="font-weight: bold;">7</span>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create object instances
+and assign them to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // the type of Product.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[0] = new TV(1000,
+"Samsung", 30);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[1] = new TV(2000, "Sony",
+50);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[2] = new MP3Player(250,
+"Apple", "blue");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[3] = new Book(34, "Sun
+press", 1992);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pa[4] = new Book(15, "Korea
+press", 1986);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> pa[5] = new ChildrenBook(15, "Pee Wee
+press", 1987, 8);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pa[6] = new Cartoon(14, "Pee Wee press", 1924, "Batman");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compute total regular
+price and total<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sale price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalRegularPrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totalSalePrice = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;pa.length; i++){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Call a method of the super class to get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+the regular price.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalRegularPrice += pa[i].getRegularPrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Since the sale price is computed differently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+depending on the product type, overriding (implementation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+method of the object instance of the sub-class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+gets invoked.&nbsp; This is runtime polymorphic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+behavior.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totalSalePrice += pa[i].computeSalePrice();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Item number " + i +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+": Type = " + pa[i].getClass().getName() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Regular price = " + pa[i].getRegularPrice() +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+", Sale price = " + pa[i].computeSalePrice());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalRegularPrice = " + totalRegularPrice);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("totalSalePrice = " + totalSalePrice);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.24: Main.java<br>
+</div>
+<p style="margin-left: 40px;">5. Build and run <span
+ style="font-weight: bold;">MyOnlineShopUsingInterface</span>
+project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyOnlineShopUsingInterface</span><span
+ style="font-weight: bold;"></span>
+project and select <span style="font-weight: bold;">Run</span>.
+(Figure-3.25
+below)</li>
+  <li>Observe the result in the Output window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Item number 0: Type =
+myonlineshop.TV, Regular price = 1000.0, Sale price = 800.0<br>
+Item number 1: Type = myonlineshop.TV, Regular price = 2000.0, Sale
+price = 1600.0<br>
+Item number 2: Type = myonlineshop.MP3Player, Regular price = 250.0,
+Sale price = 225.0<br>
+Item number 3: Type = myonlineshop.Book, Regular price = 34.0, Sale
+price = 17.0<br>
+Item number 4: Type = myonlineshop.Book, Regular price = 15.0, Sale
+price = 7.5<br>
+      <span style="font-weight: bold;">Item number 5: Type =
+myonlineshop.ChildrenBook, Regular price = 100.0,
+Sale price = 30.0</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">Item number 6: Type =
+myonlineshop.Cartoon, Regular price = 150.0, Sale
+price = 60.0</span><br>
+totalRegularPrice = 3549.0<br>
+totalSalePrice = 2739.5<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.25: Result<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution up to this point is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javapolymorphism/samples/</span><span
+ style="font-weight: bold;">MyOnlineShopUsingInterface-solution</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open it and run it. <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you built <span
+ style="font-weight: bold;">MyOnlineShopUsingInterface </span>project
+and exercised the polymorphic behavior through implementing (or
+overriding) methods of an interface.<br>
+</p>
+<div style="margin-left: 40px;"><br>
+</div>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+</div>
+<!-- ===================================================================================== -->
+<div style="margin-left: 40px;"><br>
+</div>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise (for people who
+are taking Sang Shin's "Java Programming online course")<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify the <a
+ href="http://www.javapassion.com/handsonlabs/javainheritance/#Homework">MyOwnAutoShopProject</a>
+you did as LAB-1023: Java Inheritance homework to use Java
+interface.&nbsp; Here I am going to call the new project <span
+ style="font-weight: bold;">MyOwnAutoShopUsingInterface</span>.<br>
+<ul>
+  <li>The task you will have to do is something similar to the <span
+ style="font-weight: bold;">MyOnlineShopUsingInterface </span>project
+above.<span style="font-weight: bold;"><br>
+    </span></li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javapolymorphism.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyOwnAutoShopUsingInterface</span><span style="font-weight: bold;"></span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains&nbsp;<span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">MyOwnAutoShopUsingInterface</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyOwnAutoShopUsingInterface</span>)<br>
+    </li>
+    <li>jar cvf MyOwnAutoShopUsingInterface.zip
+MyOwnAutoShopUsingInterface (<span style="font-weight: bold;">MyOwnAutoShopUsingInterface
+      </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javapolymorphism.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javapolymorphism</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javapolymorphism.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project - war file with necessary source files is OK.</li>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>
